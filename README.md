@@ -363,7 +363,7 @@ MATERIA\_PRIMA.
 
 **## 7. Diagrama Entidade-Relacionamento (DER)**  
 
-O Diagrama Entidade-Relacionamento (DER) foi anexado junto ao repositório, confira [***aqui***](DER.jpeg).
+O Diagrama Entidade-Relacionamento (DER) foi anexado junto ao repositório, confira [***aqui***](DER_Padaria_Delicia_II.png).
 
 ---
 
