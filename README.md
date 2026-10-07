@@ -524,9 +524,9 @@ Vendas, atendimento e entregas: atendimento no balcão e pedidos por delivery (c
 **| \*\*Ferramenta e etapa\*\* |** Claude foi usado para organização do Diagrama de Entidade e Relacionamento (DER). |  
 **| \*\*Motivação\*\* |** Dados extensos, demandando muito tempo para implementação.  |  
 **| \*\*Prompt(s) utilizados\*\* |** Claude, poderia desenvolver um diagrama de entidade e relacionamento (DER) de acordo com o formato BrModelo (exemplo na imagem em anexo) e com as informações do documento(pdf em anexo)? |  
-**| \*\*Resposta recebida\*\* |** Imagem do tópico 7 do presente documento. |  
+**| \*\*Resposta recebida\*\* |** Imagem do tópico 7, mas com muitas Chaves Estrangeiras. |  
 **| \*\*Fontes consultadas e verificadas\*\* |** Dicionário de dados e imagem exemplo do desejado.  |  
-**| \*\*Trechos rejeitados ou corrigidos\*\* |** Nada alterado, tudo de acordo com o pedido. |  
+**| \*\*Trechos rejeitados ou corrigidos\*\* |** Foi retornado uma imagem com Foreign Keys (Chaves Estrangeiras), no qual foi corrigido, convertendo para Primary Keys (Chaves Primárias) novamente. |  
 **| \*\*Justificativa da escolha final\*\* |** Coerente com a modelagem conceitual que foi desenvolvido e com o material fornecido. |  
 **| \*\*Reflexão crítica\*\* |** Não foi identificado nenhum erro ou viés algorítmico claro nas respostas fornecidas pela inteligência artificial. |
 
