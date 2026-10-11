@@ -28,24 +28,10 @@ Além disso, há também um registro anexado abaixo da reunião de levantamento 
 
 **## 2. Processos de Negócio**  
 
-## 5. Processos de Negócio
-
 Para garantir a rastreabilidade entre as necessidades da Padaria Délicia e a modelagem do banco de dados, os processos de negócio foram mapeados e estruturados detalhadamente a seguir.
 
 ---
-
-### Modelo de Estruturação Padrão
-Cada processo segue o modelo:
-- **Objetivo:** O propósito do processo no negócio.
-- **Atores:** Papéis e sistemas envolvidos.
-- **Entrada / Gatilho:** O que dispara o início do processo.
-- **Fluxo Principal (Passo a Passo):** Sequência detalhada de execução.
-- **Saída / Resultado:** O que é gerado ao final.
-- **Regras / Exceções:** Particularidades identificadas na entrevista.
-
----
-
-### 5.1. Processos Principais (Vendas e Atendimento)
+### 2.1. Processos Principais (Vendas e Atendimento)
 
 #### Processo 1: Atendimento no Salão e Balcão
 * **Objetivo:** Registrar o consumo presencial de produtos (por quilo ou unidade) e efetuar a cobrança no caixa.
@@ -104,7 +90,7 @@ Cada processo segue o modelo:
 
 ---
 
-### 5.2. Processos de Apoio e Gestão Financeira
+### 2.2. Processos de Apoio e Gestão Financeira
 
 #### Processo 4: Controle e Fechamento de Caixa
 * **Objetivo:** Garantir a conferência dos valores transacionados e a segurança no encerramento de turnos.
@@ -138,7 +124,7 @@ Cada processo segue o modelo:
 
 ---
 
-### 5.3. Processos de Produção e Operação Interna
+### 2.3. Processos de Produção e Operação Interna
 
 #### Processo 6: Planejamento e Registro de Produção Diária
 * **Objetivo:** Definir e registrar a quantidade de panificação e confeitaria a ser produzida no dia.
