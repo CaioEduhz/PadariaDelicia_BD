@@ -28,7 +28,142 @@ Além disso, há também um registro anexado abaixo da reunião de levantamento 
 
 **## 2. Processos de Negócio**  
 
-Dentre os principais processos da empresa, mapeamos aqueles que são mais relevantes para o desenvolvimento de um sistema efetivo: **Cadastro e controle de cliente** (hoje não há controle sistemático de entrada, saída e consumo dos clientes atendidos no salão, o que abre brecha para clientes saírem sem pagar.); **Controle de caixa** (fechamento e conferência de caixa dependem quase inteiramente de controle verbal, com uso pontual de fichas de papel.); **Controle de estoque** (movimentação de produtos é registrada de forma totalmente manual, sem sistema de apoio.); **Produção e compras (fluxo de mercadoria)** (entrada de insumos, produção diária e disponibilização dos produtos para venda.); e **Vendas, atendimento e entregas:** (atendimento no balcão e pedidos por delivery (cerca de 50 por dia), com integração escalável ao WhatsApp.)
+## 5. Processos de Negócio
+
+Para garantir a rastreabilidade entre as necessidades da Padaria Délicia e a modelagem do banco de dados, os processos de negócio foram mapeados e estruturados detalhadamente a seguir.
+
+---
+
+### Modelo de Estruturação Padrão
+Cada processo segue o modelo:
+- **Objetivo:** O propósito do processo no negócio.
+- **Atores:** Papéis e sistemas envolvidos.
+- **Entrada / Gatilho:** O que dispara o início do processo.
+- **Fluxo Principal (Passo a Passo):** Sequência detalhada de execução.
+- **Saída / Resultado:** O que é gerado ao final.
+- **Regras / Exceções:** Particularidades identificadas na entrevista.
+
+---
+
+### 5.1. Processos Principais (Vendas e Atendimento)
+
+#### Processo 1: Atendimento no Salão e Balcão
+* **Objetivo:** Registrar o consumo presencial de produtos (por quilo ou unidade) e efetuar a cobrança no caixa.
+* **Atores:** Cliente, Balconista, Operador de Caixa, Sistema Saurus.
+* **Entrada / Gatilho:** Cliente solicita um produto no balcão ou consome no salão.
+* **Fluxo Principal:**
+  1. O Balconista pesa (se aplicável), embala e informa o valor do item.
+  2. O Balconista anota manualmente o item e valor na **comanda de papel**.
+  3. O Cliente recebe a comanda e o produto.
+  4. Ao finalizar o consumo/compras, o Cliente se dirige ao Caixa com a comanda de papel.
+  5. O Operador de Caixa insere os itens no sistema Saurus e informa o valor total.
+  6. O Cliente realiza o pagamento (Dinheiro, PIX ou Cartão).
+  7. O Operador de Caixa registra o pagamento, emite o Cupom Fiscal no sistema Saurus e encerra a comanda.
+* **Saída:** Cupom/Nota Fiscal emitida, baixa de estoque e registro de venda no caixa.
+* **Exceções e Regras de Negócio:**
+  * *Venda de bebida alcoólica:* Exige conferência de documento de identidade caso o cliente aparenta ser jovem.
+  * *Evasão:* Clientes que saem sem pagar (problema atual decorrente do controle em papel).
+
+---
+
+#### Processo 2: Gestão de Pedidos via Delivery
+* **Objetivo:** Receber, preparar, despachar e confirmar entregas solicitadas à distância.
+* **Atores:** Cliente, Operador de Caixa, Equipe de Produção, Motoboy (Terceirizado).
+* **Entrada / Gatilho:** Chegada de pedido via WhatsApp da padaria ou Plataforma iFood.
+* **Fluxo Principal:**
+  1. **Recepção:**
+     * *WhatsApp:* Caixa atende e anota o pedido manualmente.
+     * *iFood:* Pedido é impresso automaticamente no terminal de vendas.
+  2. O Caixa encaminha a ordem de produção/separação para a cozinha/balcão.
+  3. A Produção/Balcão separa o pedido e devolve para a expedição.
+  4. O Motoboy terceirizado é acionado e retira o pedido com a indicação da taxa/endereço.
+  5. O Motoboy realiza a entrega e coleta a validação (código de verificação no iFood ou pagamento em maquininha).
+* **Saída:** Pedido entregue, taxa de entrega apurada e pagamento registrado.
+* **Regras de Negócio:**
+  * Raio máximo de entrega via WhatsApp: 5 km (Taxa fixa de R$ 4,00).
+  * Raio máximo via aplicativo (iFood): 10 km (Taxa calculada pela plataforma).
+  * Pagamento no delivery deve ser exclusivamente por meio eletrônico.
+
+---
+
+#### Processo 3: Encomendas Especiais (Bolos, Tortas e Salgados)
+* **Objetivo:** Registrar pedidos antecipados personalizados garantindo a cobertura dos custos de produção.
+* **Atores:** Cliente, Atendente de Caixa, Cozinha/Produção.
+* **Entrada / Gatilho:** Solicitação de encomenda presencial ou via WhatsApp com antecedência.
+* **Fluxo Principal:**
+  1. Atendente registra os itens encomendados, data e horário de retirada.
+  2. Atendente cobra **20% de sinal** do valor total da encomenda.
+  3. O pedido é agendado no calendário de produção da cozinha.
+  4. No dia combinado, a Produção prepara a encomenda.
+  5. O Cliente retira o produto mediante o pagamento dos 80% restantes.
+* **Saída:** Produto entregue e sinal/saldo quitados.
+* **Exceções e Regras de Negócio:**
+  * Antecedência mínima para encomendar: 24 horas (1 dia).
+  * Se o cliente não retirar, o valor de 20% do sinal retido cobre custos de insumos e não é devolvido.
+  * Cancelamento só é aceito se a produção do item ainda não tiver sido iniciada.
+
+---
+
+### 5.2. Processos de Apoio e Gestão Financeira
+
+#### Processo 4: Controle e Fechamento de Caixa
+* **Objetivo:** Garantir a conferência dos valores transacionados e a segurança no encerramento de turnos.
+* **Atores:** Operador de Caixa, Sócio / Gerente.
+* **Entrada / Gatilho:** Horário de troca de turno (14h e 22h).
+* **Fluxo Principal:**
+  1. O Operador de Caixa encerra os lançamentos no sistema Saurus.
+  2. O sistema gera o relatório com o esperado (vendas em dinheiro vs. pagamentos digitais).
+  3. O Operador realiza a contagem do dinheiro físico no gaveteiro.
+  4. O valor informado é confrontado com o total registrado pelo sistema.
+  5. Caso haja divergência, a conferência é auditada pelo Sócio.
+* **Saída:** Relatório de fechamento de caixa e conferência realizada.
+* **Regras de Negócio:**
+  * Fechamento obrigatório duas vezes ao dia (às 14h e às 22h).
+  * Sangrias não são frequentes, pois 80% a 90% dos pagamentos ocorrem via meios digitais.
+
+---
+
+#### Processo 5: Gestão de Compras e Estoque
+* **Objetivo:** Manter os níveis de insumos equilibrados para evitar falta de produtos críticos e desperdícios.
+* **Atores:** Responsável por Compras (Sócio), Fornecedores.
+* **Entrada / Gatilho:** Conferência semanal do nível de estoque praticado.
+* **Fluxo Principal:**
+  1. O Responsável por Compras analisa o estoque atual e a média de consumo semanal fixada (ex: meta de 5 fardos de refrigerante/semana).
+  2. Calcula-se a necessidade de reposição: $\text{Quantidade a comprar} = \text{Média Semanal} - \text{Estoque Remanescente}$.
+  3. O pedido é faturado via boleto bancário com o fornecedor escolhido (a padaria possui > 20 fornecedores).
+  4. **Recebimento:** No ato da entrega, toda mercadoria é conferida fisicamente antes da estocagem.
+* **Saída:** Estoque reabastecido e lançamento das obrigações a pagar.
+* **Regras de Negócio / Exceções:**
+  * Se houver divergência, danos ou produto vencido no momento da entrega, a carga é rejeitada e não é recebida.
+
+---
+
+### 5.3. Processos de Produção e Operação Interna
+
+#### Processo 6: Planejamento e Registro de Produção Diária
+* **Objetivo:** Definir e registrar a quantidade de panificação e confeitaria a ser produzida no dia.
+* **Atores:** Equipe de Produção (Padeiros/Confeiteiros).
+* **Entrada / Gatilho:** Início do expediente da equipe de produção (06h).
+* **Fluxo Principal:**
+  1. A equipe analisa visualmente as sobras do dia anterior e a demanda esperada para o turno.
+  2. A equipe define a quantidade de fornadas/áreas a serem produzidas.
+  3. A produção é realizada e disponibilizada para a área de vendas/balcão.
+* **Saída:** Produtos prontos colocados à disposição no salão e balcão.
+* **Melhoria Necessária com o Sistema:** Passar a registrar formalmente no sistema os lotes produzidos e eventuais perdas/descartes (que hoje não são contabilizados).
+
+---
+
+#### Processo 7: Gestão de Turnos e Controle de Acessos
+* **Objetivo:** Administrar as escalas dos colaboradores e restringir operações críticas de segurança.
+* **Atores:** Funcionários, Sócios.
+* **Entrada / Gatilho:** Troca de horários de trabalho.
+* **Fluxo Principal:**
+  1. O 1º Turno atua das 06h às 14h (equipe de 7 pessoas).
+  2. O 2º Turno atua das 14h às 22h (equipe de 5 pessoas).
+  3. As permissões no sistema são parametrizadas de acordo com o papel do usuário.
+* **Saída:** Escala operacional executada.
+* **Regras de Negócio:**
+  * **Alçada de Acesso:** Permissões para alterar preços, cadastrar produtos, aplicar descontos, cancelar itens ou visualizar relatórios são exclusivas dos **Sócios**.
 
 [Fluxo de Processos](img/Fluxograma.png)
 
@@ -157,12 +292,23 @@ Dentre os principais processos da empresa, mapeamos aqueles que são mais releva
 
 **RN09 — Prioridade de produtos críticos.** Produtos essenciais (ex.: pão francês) geram alerta de estoque mínimo com prioridade sobre os demais.
 
+**RN10 — Área e taxa de entrega (Delivery).** O delivery próprio via WhatsApp limita-se a um raio máximo de até 5 km com taxa fixa de R$ 4,00; pedidos via aplicativo (iFood) atendem até 10 km, com taxa calculada pela própria plataforma.
+  
+**RN11 — Formas de pagamento e fracionamento.** O caixa aceita todas as modalidades de pagamento (dinheiro, PIX, cartões) e permite a divisão de uma mesma conta entre diferentes clientes ou formas de pagamento.
+
+**RN12 — Conferência obrigatoria no recebimento de insumos.** Toda mercadoria recebida de fornecedores deve passar por inspeção física no ato da entrega; caso sejam identificadas divergências de quantidade, avarias ou produtos vencidos, a carga deve ser recusada imediatamente.
+
 ***4.2 Restrições organizacionais***  
 *Limitações externas ou internas que afetam o modelo — e por que importam.*
 
-**RN10 — Documentação regulatória obrigatória.** Exigência legal (vigilância sanitária e corpo de bombeiros): todo produto e o próprio estabelecimento devem ter vinculados ficha técnica, laudo de bombeiro, laudo sanitário, alvará de funcionamento e código de defesa do consumidor (RF25). Importa porque a ausência desses documentos pode gerar multa ou interdição do estabelecimento — não é uma preferência da gestão, é obrigação legal.
+**RN13 — Documentação regulatória obrigatória.** Exigência legal (vigilância sanitária e corpo de bombeiros): todo produto e o próprio estabelecimento devem ter vinculados ficha técnica, laudo de bombeiro, laudo sanitário, alvará de funcionamento e código de defesa do consumidor (RF25). Importa porque a ausência desses documentos pode gerar multa ou interdição do estabelecimento — não é uma preferência da gestão, é obrigação legal.
+  
+**RN14 — Proteção de dados pessoais (LGPD).** Restrição legal: dados de clientes (nome, telefone) são dados pessoais por definição da LGPD, mesmo que a gestão não os perceba como sensíveis. Importa porque o modelo de dados de clientes precisa prever controle de acesso e finalidade de uso desses campos, sob risco de sanção legal.
+  
+**RN15 — Emissão obrigatória de documento fiscal (Restrição Fiscal).** Obrigatoriedade legal: toda venda concluída deve gerar o respectivo cupom ou nota fiscal
+por meio do sistema Saurus. Importa para garantir a conformidade tributária e a transparência fiscal do estabelecimento.
 
-**RN11 — Proteção de dados pessoais (LGPD).** Restrição legal: dados de clientes (nome, telefone) são dados pessoais por definição da LGPD, mesmo que a gestão não os perceba como sensíveis. Importa porque o modelo de dados de clientes precisa prever controle de acesso e finalidade de uso desses campos, sob risco de sanção legal.
+**RN16 — Proibição de venda de bebidas alcoólicas a menores (Restrição Legal).** Restrição legal: fica estritamente proibida a venda de bebidas alcoólicas a menores de 18 anos, sendo obrigatória a solicitação de documento de identificação sempre que o cliente aparentar ser jovem. Importa pelo cumprimento da legislação vigente (ECA), evitando penalidades e cassação do alvará.
 
 ---
 
