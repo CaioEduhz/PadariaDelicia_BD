@@ -115,7 +115,7 @@ Para garantir a rastreabilidade entre as necessidades da Padaria Délicia e a mo
 * **Entrada / Gatilho:** Conferência semanal do nível de estoque praticado.
 * **Fluxo Principal:**
   1. O Responsável por Compras analisa o estoque atual e a média de consumo semanal fixada (ex: meta de 5 fardos de refrigerante/semana).
-  2. Calcula-se a necessidade de reposição: $\text{Quantidade a comprar} = \text{Média Semanal} - \text{Estoque Remanescente}$.
+  2. Calcula-se a necessidade de reposição: {Quantidade a comprar} = {Média Semanal} - {Estoque Remanescente}$.
   3. O pedido é faturado via boleto bancário com o fornecedor escolhido (a padaria possui > 20 fornecedores).
   4. **Recebimento:** No ato da entrega, toda mercadoria é conferida fisicamente antes da estocagem.
 * **Saída:** Estoque reabastecido e lançamento das obrigações a pagar.
@@ -124,9 +124,33 @@ Para garantir a rastreabilidade entre as necessidades da Padaria Délicia e a mo
 
 ---
 
+#### Processo 6: Pagamento de Fornecedores
+* **Objetivo:** Quitar os compromissos financeiros gerados pelas aquisições de insumos e mercadorias de revenda.
+* **Atores:** Sócio / Administrador, Fornecedores.
+* **Entrada / Gatilho:** Vencimento dos boletos ou faturas emitidas pelos fornecedores.
+* **Fluxo Principal:**
+  1. O Sócio confere os boletos das compras de insumos registradas.
+  2. O Sócio efetua o pagamento bancário na data de vencimento acordada.
+  3. O comprovante de pagamento é guardado para fins de controle financeiro.
+* **Saída:** Títulos de fornecedores liquidados e controle de passivos atualizado.
+
+---
+
+#### Processo 7: Contas a Pagar (Despesas Operacionais Gerais)
+* **Objetivo:** Controlar e realizar o pagamento das contas de consumo e manutenção do estabelecimento.
+* **Atores:** Sócio / Administrador.
+* **Entrada / Gatilho:** Recebimento de faturas de despesas recorrentes (energia elétrica, água, etc.).
+* **Fluxo Principal:**
+  1. O Sócio recebe e centraliza as faturas de despesas operacionais do mês.
+  2. O Sócio realiza os pagamentos devidos dentro dos prazos de vencimento.
+  3. Os registros de quitação são arquivados para a gestão financeira interna.
+* **Saída:** Custos fixos e operacionais quitados, garantindo a continuidade dos serviços da padaria.
+
+---
+
 ### 2.3. Processos de Produção e Operação Interna
 
-#### Processo 6: Planejamento e Registro de Produção Diária
+#### Processo 8: Planejamento e Registro de Produção Diária
 * **Objetivo:** Definir e registrar a quantidade de panificação e confeitaria a ser produzida no dia.
 * **Atores:** Equipe de Produção (Padeiros/Confeiteiros).
 * **Entrada / Gatilho:** Início do expediente da equipe de produção (06h).
@@ -139,7 +163,7 @@ Para garantir a rastreabilidade entre as necessidades da Padaria Délicia e a mo
 
 ---
 
-#### Processo 7: Gestão de Turnos e Controle de Acessos
+#### Processo 9: Gestão de Turnos e Controle de Acessos
 * **Objetivo:** Administrar as escalas dos colaboradores e restringir operações críticas de segurança.
 * **Atores:** Funcionários, Sócios.
 * **Entrada / Gatilho:** Troca de horários de trabalho.
@@ -639,7 +663,7 @@ Isso deixa a 4.2 só com as duas restrições que são genuinamente legais/estat
 **| \*\*Reflexão crítica\*\* |** Não foi identificado nenhum erro ou viés algorítmico claro nas respostas fornecidas pela inteligência artificial. |
 
 |------|------------------|  
-**| \*\*Ferramenta e etapa\*\* |** Claude foi usado para organização e ordenamento de processos. |  
+**| \*\*Ferramenta e etapa\*\* |** Gemini foi usado para organização e ordenamento de processos. |  
 **| \*\*Motivação\*\* |** Otimização de tempo e maior organização. |  
 **| \*\*Prompt(s) utilizados\*\* |** Com base na entrevista e todos os dados e processos fornecidos, faça um mapeamento de processos na pretensão da criação de um fluxograma. |  
 **| \*\*Resposta recebida\*\* |** Cadastro e controle de clientes: hoje não há controle sistemático de entrada, saída e consumo dos clientes atendidos no salão, o que abre brecha para clientes saírem sem pagar.  
@@ -648,7 +672,7 @@ Controle de estoque: movimentação de produtos é registrada de forma totalment
 Produção e compras (fluxo de mercadoria): entrada de insumos, produção diária e disponibilização dos produtos para venda.  
 Vendas, atendimento e entregas: atendimento no balcão e pedidos por delivery (cerca de 50 por dia), com integração desejada ao WhatsApp. |  
 **| \*\*Fontes consultadas e verificadas\*\* |** Documentação da entrevista |  
-**| \*\*Trechos rejeitados ou corrigidos\*\* |** Corrigido o trecho que cita o whatsapp. Pois se trata de uma pretensão futura, um bônus no projeto. |  
+**| \*\*Trechos rejeitados ou corrigidos\*\* |** Foi mais detalhado cada processo e adicionado partes de contas à pagar e pagamento aos fornecedores. |  
 **| \*\*Justificativa da escolha final\*\* |** É coerente ao que foi pedido, e foi bem revisado pelo grupo. |  
 **| \*\*Reflexão crítica\*\* |** Não foi identificado nenhum erro ou viés algorítmico claro nas respostas fornecidas pela inteligência artificial. |
 
