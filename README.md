@@ -191,7 +191,7 @@ Para garantir a rastreabilidade entre as necessidades da Padaria Délicia e a mo
 
 **RF04 — Emissão de comprovante.** Nome da padaria, data/hora, número da venda, produtos, valores, forma de pagamento.
 
-**RF05 — Controle automático de estoque.** Atualização do estoque após cada venda e registro de entradas/ajustes manuais autorizados. Hoje esse controle é totalmente manual — automatizá-lo é prioridade alta.
+* **RN05 — Pedido sob encomenda (Antecedência e Multa por Não Retirada).** Solicitações de encomendas exigem antecedência mínima de 1 dia. O pagamento é realizado na retirada, porém, caso o cliente não compareça para retirar a encomenda produzida, aplica-se uma cobrança de 20% do valor total a título de multa para cobrir os custos de produção e evitar prejuízos ao estabelecimento.
 
 **RF06 — Alerta de estoque mínimo.** Gerar alerta quando um produto atingir o estoque mínimo configurado, com prioridade maior para produtos essenciais (ex.: pão francês) — ver RN10.
 
