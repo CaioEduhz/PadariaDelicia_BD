@@ -237,6 +237,10 @@ Para garantir a rastreabilidade entre as necessidades da Padaria Délicia e a mo
 
 **RF27 — Integração com WhatsApp (Escalável).** Notificações de status de pedido/encomenda e confirmação de delivery via WhatsApp.
 
+RF28 - **Venda rápida por código de barras/balança.** Leitura de código de barras e integração com balança para produtos pesados.
+
+RF29 - **Controle de desperdício e perdas.** Registro de perdas (vencimento, quebra, sobra do dia) com motivo. Nesse caso,alimenta o relatório de desperdício do RF21.
+
 ***3.2 Requisitos Não Funcionais***
 
 **RNF01 — Desempenho.** Resposta em até 2 segundos nas operações comuns, especialmente busca de produto e preço.
