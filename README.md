@@ -624,32 +624,26 @@ https://www.instagram.com/delicia2padaria?igsi=cDIxa3dnMmhtMHly
 documento do levantamento de dados com o dono da empresa |
 
 | **Resposta recebida** | A Padaria Delícia II Ltda., nome fantasia Padaria Delícia II, é uma microempresa com fins lucrativos localizada na Rua Impata, nº 765, Vila Ré, São Paulo-SP, CEP 03663-010. Inscrita no CNPJ 13.565.217/0001-90, iniciou suas atividades em 19 de abril de 2011 e encontra-se com situação cadastral ativa. Sua atividade principal é o comércio varejista de produtos de padaria e confeitaria, com predominância de revenda, enquanto sua atividade secundária compreende a fabricação de produtos de padaria e confeitaria com predominância de produção própria.
-
-A organização desempenha papel relevante na comunidade local ao comercializar produtos de consumo cotidiano e atender moradores da Vila Ré e de regiões próximas. A equipe é composta por 12 pessoas, sendo 2 sócios e 10 funcionários responsáveis pela operação diária, e a padaria atende em média 200 clientes por dia, além de aproximadamente 50 pedidos de delivery diários. Seu porte é adequado à realização de uma pesquisa acadêmica, pois permite observar diretamente processos como atendimento ao público, vendas, produção, controle de estoque, compras e organização administrativa.
-
-De acordo com o levantamento realizado junto à gestão, os principais problemas identificados na Padaria Delícia II estão relacionados ao controle de caixa e ao controle de clientes. A empresa não realiza um controle sistemático de entrada e saída de clientes, e o acompanhamento do consumo apresenta falhas, havendo casos em que clientes se retiram sem efetuar o pagamento, o que gera prejuízo financeiro. Esse controle é feito majoritariamente de forma verbal, com uso pontual de fichas de papel, e o controle de estoque também é realizado de maneira totalmente manual. Essa situação caracteriza a crise operacional da empresa e evidencia a necessidade de um sistema que centralize e padronize o controle de caixa, de clientes e de estoque.
-
-A empresa apresenta problemas de organização que podem ser solucionados ou reduzidos mediante a implementação de ferramentas de gestão mais eficientes. Dessa forma, constitui um caso prático para analisar processos existentes e desenvolver soluções aplicáveis à sua rotina operacional.
-
-A existência da organização pode ser comprovada pelo cadastro empresarial ativo, pelos diretórios comerciais e pelo perfil público da padaria no Instagram. Os cadastros consultados informam como administradores Francisco Almir Pereira e José Aldir das Chagas, além do telefone (11) 2958-2840 e do e-mail pyoner@ig.com.br. |
+  A organização desempenha papel relevante na comunidade local ao comercializar produtos de consumo cotidiano e atender moradores da Vila Ré e de regiões próximas. A equipe é composta por 12 pessoas, sendo 2 sócios e 10 funcionários responsáveis pela operação diária, e a padaria atende em média 200 clientes por dia, além de aproximadamente 50 pedidos de delivery diários. Seu porte é adequado à realização de uma pesquisa acadêmica, pois permite observar diretamente processos como atendimento ao público, vendas, produção, controle de estoque, compras e organização administrativa.
+  De acordo com o levantamento realizado junto à gestão, os principais problemas identificados na Padaria Delícia II estão relacionados ao controle de caixa e ao controle de clientes. A empresa não realiza um controle sistemático de entrada e saída de clientes, e o acompanhamento do consumo apresenta falhas, havendo casos em que clientes se retiram sem efetuar o pagamento, o que gera prejuízo financeiro. Esse controle é feito majoritariamente de forma verbal, com uso pontual de fichas de papel, e o controle de estoque também é realizado de maneira totalmente manual. Essa situação caracteriza a crise operacional da empresa e evidencia a necessidade de um sistema que centralize e padronize o controle de caixa, de clientes e de estoque.
+  A empresa apresenta problemas de organização que podem ser solucionados ou reduzidos mediante a implementação de ferramentas de gestão mais eficientes. Dessa forma, constitui um caso prático para analisar processos existentes e desenvolver soluções aplicáveis à sua rotina operacional.
+  A existência da organização pode ser comprovada pelo cadastro empresarial ativo, pelos diretórios comerciais e pelo perfil público da padaria no Instagram. Os cadastros consultados informam como administradores Francisco Almir Pereira e José Aldir das Chagas, além do telefone (11) 2958-2840 e do e-mail pyoner@ig.com.br. |
 
 | **Fontes consultadas e verificadas** | A IA citou somente as fontes fornecidas. Isso se mostra no exemplo: “De acordo com o levantamento realizado junto à gestão”. |  
 | **Trechos rejeitados ou corrigidos** | Foi adicionada uma justificativa mais explícita, na qual estava faltando para ficar completa e correta ao modelo condizente. |  
 | **Justificativa da escolha final** | Foi mantida  a resposta sugerida, somente adicionando informações. A forma escrita foi bem avaliada e compreendida pelo grupo, sendo assim, não havendo alterações do que foi entregue pela IA. |  
 | **Reflexão crítica** | Não houveram vieses, foram fornecidos os materiais necessários para a atividade desejada. |
 
+| Item | O que registrar |
 |------|------------------|
 | **Ferramenta e etapa** | Claude foi usada para revisão de requisitos. |  
 | **Motivação** | Estava com uma grande quantidade de requisitos, o grupo pensou na possibilidade de existir algum que poderia ser excluído editado. |  
 | **Prompt(s) utilizados** | Complemente, adicione ou exclua os requisitos funcionais e não funcionais de acordo com tudo que te mandei e com o arquivo texto.txt. |  
 | **Resposta recebida** | O que é redundante e pode sair:
-
 * **RN13 (Acesso por turno)** e **RN14 (Horário de funcionamento contínuo)** não são realmente regras de negócio no sentido de modelagem — são só repetições do que já está no RF21/RNF04 (acesso por turno) e no RNF02 e na Introdução (horário de funcionamento). Manter os dois só em Section 3 é mais limpo; aqui eles só ocupam espaço sem adicionar nada nas restrições organizacionais.  
 * A nota "(era RN11 na versão anterior)" é resíduo de edição, não é conteúdo do trabalho.  
 * A seção final "O que mudou em relação à lista original" também não corresponde a nenhuma seção pedida pelo professor — é só o changelog da conversa. 
-
 Isso deixa a 4.2 só com as duas restrições que são genuinamente legais/estatutárias (documentação regulatória e LGPD), que são exemplos muito mais fortes.
-
 *Exato texto da seção 3: “Requisitos do Sistema”* |
 
 | **Fontes consultadas e verificadas** | A IA citou somente as fontes fornecidas (documento de requisitos feito pelo grupo). |  
@@ -700,23 +694,17 @@ Vendas, atendimento e entregas: atendimento no balcão e pedidos por delivery (c
 | **Motivação** | A Seção 8 exige defender cada decisão de modelagem contra alternativas. O grupo já havia tomado essas decisões, mas a argumentação não estava registrada. A IA foi usada para explicitá-la por escrito.|
 | **Prompt(s) utilizados** | Pedido de justificativa técnica das decisões de abstração e modelagem (entidades, atributos, relacionamentos e cardinalidades), acompanhado do arquivo da modelagem conceitual completo.|
 | **Resposta recebida** | Justificativa em seis blocos (critério de abstração, entidades, atributos, cardinalidades, proporcionalidade e limitações), sempre confrontando a escolha com a alternativa descartada. Exemplos:
-
 \- PRODUTO e MATERIA\_PRIMA separados, para evitar atributos nulos.
-
 \- COMANDA separada de VENDA, para não contaminar o faturamento.
-
 \- Participação parcial de CLIENTE em VENDA, por viabilidade operacional.
-
 \- VL\_UNITARIO no item, para preservar o preço histórico.
-
 \- Atributos derivados como desnormalização controlada (RNF01).
-
 Uma segunda resposta condensou o texto à metade.|
 
-| **Trechos rejeitados ou corrigidos** | Nenhuma fonte externa. O grupo conferiu o texto com o dicionário de dados (seção 5), o DER (seção 7) e os números da entrevista (200 clientes/dia, 50 deliveries, 12 usuários, 19 entidades).
-**\*Trechos rejeitados ou corrigidos\*** Foram mantidas apenas as justificativas que correspondiam ao raciocínio real do grupo, pois a IA às vezes tratava como deliberadas escolhas feitas por conveniência. As limitações da seção 8.6 foram validadas pelo grupo.
-| **Justificativa da escolha final** | Foi mantida a versão condensada, por ser proporcional ao peso da seção e preservar a comparação com as alternativas. As decisões de modelagem foram do grupo, não da IA.
-**\*Reflexão crítica\*** A IA tende a apresentar toda decisão como intencional e bem fundamentada, o que gera texto convincente, mas nem sempre fiel ao processo real. Por isso, o grupo revisou cada justificativa. Não houve alucinação, pois o modelo completo foi fornecido, e não foram identificados vieses.
+| **Trechos rejeitados ou corrigidos** | Nenhuma fonte externa. O grupo conferiu o texto com o dicionário de dados (seção 5), o DER (seção 7) e os números da entrevista (200 clientes/dia, 50 deliveries, 12 usuários, 19 entidades).|
+**\*Trechos rejeitados ou corrigidos\*** Foram mantidas apenas as justificativas que correspondiam ao raciocínio real do grupo, pois a IA às vezes tratava como deliberadas escolhas feitas por conveniência. As limitações da seção 8.6 foram validadas pelo grupo.|
+| **Justificativa da escolha final** | Foi mantida a versão condensada, por ser proporcional ao peso da seção e preservar a comparação com as alternativas. As decisões de modelagem foram do grupo, não da IA.|
+**\*Reflexão crítica\*** A IA tende a apresentar toda decisão como intencional e bem fundamentada, o que gera texto convincente, mas nem sempre fiel ao processo real. Por isso, o grupo revisou cada justificativa. Não houve alucinação, pois o modelo completo foi fornecido, e não foram identificados vieses.|
 
 | Item | O que registrar |
 |------|------------------|
