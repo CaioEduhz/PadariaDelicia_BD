@@ -609,19 +609,7 @@ Me fale as informações faltantes para uma introdução completa:
 * Contexto e porte: *com ou sem fins lucrativos; tamanho da operação; número de pessoas envolvidas (funcionários, voluntários, membros, fiéis); volume de atividades (vendas, atendimentos, doações, rituais, eventos).*  
 * Problemas e necessidades identificados: *qual é a "crise operacional" — o que está desorganizado hoje (planilhas soltas, papel, falta de controle de estoque/doações/cadastros, etc.)?*  
 * Justificativa da escolha: *por que essa organização foi escolhida e por que ela é um bom caso para o projeto?*  
-* Evidências da organização: *comprove que a organização existe e que o grupo teve acesso a ela — ex.: fotos do local/da visita, link da organização no Google (Google Maps/Google Meu Negócio, site, rede social), endereço completo e forma de contato (telefone, e-mail, responsável pela organização).*
-
-https://wanderboat.ai/restaurants/brazil/regi%C3%A3o-imediata-de-s%C3%A3o-paulo/padaria-del%C3%ADcia/pFyXZmTJSiejlYw5WReEkg
-
-https://www.solutudo.com.br/empresas/sp/s-paulo/panificadoras-e-padarias/padaria-delicia-ii-ltda-17960017
-
-https://cnpj.biz/13565217000190
-
-https://cnpja.com/office/13565217000190
-
-https://www.instagram.com/delicia2padaria?igsi=cDIxa3dnMmhtMHly
-
-documento do levantamento de dados com o dono da empresa |
+* Evidências da organização: *comprove que a organização existe e que o grupo teve acesso a ela — ex.: fotos do local/da visita, link da organização no Google (Google Maps/Google Meu Negócio, site, rede social), endereço completo e forma de contato (telefone, e-mail, responsável pela organização).* https://wanderboat.ai/restaurants/brazil/regi%C3%A3o-imediata-de-s%C3%A3o-paulo/padaria-del%C3%ADcia/pFyXZmTJSiejlYw5WReEkg; https://www.solutudo.com.br/empresas/sp/s-paulo/panificadoras-e-padarias/padaria-delicia-ii-ltda-17960017; https://cnpj.biz/13565217000190; https://cnpja.com/office/13565217000190; https://www.instagram.com/delicia2padaria?igsi=cDIxa3dnMmhtMHly; documento do levantamento de dados com o dono da empresa |
 
 | **Resposta recebida** | A Padaria Delícia II Ltda., nome fantasia Padaria Delícia II, é uma microempresa com fins lucrativos localizada na Rua Impata, nº 765, Vila Ré, São Paulo-SP, CEP 03663-010. Inscrita no CNPJ 13.565.217/0001-90, iniciou suas atividades em 19 de abril de 2011 e encontra-se com situação cadastral ativa. Sua atividade principal é o comércio varejista de produtos de padaria e confeitaria, com predominância de revenda, enquanto sua atividade secundária compreende a fabricação de produtos de padaria e confeitaria com predominância de produção própria.
   A organização desempenha papel relevante na comunidade local ao comercializar produtos de consumo cotidiano e atender moradores da Vila Ré e de regiões próximas. A equipe é composta por 12 pessoas, sendo 2 sócios e 10 funcionários responsáveis pela operação diária, e a padaria atende em média 200 clientes por dia, além de aproximadamente 50 pedidos de delivery diários. Seu porte é adequado à realização de uma pesquisa acadêmica, pois permite observar diretamente processos como atendimento ao público, vendas, produção, controle de estoque, compras e organização administrativa.
@@ -645,7 +633,6 @@ documento do levantamento de dados com o dono da empresa |
 * A seção final "O que mudou em relação à lista original" também não corresponde a nenhuma seção pedida pelo professor — é só o changelog da conversa. 
 Isso deixa a 4.2 só com as duas restrições que são genuinamente legais/estatutárias (documentação regulatória e LGPD), que são exemplos muito mais fortes.
 *Exato texto da seção 3: “Requisitos do Sistema”* |
-
 | **Fontes consultadas e verificadas** | A IA citou somente as fontes fornecidas (documento de requisitos feito pelo grupo). |  
 | **Trechos rejeitados ou corrigidos** | Nada foi alterado pelo grupo. |  
 | **Justificativa da escolha final** | O grupo manteve exatamente o que foi retornado. A resposta estava equivalente ao desejado. |  
@@ -694,17 +681,16 @@ Vendas, atendimento e entregas: atendimento no balcão e pedidos por delivery (c
 | **Motivação** | A Seção 8 exige defender cada decisão de modelagem contra alternativas. O grupo já havia tomado essas decisões, mas a argumentação não estava registrada. A IA foi usada para explicitá-la por escrito.|
 | **Prompt(s) utilizados** | Pedido de justificativa técnica das decisões de abstração e modelagem (entidades, atributos, relacionamentos e cardinalidades), acompanhado do arquivo da modelagem conceitual completo.|
 | **Resposta recebida** | Justificativa em seis blocos (critério de abstração, entidades, atributos, cardinalidades, proporcionalidade e limitações), sempre confrontando a escolha com a alternativa descartada. Exemplos:
-\- PRODUTO e MATERIA\_PRIMA separados, para evitar atributos nulos.
+\- PRODUTO e MATERIA\_PRIMA separados, para evitar atributos nulos. 
 \- COMANDA separada de VENDA, para não contaminar o faturamento.
 \- Participação parcial de CLIENTE em VENDA, por viabilidade operacional.
 \- VL\_UNITARIO no item, para preservar o preço histórico.
 \- Atributos derivados como desnormalização controlada (RNF01).
 Uma segunda resposta condensou o texto à metade.|
-
-| **Trechos rejeitados ou corrigidos** | Nenhuma fonte externa. O grupo conferiu o texto com o dicionário de dados (seção 5), o DER (seção 7) e os números da entrevista (200 clientes/dia, 50 deliveries, 12 usuários, 19 entidades).|
+| **Fontes consultadas e verificadas** | Nenhuma fonte externa. O grupo conferiu o texto com o dicionário de dados (seção 5), o DER (seção 7) e os números da entrevista (200 clientes/dia, 50 deliveries, 12 usuários, 19 entidades).|
 **\*Trechos rejeitados ou corrigidos\*** Foram mantidas apenas as justificativas que correspondiam ao raciocínio real do grupo, pois a IA às vezes tratava como deliberadas escolhas feitas por conveniência. As limitações da seção 8.6 foram validadas pelo grupo.|
 | **Justificativa da escolha final** | Foi mantida a versão condensada, por ser proporcional ao peso da seção e preservar a comparação com as alternativas. As decisões de modelagem foram do grupo, não da IA.|
-**\*Reflexão crítica\*** A IA tende a apresentar toda decisão como intencional e bem fundamentada, o que gera texto convincente, mas nem sempre fiel ao processo real. Por isso, o grupo revisou cada justificativa. Não houve alucinação, pois o modelo completo foi fornecido, e não foram identificados vieses.|
+| **Reflexão crítica** | A IA tende a apresentar toda decisão como intencional e bem fundamentada, o que gera texto convincente, mas nem sempre fiel ao processo real. Por isso, o grupo revisou cada justificativa. Não houve alucinação, pois o modelo completo foi fornecido, e não foram identificados vieses.|
 
 | Item | O que registrar |
 |------|------------------|
