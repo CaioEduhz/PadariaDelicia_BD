@@ -1,12 +1,14 @@
 Entrega 1 — Modelo Conceitual (DER)  
 *Modelagem de um sistema de gestão de informações para uma organização de pequeno porte*
 
-**Integrantes do grupo:**   
-Caio Eduardo Hernandez		47791934  
-Davi Henrique Santos	Nascimento	47434899  
-Gustavo Reis		47455152  
-Isabela Calisto Oliveira		47645695  
-Maria Eduarda Peres		47644451
+| Integrante | RGM | GitHub |
+|------------|-----|------------------|
+| Caio Eduardo Hernandez  | 47791934  | [CaioEduhz](https://github.com/CaioEduhz) |
+| Davi Henrique Santos Nascimento  | 47455152 | [davihenryn](https://github.com/davihenryn2007-cmd) |
+| Gustavo Reis   | 34567 | [GustaDoBronx](https://github.com/GustaDoBronx) |
+| Isabela Calisto Oliveira	 | 47645695 | [Isalist0](https://github.com/Isalist0) |
+| Maria Eduarda Peres | 47644451 | [maduperesz](https://github.com/maduperesz) |
+
 
 **## 1. Caracterização da Organização**  
 
@@ -597,6 +599,7 @@ Registramos duas limitações conhecidas do recorte atual. A validade está mode
 
 Se o grupo usou alguma ferramenta de IA (ChatGPT, Claude, Gemini, Perplexity etc.) em qualquer parte do trabalho, registre **para cada uso relevante**:
 
+| Item | O que registrar |
 |------|------------------|  
 **| \*\*Ferramenta e etapa\*\* |** Claude foi usado para a escritura da introdução. |  
 **| \*\*Motivação\*\* |** Para mapeamento de informações relevantes e para a revisão de dados faltantes. |  
@@ -678,16 +681,6 @@ Vendas, atendimento e entregas: atendimento no balcão e pedidos por delivery (c
 **| \*\*Fontes consultadas e verificadas\*\* |** Documentação da entrevista |  
 **| \*\*Trechos rejeitados ou corrigidos\*\* |** Foi mais detalhado cada processo e adicionado partes de contas à pagar e pagamento aos fornecedores. |  
 **| \*\*Justificativa da escolha final\*\* |** É coerente ao que foi pedido, e foi bem revisado pelo grupo. |  
-**| \*\*Reflexão crítica\*\* |** Não foi identificado nenhum erro ou viés algorítmico claro nas respostas fornecidas pela inteligência artificial. |
-
-|------|------------------|  
-**| \*\*Ferramenta e etapa\*\* |** Claude foi usado para organização do Diagrama de Entidade e Relacionamento (DER). |  
-**| \*\*Motivação\*\* |** Dados extensos, demandando muito tempo para implementação.  |  
-**| \*\*Prompt(s) utilizados\*\* |** Claude, poderia desenvolver um diagrama de entidade e relacionamento (DER) de acordo com o formato BrModelo (exemplo na imagem em anexo) e com as informações do documento(pdf em anexo)? |  
-**| \*\*Resposta recebida\*\* |** Imagem do tópico 7, mas com muitas Chaves Estrangeiras. |  
-**| \*\*Fontes consultadas e verificadas\*\* |** Dicionário de dados e imagem exemplo do desejado.  |  
-**| \*\*Trechos rejeitados ou corrigidos\*\* |** Foi retornado uma imagem com Foreign Keys (Chaves Estrangeiras), no qual foi corrigido, convertendo para Primary Keys (Chaves Primárias) novamente. |  
-**| \*\*Justificativa da escolha final\*\* |** Coerente com a modelagem conceitual que foi desenvolvido e com o material fornecido. |  
 **| \*\*Reflexão crítica\*\* |** Não foi identificado nenhum erro ou viés algorítmico claro nas respostas fornecidas pela inteligência artificial. |
 
 |------|------------------|  
