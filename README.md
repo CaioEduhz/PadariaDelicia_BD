@@ -605,7 +605,6 @@ Se o grupo usou alguma ferramenta de IA (ChatGPT, Claude, Gemini, Perplexity etc
 | **Motivação** | Para mapeamento de informações relevantes e para a revisão de dados faltantes. |  
 | **Prompt(s) utilizados** |  Olá, claude\! Faça uma introdução com base nesse texto, no arquivo da entrevista e nas informações dos links que eu te mandar.   
 Me fale as informações faltantes para uma introdução completa:
-
 * Nome e natureza da organização: *qual organização real o grupo escolheu (com acesso garantido para pesquisa de campo) — pode ser uma empresa (livraria, lanchonete, pet shop), uma ONG, uma associação comunitária ou outra instituição.*  
 * Contexto e porte: *com ou sem fins lucrativos; tamanho da operação; número de pessoas envolvidas (funcionários, voluntários, membros, fiéis); volume de atividades (vendas, atendimentos, doações, rituais, eventos).*  
 * Problemas e necessidades identificados: *qual é a "crise operacional" — o que está desorganizado hoje (planilhas soltas, papel, falta de controle de estoque/doações/cadastros, etc.)?*  
@@ -658,7 +657,8 @@ Isso deixa a 4.2 só com as duas restrições que são genuinamente legais/estat
 | **Justificativa da escolha final** | O grupo manteve exatamente o que foi retornado. A resposta estava equivalente ao desejado. |  
 | **Reflexão crítica** | A IA foi limitada pelo material fornecido. Ou seja, executei perfeitamente o comando, sem vieses ou alucinações. |
 
-|------|------------------|  
+| Item | O que registrar |
+|------|------------------| 
 | **Ferramenta e etapa** | Claude foi usado para organização do dicionário de dados |  
 | **Motivação** | Foi recorrido à essa IA pois o Claude tem proficiência com dados extensos e complexos, algo característico de um dicionário de dados |  
 | **Prompt(s) utilizados** | Desenvolva um dicionário de dados, se baseando nos conteúdos enviados nos documentos anexados (arquivos em PDF com os todos os requisitos e com o modelo de dicionário de dados a ser desenvolvido.) |  
@@ -668,7 +668,8 @@ Isso deixa a 4.2 só com as duas restrições que são genuinamente legais/estat
 | **Justificativa da escolha final** | É coerente com a modelagem conceitual desenvolvida, além de coincidir com as informações nas outras etapas do trabalho, como o DER e os requisitos. |  
 | **Reflexão crítica** | Não foi identificado nenhum erro ou viés algorítmico claro nas respostas fornecidas pela inteligência artificial. |
 
-|------|------------------|  
+| Item | O que registrar |
+|------|------------------|
 | **Ferramenta e etapa** | Gemini foi usado para organização e ordenamento de processos. |  
 | **Motivação** | Otimização de tempo e maior organização. |  
 | **Prompt(s) utilizados** | Com base na entrevista e todos os dados e processos fornecidos, faça um mapeamento de processos na pretensão da criação de um fluxograma. |  
@@ -682,7 +683,8 @@ Vendas, atendimento e entregas: atendimento no balcão e pedidos por delivery (c
 | **Justificativa da escolha final** | É coerente ao que foi pedido, e foi bem revisado pelo grupo. |  
 | **Reflexão crítica** | Não foi identificado nenhum erro ou viés algorítmico claro nas respostas fornecidas pela inteligência artificial. |
 
-|------|------------------|  
+| Item | O que registrar |
+|------|------------------| 
 | **Ferramenta e etapa** | MyMapAi foi usado para fluxograma. |  
 | **Motivação** | Construir visual em BPMN. |  
 | **Prompt(s) utilizados** | Com base na entrevista e todos os dados e processos fornecidos, poderia criar um visual em BPMN? |  
@@ -692,7 +694,8 @@ Vendas, atendimento e entregas: atendimento no balcão e pedidos por delivery (c
 | **Justificativa da escolha final** | É coerente ao que foi pedido, e foi bem revisado pelo grupo. |  
 | **Reflexão crítica** | Não foi identificado nenhum erro ou viés algorítmico claro nas respostas fornecidas pela inteligência artificial. |  
 
-|------|------------------|  
+| Item | O que registrar |
+|------|------------------| 
 | **Ferramenta e etapa** | Claude (Anthropic) foi usado na redação da Seção 8 (Justificativa Técnica), com base no modelo conceitual das seções 5 e 6.|
 | **Motivação** | A Seção 8 exige defender cada decisão de modelagem contra alternativas. O grupo já havia tomado essas decisões, mas a argumentação não estava registrada. A IA foi usada para explicitá-la por escrito.|
 | **Prompt(s) utilizados** | Pedido de justificativa técnica das decisões de abstração e modelagem (entidades, atributos, relacionamentos e cardinalidades), acompanhado do arquivo da modelagem conceitual completo.|
@@ -715,7 +718,8 @@ Uma segunda resposta condensou o texto à metade.|
 | **Justificativa da escolha final** | Foi mantida a versão condensada, por ser proporcional ao peso da seção e preservar a comparação com as alternativas. As decisões de modelagem foram do grupo, não da IA.
 **\*Reflexão crítica\*** A IA tende a apresentar toda decisão como intencional e bem fundamentada, o que gera texto convincente, mas nem sempre fiel ao processo real. Por isso, o grupo revisou cada justificativa. Não houve alucinação, pois o modelo completo foi fornecido, e não foram identificados vieses.
 
-|---|---|
+| Item | O que registrar |
+|------|------------------|
 | **Ferramenta e etapa** | Claude foi usado na etapa de escrita da seção 6 (Modelagem Conceitual).|
 | **Motivação** | Como o modelo ficou com muitas entidades (19 no total) e vários relacionamentos, ficava difícil escrever tudo em texto corrido sem esquecer nada ou repetir informação. Usamos a IA para ajudar a organizar esse conteúdo em tópicos (entidades, atributos, relacionamentos e restrições), já que ela consegue lidar melhor com uma quantidade grande de dados do que a gente escrevendo manualmente. |
 | **Prompt(s) utilizados** | Poderia listar todos com base no arquivo enviado? Preciso separar em entidades, atributos, relacionamentos (com cardinalidade) e restrições, seguindo o que já está no dicionário de dados que te mandei antes. |
