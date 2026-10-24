@@ -601,10 +601,9 @@ Se o grupo usou alguma ferramenta de IA (ChatGPT, Claude, Gemini, Perplexity etc
 
 | Item | O que registrar |
 |------|------------------|  
-**| \*\*Ferramenta e etapa\*\* |** Claude foi usado para a escritura da introdução. |  
-**| \*\*Motivação\*\* |** Para mapeamento de informações relevantes e para a revisão de dados faltantes. |  
-**| \*\*Prompt(s) utilizados\*\* |**   
-Olá, claude\! Faça uma introdução com base nesse texto, no arquivo da entrevista e nas informações dos links que eu te mandar.   
+| **Ferramenta e etapa** | Claude foi usado para a escritura da introdução. |  
+| **Motivação** | Para mapeamento de informações relevantes e para a revisão de dados faltantes. |  
+| **Prompt(s) utilizados** |  Olá, claude\! Faça uma introdução com base nesse texto, no arquivo da entrevista e nas informações dos links que eu te mandar.   
 Me fale as informações faltantes para uma introdução completa:
 
 * Nome e natureza da organização: *qual organização real o grupo escolheu (com acesso garantido para pesquisa de campo) — pode ser uma empresa (livraria, lanchonete, pet shop), uma ONG, uma associação comunitária ou outra instituição.*  
@@ -625,7 +624,7 @@ https://www.instagram.com/delicia2padaria?igsi=cDIxa3dnMmhtMHly
 
 documento do levantamento de dados com o dono da empresa |
 
-**| \*\*Resposta recebida\*\* |** A Padaria Delícia II Ltda., nome fantasia Padaria Delícia II, é uma microempresa com fins lucrativos localizada na Rua Impata, nº 765, Vila Ré, São Paulo-SP, CEP 03663-010. Inscrita no CNPJ 13.565.217/0001-90, iniciou suas atividades em 19 de abril de 2011 e encontra-se com situação cadastral ativa. Sua atividade principal é o comércio varejista de produtos de padaria e confeitaria, com predominância de revenda, enquanto sua atividade secundária compreende a fabricação de produtos de padaria e confeitaria com predominância de produção própria.
+| **Resposta recebida** | A Padaria Delícia II Ltda., nome fantasia Padaria Delícia II, é uma microempresa com fins lucrativos localizada na Rua Impata, nº 765, Vila Ré, São Paulo-SP, CEP 03663-010. Inscrita no CNPJ 13.565.217/0001-90, iniciou suas atividades em 19 de abril de 2011 e encontra-se com situação cadastral ativa. Sua atividade principal é o comércio varejista de produtos de padaria e confeitaria, com predominância de revenda, enquanto sua atividade secundária compreende a fabricação de produtos de padaria e confeitaria com predominância de produção própria.
 
 A organização desempenha papel relevante na comunidade local ao comercializar produtos de consumo cotidiano e atender moradores da Vila Ré e de regiões próximas. A equipe é composta por 12 pessoas, sendo 2 sócios e 10 funcionários responsáveis pela operação diária, e a padaria atende em média 200 clientes por dia, além de aproximadamente 50 pedidos de delivery diários. Seu porte é adequado à realização de uma pesquisa acadêmica, pois permite observar diretamente processos como atendimento ao público, vendas, produção, controle de estoque, compras e organização administrativa.
 
@@ -635,16 +634,16 @@ A empresa apresenta problemas de organização que podem ser solucionados ou red
 
 A existência da organização pode ser comprovada pelo cadastro empresarial ativo, pelos diretórios comerciais e pelo perfil público da padaria no Instagram. Os cadastros consultados informam como administradores Francisco Almir Pereira e José Aldir das Chagas, além do telefone (11) 2958-2840 e do e-mail pyoner@ig.com.br. |
 
-**| \*\*Fontes consultadas e verificadas\*\*** | A IA citou somente as fontes fornecidas. Isso se mostra no exemplo: “De acordo com o levantamento realizado junto à gestão”. |  
-**| \*\*Trechos rejeitados ou corrigidos\*\* |** Foi adicionada uma justificativa mais explícita, na qual estava faltando para ficar completa e correta ao modelo condizente. |  
-**| \*\*Justificativa da escolha final\*\* |** Foi mantida  a resposta sugerida, somente adicionando informações. A forma escrita foi bem avaliada e compreendida pelo grupo, sendo assim, não havendo alterações do que foi entregue pela IA. |  
-**| \*\*Reflexão crítica\*\* |** Não houveram vieses, foram fornecidos os materiais necessários para a atividade desejada. |
+| **Fontes consultadas e verificadas** | A IA citou somente as fontes fornecidas. Isso se mostra no exemplo: “De acordo com o levantamento realizado junto à gestão”. |  
+| **Trechos rejeitados ou corrigidos** | Foi adicionada uma justificativa mais explícita, na qual estava faltando para ficar completa e correta ao modelo condizente. |  
+| **Justificativa da escolha final** | Foi mantida  a resposta sugerida, somente adicionando informações. A forma escrita foi bem avaliada e compreendida pelo grupo, sendo assim, não havendo alterações do que foi entregue pela IA. |  
+| **Reflexão crítica** | Não houveram vieses, foram fornecidos os materiais necessários para a atividade desejada. |
 
 |------|------------------|
-**| \*\*Ferramenta e etapa\*\* |** Claude foi usada para revisão de requisitos. |  
-**| \*\*Motivação\*\* |** Estava com uma grande quantidade de requisitos, o grupo pensou na possibilidade de existir algum que poderia ser excluído editado. |  
-**| \*\*Prompt(s) utilizados\*\*** | Complemente, adicione ou exclua os requisitos funcionais e não funcionais de acordo com tudo que te mandei e com o arquivo texto.txt. |  
-**| \*\*Resposta recebida\*\* |** O que é redundante e pode sair:
+| **Ferramenta e etapa** | Claude foi usada para revisão de requisitos. |  
+| **Motivação** | Estava com uma grande quantidade de requisitos, o grupo pensou na possibilidade de existir algum que poderia ser excluído editado. |  
+| **Prompt(s) utilizados** | Complemente, adicione ou exclua os requisitos funcionais e não funcionais de acordo com tudo que te mandei e com o arquivo texto.txt. |  
+| **Resposta recebida** | O que é redundante e pode sair:
 
 * **RN13 (Acesso por turno)** e **RN14 (Horário de funcionamento contínuo)** não são realmente regras de negócio no sentido de modelagem — são só repetições do que já está no RF21/RNF04 (acesso por turno) e no RNF02 e na Introdução (horário de funcionamento). Manter os dois só em Section 3 é mais limpo; aqui eles só ocupam espaço sem adicionar nada nas restrições organizacionais.  
 * A nota "(era RN11 na versão anterior)" é resíduo de edição, não é conteúdo do trabalho.  
@@ -654,50 +653,50 @@ Isso deixa a 4.2 só com as duas restrições que são genuinamente legais/estat
 
 *Exato texto da seção 3: “Requisitos do Sistema”* |
 
-**| \*\*Fontes consultadas e verificadas\*\* |** A IA citou somente as fontes fornecidas (documento de requisitos feito pelo grupo). |  
-**| \*\*Trechos rejeitados ou corrigidos\*\* |** Nada foi alterado pelo grupo. |  
-**| \*\*Justificativa da escolha final\*\* |** O grupo manteve exatamente o que foi retornado. A resposta estava equivalente ao desejado. |  
-**| \*\*Reflexão crítica\*\* |** A IA foi limitada pelo material fornecido. Ou seja, executei perfeitamente o comando, sem vieses ou alucinações. |
+| **Fontes consultadas e verificadas** | A IA citou somente as fontes fornecidas (documento de requisitos feito pelo grupo). |  
+| **Trechos rejeitados ou corrigidos** | Nada foi alterado pelo grupo. |  
+| **Justificativa da escolha final** | O grupo manteve exatamente o que foi retornado. A resposta estava equivalente ao desejado. |  
+| **Reflexão crítica** | A IA foi limitada pelo material fornecido. Ou seja, executei perfeitamente o comando, sem vieses ou alucinações. |
 
 |------|------------------|  
-**| \*\*Ferramenta e etapa\*\* |** Claude foi usado para organização do dicionário de dados |  
-**| \*\*Motivação\*\* |** Foi recorrido à essa IA pois o Claude tem proficiência com dados extensos e complexos, algo característico de um dicionário de dados |  
-**| \*\*Prompt(s) utilizados\*\* |** Desenvolva um dicionário de dados, se baseando nos conteúdos enviados nos documentos anexados (arquivos em PDF com os todos os requisitos e com o modelo de dicionário de dados a ser desenvolvido.) |  
-**| \*\*Resposta recebida\*\* |** Exato conteúdo no tópico 5 do presente documento. |  
-**| \*\*Fontes consultadas e verificadas\*\* |** Documentação de modelo de dicionário de dados enviada pelo professor e documentação com informações relevantes da empresa |  
-**| \*\*Trechos rejeitados ou corrigidos\*\* |** Foi retirado o requisito de fidelidade por não fazer sentido com o cenário de uma padaria e foi reformulado o dicionário para que não incluísse o requisito removido. Também a formatação foi reformulada, solicitando que ele entregasse um arquivo HTML com as informações do dicionário. |  
-**| \*\*Justificativa da escolha final\*\* |** É coerente com a modelagem conceitual desenvolvida, além de coincidir com as informações nas outras etapas do trabalho, como o DER e os requisitos. |  
-**| \*\*Reflexão crítica\*\* |** Não foi identificado nenhum erro ou viés algorítmico claro nas respostas fornecidas pela inteligência artificial. |
+| **Ferramenta e etapa** | Claude foi usado para organização do dicionário de dados |  
+| **Motivação** | Foi recorrido à essa IA pois o Claude tem proficiência com dados extensos e complexos, algo característico de um dicionário de dados |  
+| **Prompt(s) utilizados** | Desenvolva um dicionário de dados, se baseando nos conteúdos enviados nos documentos anexados (arquivos em PDF com os todos os requisitos e com o modelo de dicionário de dados a ser desenvolvido.) |  
+| **Resposta recebida** | Exato conteúdo no tópico 5 do presente documento. |  
+| **Fontes consultadas e verificadas** | Documentação de modelo de dicionário de dados enviada pelo professor e documentação com informações relevantes da empresa |  
+| **Trechos rejeitados ou corrigidos** | Foi retirado o requisito de fidelidade por não fazer sentido com o cenário de uma padaria e foi reformulado o dicionário para que não incluísse o requisito removido. Também a formatação foi reformulada, solicitando que ele entregasse um arquivo HTML com as informações do dicionário. |  
+| **Justificativa da escolha final** | É coerente com a modelagem conceitual desenvolvida, além de coincidir com as informações nas outras etapas do trabalho, como o DER e os requisitos. |  
+| **Reflexão crítica** | Não foi identificado nenhum erro ou viés algorítmico claro nas respostas fornecidas pela inteligência artificial. |
 
 |------|------------------|  
-**| \*\*Ferramenta e etapa\*\* |** Gemini foi usado para organização e ordenamento de processos. |  
-**| \*\*Motivação\*\* |** Otimização de tempo e maior organização. |  
-**| \*\*Prompt(s) utilizados\*\* |** Com base na entrevista e todos os dados e processos fornecidos, faça um mapeamento de processos na pretensão da criação de um fluxograma. |  
-**| \*\*Resposta recebida\*\* |** Cadastro e controle de clientes: hoje não há controle sistemático de entrada, saída e consumo dos clientes atendidos no salão, o que abre brecha para clientes saírem sem pagar.  
+| **Ferramenta e etapa** | Gemini foi usado para organização e ordenamento de processos. |  
+| **Motivação** | Otimização de tempo e maior organização. |  
+| **Prompt(s) utilizados** | Com base na entrevista e todos os dados e processos fornecidos, faça um mapeamento de processos na pretensão da criação de um fluxograma. |  
+| **Resposta recebida** | Cadastro e controle de clientes: hoje não há controle sistemático de entrada, saída e consumo dos clientes atendidos no salão, o que abre brecha para clientes saírem sem pagar.  
 Controle de caixa: fechamento e conferência de caixa dependem quase inteiramente de controle verbal, com uso pontual de fichas de papel.  
 Controle de estoque: movimentação de produtos é registrada de forma totalmente manual, sem sistema de apoio.  
 Produção e compras (fluxo de mercadoria): entrada de insumos, produção diária e disponibilização dos produtos para venda.  
 Vendas, atendimento e entregas: atendimento no balcão e pedidos por delivery (cerca de 50 por dia), com integração desejada ao WhatsApp. |  
-**| \*\*Fontes consultadas e verificadas\*\* |** Documentação da entrevista |  
-**| \*\*Trechos rejeitados ou corrigidos\*\* |** Foi mais detalhado cada processo e adicionado partes de contas à pagar e pagamento aos fornecedores. |  
-**| \*\*Justificativa da escolha final\*\* |** É coerente ao que foi pedido, e foi bem revisado pelo grupo. |  
-**| \*\*Reflexão crítica\*\* |** Não foi identificado nenhum erro ou viés algorítmico claro nas respostas fornecidas pela inteligência artificial. |
+| **Fontes consultadas e verificadas** | Documentação da entrevista |  
+| **Trechos rejeitados ou corrigidos** | Foi mais detalhado cada processo e adicionado partes de contas à pagar e pagamento aos fornecedores. |  
+| **Justificativa da escolha final** | É coerente ao que foi pedido, e foi bem revisado pelo grupo. |  
+| **Reflexão crítica** | Não foi identificado nenhum erro ou viés algorítmico claro nas respostas fornecidas pela inteligência artificial. |
 
 |------|------------------|  
-**| \*\*Ferramenta e etapa\*\* |** MyMapAi foi usado para fluxograma. |  
-**| \*\*Motivação\*\* |** Construir visual em BPMN. |  
-**| \*\*Prompt(s) utilizados\*\* |** Com base na entrevista e todos os dados e processos fornecidos, poderia criar um visual em BPMN? |  
-**| \*\*Resposta recebida\*\* |** O exato fluxograma, mas com baixa resolução. |  
-**| \*\*Fontes consultadas e verificadas\*\* |** Os principais processos da empresa, citado na seção 2\. |  
-**| \*\*Trechos rejeitados ou corrigidos\*\* |** Usado ChatGpt na tentativa de melhoria de resolução. |  
-**| \*\*Justificativa da escolha final\*\* |** É coerente ao que foi pedido, e foi bem revisado pelo grupo. |  
-**| \*\*Reflexão crítica\*\* |** Não foi identificado nenhum erro ou viés algorítmico claro nas respostas fornecidas pela inteligência artificial. |  
+| **Ferramenta e etapa** | MyMapAi foi usado para fluxograma. |  
+| **Motivação** | Construir visual em BPMN. |  
+| **Prompt(s) utilizados** | Com base na entrevista e todos os dados e processos fornecidos, poderia criar um visual em BPMN? |  
+| **Resposta recebida** | O exato fluxograma, mas com baixa resolução. |  
+| **Fontes consultadas e verificadas** | Os principais processos da empresa, citado na seção 2\. |  
+| **Trechos rejeitados ou corrigidos** | Usado ChatGpt na tentativa de melhoria de resolução. |  
+| **Justificativa da escolha final** | É coerente ao que foi pedido, e foi bem revisado pelo grupo. |  
+| **Reflexão crítica** | Não foi identificado nenhum erro ou viés algorítmico claro nas respostas fornecidas pela inteligência artificial. |  
 
 |------|------------------|  
-**| \*\*Ferramenta e etapa\*\* |** Claude (Anthropic) foi usado na redação da Seção 8 (Justificativa Técnica), com base no modelo conceitual das seções 5 e 6.
-**\*Motivação\*** A Seção 8 exige defender cada decisão de modelagem contra alternativas. O grupo já havia tomado essas decisões, mas a argumentação não estava registrada. A IA foi usada para explicitá-la por escrito.
-**\*Prompt(s) utilizados\*** Pedido de justificativa técnica das decisões de abstração e modelagem (entidades, atributos, relacionamentos e cardinalidades), acompanhado do arquivo da modelagem conceitual completo.
-**\*Resposta recebida\*** Justificativa em seis blocos (critério de abstração, entidades, atributos, cardinalidades, proporcionalidade e limitações), sempre confrontando a escolha com a alternativa descartada. Exemplos:
+| **Ferramenta e etapa** | Claude (Anthropic) foi usado na redação da Seção 8 (Justificativa Técnica), com base no modelo conceitual das seções 5 e 6.|
+| **Motivação** | A Seção 8 exige defender cada decisão de modelagem contra alternativas. O grupo já havia tomado essas decisões, mas a argumentação não estava registrada. A IA foi usada para explicitá-la por escrito.|
+| **Prompt(s) utilizados** | Pedido de justificativa técnica das decisões de abstração e modelagem (entidades, atributos, relacionamentos e cardinalidades), acompanhado do arquivo da modelagem conceitual completo.|
+| **Resposta recebida** | Justificativa em seis blocos (critério de abstração, entidades, atributos, cardinalidades, proporcionalidade e limitações), sempre confrontando a escolha com a alternativa descartada. Exemplos:
 
 \- PRODUTO e MATERIA\_PRIMA separados, para evitar atributos nulos.
 
@@ -709,15 +708,15 @@ Vendas, atendimento e entregas: atendimento no balcão e pedidos por delivery (c
 
 \- Atributos derivados como desnormalização controlada (RNF01).
 
-Uma segunda resposta condensou o texto à metade.
+Uma segunda resposta condensou o texto à metade.|
 
-**\*Fontes consultadas e verificadas\*** Nenhuma fonte externa. O grupo conferiu o texto com o dicionário de dados (seção 5), o DER (seção 7) e os números da entrevista (200 clientes/dia, 50 deliveries, 12 usuários, 19 entidades).
+| **Trechos rejeitados ou corrigidos** | Nenhuma fonte externa. O grupo conferiu o texto com o dicionário de dados (seção 5), o DER (seção 7) e os números da entrevista (200 clientes/dia, 50 deliveries, 12 usuários, 19 entidades).
 **\*Trechos rejeitados ou corrigidos\*** Foram mantidas apenas as justificativas que correspondiam ao raciocínio real do grupo, pois a IA às vezes tratava como deliberadas escolhas feitas por conveniência. As limitações da seção 8.6 foram validadas pelo grupo.
-**\*Justificativa da escolha final\*** Foi mantida a versão condensada, por ser proporcional ao peso da seção e preservar a comparação com as alternativas. As decisões de modelagem foram do grupo, não da IA.
+| **Justificativa da escolha final** | Foi mantida a versão condensada, por ser proporcional ao peso da seção e preservar a comparação com as alternativas. As decisões de modelagem foram do grupo, não da IA.
 **\*Reflexão crítica\*** A IA tende a apresentar toda decisão como intencional e bem fundamentada, o que gera texto convincente, mas nem sempre fiel ao processo real. Por isso, o grupo revisou cada justificativa. Não houve alucinação, pois o modelo completo foi fornecido, e não foram identificados vieses.
 
 |---|---|
-| **Ferramenta e etapa** | Claude foi usado na etapa de escrita da seção 6 (Modelagem Conceitual).
+| **Ferramenta e etapa** | Claude foi usado na etapa de escrita da seção 6 (Modelagem Conceitual).|
 | **Motivação** | Como o modelo ficou com muitas entidades (19 no total) e vários relacionamentos, ficava difícil escrever tudo em texto corrido sem esquecer nada ou repetir informação. Usamos a IA para ajudar a organizar esse conteúdo em tópicos (entidades, atributos, relacionamentos e restrições), já que ela consegue lidar melhor com uma quantidade grande de dados do que a gente escrevendo manualmente. |
 | **Prompt(s) utilizados** | Poderia listar todos com base no arquivo enviado? Preciso separar em entidades, atributos, relacionamentos (com cardinalidade) e restrições, seguindo o que já está no dicionário de dados que te mandei antes. |
 | **Resposta recebida** | A modelagem conceitual foi desenvolvida a partir dos principais processos e requisitos identificados na Padaria Delícia II, buscando representar as informações necessárias para o controle de produtos, estoque, produção, compras, vendas, clientes e operações de caixa. **6.1 Entidades reconhecidas:** foram listadas as 19 entidades do modelo — CATEGORIA, PRODUTO, MATERIA_PRIMA, ITEM_FICHA_TECNICA, DOCUMENTO_REGULATORIO, FORNECEDOR, COMPRA, ITEM_COMPRA, PRODUCAO, CLIENTE, FUNCIONARIO, COMANDA, ITEM_COMANDA, VENDA, ITEM_VENDA, CANCELAMENTO_DEVOLUCAO, CAIXA, MOVIMENTACAO_CAIXA e LOG_AUDITORIA — cada uma com uma frase curta explicando sua função (por exemplo, a entidade COMANDA existe justamente para resolver o problema real da padaria, que é cliente saindo sem pagar; e CAIXA representa cada sessão, da abertura até a conferência final). **6.2 Atributos e classificações:** a resposta manteve a mesma convenção de prefixos que já estava no dicionário de dados (ID_ para chave primária, NM_ para nome, CD_ para código, DT_ para data, QT_ para quantidade, VL_ para valor monetário, TP_ para tipo/categoria e DS_ para descrição). Os atributos foram detalhados para as entidades principais — CATEGORIA, PRODUTO, MATERIA_PRIMA, CLIENTE, FUNCIONARIO, VENDA e CAIXA — e para as demais entidades foi indicado que os atributos completos estão no Dicionário de Dados Conceitual, para não duplicar informação. **6.3 Relacionamentos pertinentes:** foram listados 21 relacionamentos com suas cardinalidades. O ponto que achamos mais importante de entender (e não só copiar) foi o relacionamento N:M entre PRODUTO e MATERIA_PRIMA, que precisou ser resolvido com uma entidade associativa (ITEM_FICHA_TECNICA), porque um relacionamento N:M não pode ser implementado diretamente em um banco relacional. Também aparecem os vínculos opcionais, como CLIENTE — COMANDA e CLIENTE — VENDA (o cliente pode não se identificar) e o relacionamento 1:1 opcional entre COMANDA e VENDA, que representa o momento em que uma comanda aberta no salão se transforma em uma venda fechada. **6.4 Restrições e políticas organizacionais:** foram reunidas as regras de negócio que o modelo precisa respeitar, como não deixar vender produto vencido, bloquear venda acima do estoque, exigir autorização para desconto alto ou para cancelamento depois do caixa fechado, dar prioridade nos alertas de estoque mínimo para produtos essenciais (tipo o pão francês), controlar o acesso por perfil/turno de funcionário, manter log de auditoria nas operações mais sensíveis e seguir a LGPD no tratamento dos dados de cliente e funcionário. |
