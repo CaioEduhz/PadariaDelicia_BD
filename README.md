@@ -30,7 +30,7 @@ Além disso, há um registro anexado abaixo da reunião de levantamento de dados
 
 **## 2. Processos de Negócio**  
 
-Para garantir a rastreabilidade entre as necessidades da Padaria Délicia e a modelagem do banco de dados, os processos de negócio foram mapeados e estruturados detalhadamente a seguir.
+Para garantir a rastreabilidade entre as necessidades da Padaria Delícia e a modelagem do banco de dados, os processos de negócio foram mapeados e estruturados detalhadamente a seguir.
 
 ---
 ### 2.1. Processos Principais (Vendas e Atendimento)
