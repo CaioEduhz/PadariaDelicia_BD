@@ -204,103 +204,103 @@ Para garantir a rastreabilidade entre as necessidades da Padaria Delícia e a mo
 
 ***3.1 Requisitos Funcionais***
 
-**RF01 — Cadastro de produtos.** Código, nome, descrição, categoria, preço de venda, custo, unidade, estoque, estoque mínimo, validade (quando aplicável), status. Deve permitir anexar documentos regulatórios (ver RF25).
+- **RF01 — Cadastro de produtos.** Código, nome, descrição, categoria, preço de venda, custo, unidade, estoque, estoque mínimo, validade (quando aplicável), status. Deve permitir anexar documentos regulatórios (ver RF25).
 
-**RF02 — Controle de categorias.** Cadastro, edição, consulta e exclusão de categorias de produtos.
+- **RF02 — Controle de categorias.** Cadastro, edição, consulta e exclusão de categorias de produtos.
 
-**RF03 — Registro de vendas.** Produtos, quantidades, preço, descontos, forma de pagamento, valor recebido, troco, com cálculo automático do total.
+- **RF03 — Registro de vendas.** Produtos, quantidades, preço, descontos, forma de pagamento, valor recebido, troco, com cálculo automático do total.
 
-**RF04 — Emissão de comprovante.** Nome da padaria, data/hora, número da venda, produtos, valores, forma de pagamento.
+- **RF04 — Emissão de comprovante.** Nome da padaria, data/hora, número da venda, produtos, valores, forma de pagamento.
 
-**RN05 — Pedido sob encomenda (Antecedência e Multa por Não Retirada).** Solicitações de encomendas exigem antecedência mínima de 1 dia. O pagamento é realizado na retirada, porém, caso o cliente não compareça para retirar a encomenda produzida, aplica-se uma cobrança de 20% do valor total a título de multa para cobrir os custos de produção e evitar prejuízos ao estabelecimento.
+- **RN05 — Pedido sob encomenda (Antecedência e Multa por Não Retirada).** Solicitações de encomendas exigem antecedência mínima de 1 dia. O pagamento é realizado na retirada, porém, caso o cliente não compareça para retirar a encomenda produzida, aplica-se uma cobrança de 20% do valor total a título de multa para cobrir os custos de produção e evitar prejuízos ao estabelecimento.
 
-**RF06 — Alerta de estoque mínimo.** Gerar alerta quando um produto atingir o estoque mínimo configurado, com prioridade maior para produtos essenciais (ex.: pão francês) — ver RN10.
+- **RF06 — Alerta de estoque mínimo.** Gerar alerta quando um produto atingir o estoque mínimo configurado, com prioridade maior para produtos essenciais (ex.: pão francês) — ver RN10.
 
-**RF07 — Controle de validade.** Registro de datas de validade, alerta de vencimento próximo e bloqueio de venda de produtos vencidos.
+- **RF07 — Controle de validade.** Registro de datas de validade, alerta de vencimento próximo e bloqueio de venda de produtos vencidos.
 
-**RF08 — Controle de produção.** Registro dos produtos produzidos por dia, com atualização automática do estoque.
+- **RF08 — Controle de produção.** Registro dos produtos produzidos por dia, com atualização automática do estoque.
 
-**RF09 — Ficha técnica dos produtos.** Composição/ingredientes de cada produto produzido internamente; a ficha técnica também é um dos laudos obrigatórios anexados (RF25). 
+- **RF09 — Ficha técnica dos produtos.** Composição/ingredientes de cada produto produzido internamente; a ficha técnica também é um dos laudos obrigatórios anexados (RF25). 
 
-**RF10 — Controle de matéria-prima.** Baixa automática de ingredientes conforme a produção registrada.
+- **RF10 — Controle de matéria-prima.** Baixa automática de ingredientes conforme a produção registrada.
 
-**RF11 — Cadastro de fornecedores.** Razão social, CNPJ/CPF, contato, endereço, produtos fornecidos.
+- **RF11 — Cadastro de fornecedores.** Razão social, CNPJ/CPF, contato, endereço, produtos fornecidos.
 
-**RF12 — Registro de compras.** Fornecedor, data, produtos, quantidades, valores, nota fiscal; atualiza o estoque ao confirmar.
+- **RF12 — Registro de compras.** Fornecedor, data, produtos, quantidades, valores, nota fiscal; atualiza o estoque ao confirmar.
 
-**RF13 — Cadastro de clientes.** Base de dados de clientes (nome, contato, histórico de compras). Distinto do controle de consumo durante o atendimento, que é tratado no RF28.
+- **RF13 — Cadastro de clientes.** Base de dados de clientes (nome, contato, histórico de compras). Distinto do controle de consumo durante o atendimento, que é tratado no RF28.
 
-**RF14** **— Pedidos antecipados.** Cliente, produtos, data/horário de retirada, status do pedido.
+- **RF14** **— Pedidos antecipados.** Cliente, produtos, data/horário de retirada, status do pedido.
 
-**RF15** **— Encomendas personalizadas.** Sabor, tamanho, recheio, tema, data de entrega, observações — para bolos, tortas e kits de festa.
+- **RF15** **— Encomendas personalizadas.** Sabor, tamanho, recheio, tema, data de entrega, observações — para bolos, tortas e kits de festa.
 
-**RF16 — Controle de caixa.** Abertura, fechamento e conferência (total vendido, por forma de pagamento, sangrias, suprimentos, diferença apurada). Prioridade máxima: hoje o fechamento depende quase inteiramente de controle verbal.
+- **RF16 — Controle de caixa.** Abertura, fechamento e conferência (total vendido, por forma de pagamento, sangrias, suprimentos, diferença apurada). Prioridade máxima: hoje o fechamento depende quase inteiramente de controle verbal.
 
-**RF17 — Sangria e suprimento.** Registro de retiradas e entradas de dinheiro no caixa, com valor, horário, responsável e motivo.
+- **RF17 — Sangria e suprimento.** Registro de retiradas e entradas de dinheiro no caixa, com valor, horário, responsável e motivo.
 
-**RF18** **— Controle de funcionários.** Cadastro de funcionários e níveis de acesso. Equipe atual: 2 sócios (cargos de confiança) e 10 funcionários operacionais. 
+- **RF18** **— Controle de funcionários.** Cadastro de funcionários e níveis de acesso. Equipe atual: 2 sócios (cargos de confiança) e 10 funcionários operacionais. 
 
-**RF19 — Controle de permissões.** Restrição de operações por perfil de usuário \*e por turno de trabalho\* (manhã/noite), refletindo o modelo de acesso já praticado pela padaria.
+- **RF19 — Controle de permissões.** Restrição de operações por perfil de usuário \*e por turno de trabalho\* (manhã/noite), refletindo o modelo de acesso já praticado pela padaria.
 
-**RF20 — Cancelamento e devolução.** Registro de venda original, produto, motivo, responsável e data, com ajuste automático de estoque quando aplicável.
+- **RF20 — Cancelamento e devolução.** Registro de venda original, produto, motivo, responsável e data, com ajuste automático de estoque quando aplicável.
 
-**RF21 — Relatórios gerenciais.** Prioridade confirmada: vendas por período. Desejável: relatório de desperdício. Complementares: produtos mais/menos vendidos, faturamento, formas de pagamento, estoque, validade, compras, produção, desempenho de funcionários, clientes frequentes. Exportação para Excel/PDF é opcional, não obrigatória.
+- **RF21 — Relatórios gerenciais.** Prioridade confirmada: vendas por período. Desejável: relatório de desperdício. Complementares: produtos mais/menos vendidos, faturamento, formas de pagamento, estoque, validade, compras, produção, desempenho de funcionários, clientes frequentes. Exportação para Excel/PDF é opcional, não obrigatória.
 
-**RF22 — Dashboard (escalável).** Painel inicial com totais operacionais do dia (vendas, produto mais vendido, estoque baixo, encomendas, caixa atual) — sem necessidade de indicadores calculados (KPIs).
+- **RF22 — Dashboard (escalável).** Painel inicial com totais operacionais do dia (vendas, produto mais vendido, estoque baixo, encomendas, caixa atual) — sem necessidade de indicadores calculados (KPIs).
 
-**RF23** **— Pesquisa e filtros.** Busca de produtos, clientes, fornecedores, pedidos e vendas por nome, código, categoria, data, status etc. Cadastro de produtos e consulta de preço são as buscas mais frequentes e precisam ser rápidas.
+- **RF23** **— Pesquisa e filtros.** Busca de produtos, clientes, fornecedores, pedidos e vendas por nome, código, categoria, data, status etc. Cadastro de produtos e consulta de preço são as buscas mais frequentes e precisam ser rápidas.
 
-**RF24** **— Histórico de alterações.** Registro de usuário, ação, data/hora em operações importantes, para segurança e auditoria.
+- **RF24** **— Histórico de alterações.** Registro de usuário, ação, data/hora em operações importantes, para segurança e auditoria.
 
-**RF25** **— Anexação de documentos e laudos regulatórios.** Permitir anexar PDF/imagem a produtos ou ao cadastro da empresa: ficha técnica, laudo de bombeiro, laudo sanitário, alvará de funcionamento, código de defesa do consumidor.
+- **RF25** **— Anexação de documentos e laudos regulatórios.** Permitir anexar PDF/imagem a produtos ou ao cadastro da empresa: ficha técnica, laudo de bombeiro, laudo sanitário, alvará de funcionamento, código de defesa do consumidor.
 
-**RF26** **— Controle de consumo por comanda.** Abrir comanda ao iniciar o atendimento no salão, registrar os itens consumidos e vincular o fechamento ao pagamento antes da liberação do cliente. Ataca diretamente a causa do prejuízo relatado: clientes que saem sem pagar.
+- **RF26** **— Controle de consumo por comanda.** Abrir comanda ao iniciar o atendimento no salão, registrar os itens consumidos e vincular o fechamento ao pagamento antes da liberação do cliente. Ataca diretamente a causa do prejuízo relatado: clientes que saem sem pagar.
 
-**RF27 — Integração com WhatsApp (Escalável).** Notificações de status de pedido/encomenda e confirmação de delivery via WhatsApp.
+- **RF27 — Integração com WhatsApp (Escalável).** Notificações de status de pedido/encomenda e confirmação de delivery via WhatsApp.
 
-**RF28 - Venda rápida por código de barras/balança.** Leitura de código de barras e integração com balança para produtos pesados.
+- **RF28 - Venda rápida por código de barras/balança.** Leitura de código de barras e integração com balança para produtos pesados.
 
-**RF29 - Controle de desperdício e perdas.** Registro de perdas (vencimento, quebra, sobra do dia) com motivo. Nesse caso,alimenta o relatório de desperdício do RF21.
+- **RF29 - Controle de desperdício e perdas.** Registro de perdas (vencimento, quebra, sobra do dia) com motivo. Nesse caso,alimenta o relatório de desperdício do RF21.
 
 ***3.2 Requisitos Não Funcionais***
 
-**RNF01 — Desempenho.** Resposta em até 2 segundos nas operações comuns, especialmente busca de produto e preço.
+- **RNF01 — Desempenho.** Resposta em até 2 segundos nas operações comuns, especialmente busca de produto e preço.
 
-**RNF02 — Disponibilidade.** Sistema disponível durante todo o horário de funcionamento: segunda a sexta, 5h30–22h; sábado e domingo, 6h–22h.
+- **RNF02 — Disponibilidade.** Sistema disponível durante todo o horário de funcionamento: segunda a sexta, 5h30–22h; sábado e domingo, 6h–22h.
 
-**RNF03 — Segurança.** Autenticação obrigatória para funções administrativas; senhas armazenadas com criptografia/hash.
+- **RNF03 — Segurança.** Autenticação obrigatória para funções administrativas; senhas armazenadas com criptografia/hash.
 
-**RNF04 — Controle de acesso.** Cada usuário acessa apenas o que seu perfil e turno permitem.
+- **RNF04 — Controle de acesso.** Cada usuário acessa apenas o que seu perfil e turno permitem.
 
-**RNF05 — Integridade dos dados.** Vendas, estoque e pagamentos não podem ser alterados de forma inconsistente.
+- **RNF05 — Integridade dos dados.** Vendas, estoque e pagamentos não podem ser alterados de forma inconsistente.
 
-**RNF06 — Backup.** Backups periódicos do banco de dados. (Classificado pela gestão como desejável, não obrigatório.)
+- **RNF06 — Backup.** Backups periódicos do banco de dados. (Classificado pela gestão como desejável, não obrigatório.)
 
-**RNF07 — Recuperação de dados.** Restauração a partir de backup válido em caso de falha.
+- **RNF07 — Recuperação de dados.** Restauração a partir de backup válido em caso de falha.
 
-**RNF08 — Usabilidade.** Interface simples o suficiente para uma equipe operacional de 10 pessoas usar após treinamento básico.
+- **RNF08 — Usabilidade.** Interface simples o suficiente para uma equipe operacional de 10 pessoas usar após treinamento básico.
 
-**RNF09 — Responsividade.** Interface adaptável a computadores, tablets, notebooks e terminais de atendimento.
+- **RNF09 — Responsividade.** Interface adaptável a computadores, tablets, notebooks e terminais de atendimento.
 
-**RNF10 — Compatibilidade.** Funcionamento correto em Chrome, Edge, Firefox e Safari.
+- **RNF10 — Compatibilidade.** Funcionamento correto em Chrome, Edge, Firefox e Safari.
 
-**RNF11 — Escalabilidade.** Suportar o crescimento projetado de faturamento de \~R$ 190 mil/mês para \~R$ 250 mil/mês no ano seguinte, sem reformulação completa.
+- **RNF11 — Escalabilidade.** Suportar o crescimento projetado de faturamento de \~R$ 190 mil/mês para \~R$ 250 mil/mês no ano seguinte, sem reformulação completa.
 
-**RNF12 — Manutenção.** Código organizado e documentado.
+- **RNF12 — Manutenção.** Código organizado e documentado.
 
-**RNF13 — Auditoria.** Registro de usuário, data, horário e ação em operações críticas — confirmado como necessário pela gestão.
+- **RNF13 — Auditoria.** Registro de usuário, data, horário e ação em operações críticas — confirmado como necessário pela gestão.
 
-**RNF14 — Privacidade.** Proteção de dados pessoais de clientes e funcionários conforme a LGPD. Ainda que a gestão não perceba os dados coletados (nome, telefone) como sensíveis, eles são dados pessoais por definição legal.
+- **RNF14 — Privacidade.** Proteção de dados pessoais de clientes e funcionários conforme a LGPD. Ainda que a gestão não perceba os dados coletados (nome, telefone) como sensíveis, eles são dados pessoais por definição legal.
 
-**RNF15 — Confiabilidade.** Evitar perda ou duplicação de registros em vendas, pagamentos, estoque, compras e fechamento de caixa.
+- **RNF15 — Confiabilidade.** Evitar perda ou duplicação de registros em vendas, pagamentos, estoque, compras e fechamento de caixa.
 
-**RNF16 — Recuperação após falhas.** Manter os dados consistentes em caso de falha durante a operação financeira.
+- **RNF16 — Recuperação após falhas.** Manter os dados consistentes em caso de falha durante a operação financeira.
 
-**RNF17 — Tempo de aprendizado.** Novo operador deve aprender venda, consulta e fechamento de caixa em treinamento curto.
+- **RNF17 — Tempo de aprendizado.** Novo operador deve aprender venda, consulta e fechamento de caixa em treinamento curto.
 
-**RNF18 — Escalabilidade de usuários.** Suportar 12 usuários simultâneos (2 sócios \+ 10 funcionários) sem perda de desempenho.
+- **RNF18 — Escalabilidade de usuários.** Suportar 12 usuários simultâneos (2 sócios \+ 10 funcionários) sem perda de desempenho.
 
-**RNF19 — Implantação híbrida.** Operação combinando processamento/armazenamento local e sincronização em nuvem, conforme preferência da gestão.
+- **RNF19 — Implantação híbrida.** Operação combinando processamento/armazenamento local e sincronização em nuvem, conforme preferência da gestão.
 
 ---
 
