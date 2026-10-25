@@ -350,7 +350,7 @@ Limitações externas ou internas que afetam o modelo — e por que importam.
 
 **## 5. Dicionário de Dados Conceitual (Preliminar)**  
 
-Confira o [Dicionário de Dados](Dicionario/index.html)
+Confira o [Dicionário de Dados](Dicionario/index.html) feito no software BRMW BrModelo.
 
 ---
 
