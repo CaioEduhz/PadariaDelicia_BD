@@ -4,8 +4,8 @@ Entrega 1 — Modelo Conceitual (DER)
 | Integrante | RGM | GitHub |
 |------------|-----|------------------|
 | Caio Eduardo Hernandez  | 47791934  | [CaioEduhz](https://github.com/CaioEduhz) |
-| Davi Henrique Santos Nascimento  | 47455152 | [davihenryn](https://github.com/davihenryn2007-cmd) |
-| Gustavo Reis   | 34567 | [GustaDoBronx](https://github.com/GustaDoBronx) |
+| Davi Henrique Santos Nascimento  | 47434899 | [davihenryn](https://github.com/davihenryn2007-cmd) |
+| Gustavo Reis   | 47455152 | [GustaDoBronx](https://github.com/GustaDoBronx) |
 | Isabela Calisto Oliveira	 | 47645695 | [Isalist0](https://github.com/Isalist0) |
 | Maria Eduarda Peres | 47644451 | [maduperesz](https://github.com/maduperesz) |
 
