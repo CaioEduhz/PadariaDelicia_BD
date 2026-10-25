@@ -36,146 +36,165 @@ Para garantir a rastreabilidade entre as necessidades da Padaria Délicia e a mo
 ### 2.1. Processos Principais (Vendas e Atendimento)
 
 #### Processo 1: Atendimento no Salão e Balcão
-* **Objetivo:** Registrar o consumo presencial de produtos (por quilo ou unidade) e efetuar a cobrança no caixa.
-* **Atores:** Cliente, Balconista, Operador de Caixa, Sistema Saurus.
-* **Entrada / Gatilho:** Cliente solicita um produto no balcão ou consome no salão.
-* **Fluxo Principal:**
-  1. O Balconista pesa (se aplicável), embala e informa o valor do item.
+- **Objetivo:** Registrar o consumo presencial de produtos (por quilo ou unidade) e efetuar a cobrança no caixa.
+- **Atores:** Cliente, Balconista, Operador de Caixa, Sistema Saurus.
+- **Entrada / Gatilho:** Cliente solicita um produto no balcão ou consome no salão.
+- **Fluxo Principal:**
+  1. O Balconista pesa o produto (se aplicável), embala e informa o valor.
   2. O Balconista anota manualmente o item e valor na **comanda de papel**.
   3. O Cliente recebe a comanda e o produto.
   4. Ao finalizar o consumo/compras, o Cliente se dirige ao Caixa com a comanda de papel.
   5. O Operador de Caixa insere os itens no sistema Saurus e informa o valor total.
   6. O Cliente realiza o pagamento (Dinheiro, PIX ou Cartão).
   7. O Operador de Caixa registra o pagamento, emite o Cupom Fiscal no sistema Saurus e encerra a comanda.
-* **Saída:** Cupom/Nota Fiscal emitida, baixa de estoque e registro de venda no caixa.
-* **Exceções e Regras de Negócio:**
-  * *Venda de bebida alcoólica:* Exige conferência de documento de identidade caso o cliente aparenta ser jovem.
-  * *Evasão:* Clientes que saem sem pagar (problema atual decorrente do controle em papel).
-
----
+- **Saída:** Cupom/Nota Fiscal emitida, baixa de estoque e registro de venda no caixa.
+- **Dados Envolvidos no Processo:**
+  - *Comanda (Papel/Sistema):* Número da comanda, data, hora de abertura, local de consumo (balcão ou salão), itens (produto, forma de venda [UN ou KG], quantidade/peso em kg, valor unitário/preço por kg e valor total do item).
+  - *Fechamento/Pagamento:* Operador de caixa, valor total da venda, forma de pagamento (dinheiro, PIX, cartão de crédito/débito), valor pago, troco, data/hora de encerramento, número do cupom fiscal emitido pelo Saurus e CPF do cliente na nota (opcional/a validar).
+- **Exceções e Regras de Negócio:**
+  - *RN16 — Venda de bebida alcoólica:* Exige obrigatoriamente a conferência de documento de identidade caso o cliente aparenta ser menor de 18 anos.
+  - *Evasão:* Clientes que saem sem pagar (problema crítico decorrente do controle atual em papel).
 
 #### Processo 2: Gestão de Pedidos via Delivery
-* **Objetivo:** Receber, preparar, despachar e confirmar entregas solicitadas à distância.
-* **Atores:** Cliente, Operador de Caixa, Equipe de Produção, Motoboy (Terceirizado).
-* **Entrada / Gatilho:** Chegada de pedido via WhatsApp da padaria ou Plataforma iFood.
-* **Fluxo Principal:**
+- **Objetivo:** Receber, preparar, despachar e confirmar entregas solicitadas à distância.
+- **Atores:** Cliente, Operador de Caixa, Equipe de Produção, Motoboy (Terceirizado).
+- **Entrada / Gatilho:** Chegada de pedido via WhatsApp da padaria ou plataforma iFood.
+- **Fluxo Principal:**
   1. **Recepção:**
-     * *WhatsApp:* Caixa atende e anota o pedido manualmente.
-     * *iFood:* Pedido é impresso automaticamente no terminal de vendas.
+     - *WhatsApp:* Caixa atende, consulta/cadastra o cliente e anota o pedido manualmente.
+     - *iFood:* Pedido é impresso automaticamente no terminal de vendas.
   2. O Caixa encaminha a ordem de produção/separação para a cozinha/balcão.
   3. A Produção/Balcão separa o pedido e devolve para a expedição.
-  4. O Motoboy terceirizado é acionado e retira o pedido com a indicação da taxa/endereço.
+  4. O Motoboy terceirizado é acionado e retira o pedido com a indicação da taxa e do endereço.
   5. O Motoboy realiza a entrega e coleta a validação (código de verificação no iFood ou pagamento em maquininha).
-* **Saída:** Pedido entregue, taxa de entrega apurada e pagamento registrado.
-* **Regras de Negócio:**
-  * Raio máximo de entrega via WhatsApp: 5 km (Taxa fixa de R$ 4,00).
-  * Raio máximo via aplicativo (iFood): 10 km (Taxa calculada pela plataforma).
-  * Pagamento no delivery deve ser exclusivamente por meio eletrônico.
-
----
+- **Saída:** Pedido entregue, taxa de entrega apurada e pagamento registrado no caixa.
+- **Dados Envolvidos no Processo:**
+  - *Pedido:* Canal (WhatsApp ou iFood), número do pedido, data/hora de recebimento, dados do cliente (nome, telefone, endereço completo [logradouro, número, complemento, bairro, CEP] e distância em km).
+  - *Itens do Pedido:* Produto, quantidade e observações do item.
+  - *Valores e Entrega:* Valor dos itens, taxa de entrega, valor total, forma de pagamento eletrônico, status do pedido (*recebido, em separação, aguardando motoboy, em rota, entregue*), nome/telefone do motoboy, horário de saída, horário de entrega e código de validação/comprovante.
+- **Exceções e Regras de Negócio:**
+  - *RN12 — Raio e Taxa via WhatsApp:* Limite máximo de entrega de até 5 km com taxa fixa de R$ 4,00.
+  - *RN12 — Raio e Taxa via iFood:* Limite máximo de até 10 km com taxa calculada pela plataforma.
+  - *Forma de Pagamento:* No delivery, o pagamento deve ser feito exclusivamente por meio eletrônico.
 
 #### Processo 3: Encomendas Especiais (Bolos, Tortas e Salgados)
-* **Objetivo:** Registrar pedidos antecipados personalizados garantindo a cobertura dos custos de produção.
-* **Atores:** Cliente, Atendente de Caixa, Cozinha/Produção.
-* **Entrada / Gatilho:** Solicitação de encomenda presencial ou via WhatsApp com antecedência.
-* **Fluxo Principal:**
+- **Objetivo:** Registrar pedidos antecipados personalizados garantindo a cobertura dos custos de produção.
+- **Atores:** Cliente, Atendente de Caixa, Cozinha/Produção.
+- **Entrada / Gatilho:** Solicitação de encomenda presencial ou via WhatsApp com antecedência.
+- **Fluxo Principal:**
   1. Atendente registra os itens encomendados, data e horário de retirada.
   2. Atendente cobra **20% de sinal** do valor total da encomenda.
   3. O pedido é agendado no calendário de produção da cozinha.
   4. No dia combinado, a Produção prepara a encomenda.
   5. O Cliente retira o produto mediante o pagamento dos 80% restantes.
-* **Saída:** Produto entregue e sinal/saldo quitados.
-* **Exceções e Regras de Negócio:**
-  * Antecedência mínima para encomendar: 24 horas (1 dia).
-  * Se o cliente não retirar, o valor de 20% do sinal retido cobre custos de insumos e não é devolvido.
-  * Cancelamento só é aceito se a produção do item ainda não tiver sido iniciada.
+- **Saída:** Produto entregue e sinal/saldo quitados.
+- **Dados Envolvidos no Processo:**
+  - *Encomenda:* Número da encomenda, data do pedido, canal (presencial ou WhatsApp), dados do cliente (nome e telefone).
+  - *Itens da Encomenda:* Produto (bolo, torta ou salgado), quantidade, tamanho/peso, sabor/recheio, personalização (ex: mensagem no bolo) e observações.
+  - *Agendamento e Financeiro:* Data e horário de retirada, valor total, valor do sinal (20%) com data e forma de pagamento, saldo remanescente (80%) com data e forma de pagamento, e status (*agendada, em produção, pronta, retirada, cancelada, não retirada*).
+- **Exceções e Regras de Negócio:**
+  - *RN05 — Antecedência Mínima:* Mínimo de 24 horas (1 dia) para a realização do pedido.
+  - *Retenção de Sinal:* Se o cliente não retirar a encomenda, o valor de 20% retido cobre os custos de insumos e não é devolvido.
+  - *Cancelamento:* Aceito apenas se a produção do item ainda não tiver sido iniciada.
 
 ---
 
 ### 2.2. Processos de Apoio e Gestão Financeira
 
 #### Processo 4: Controle e Fechamento de Caixa
-* **Objetivo:** Garantir a conferência dos valores transacionados e a segurança no encerramento de turnos.
-* **Atores:** Operador de Caixa, Sócio / Gerente.
-* **Entrada / Gatilho:** Horário de troca de turno (14h e 22h).
-* **Fluxo Principal:**
+- **Objetivo:** Garantir a conferência dos valores transacionados e a segurança no encerramento de turnos.
+- **Atores:** Operador de Caixa, Sócio / Gerente.
+- **Entrada / Gatilho:** Horário de troca de turno (14h e 22h).
+- **Fluxo Principal:**
   1. O Operador de Caixa encerra os lançamentos no sistema Saurus.
-  2. O sistema gera o relatório com o esperado (vendas em dinheiro vs. pagamentos digitais).
+  2. O sistema gera o relatório com o valor esperado (vendas em dinheiro vs. pagamentos digitais).
   3. O Operador realiza a contagem do dinheiro físico no gaveteiro.
   4. O valor informado é confrontado com o total registrado pelo sistema.
-  5. Caso haja divergência, a conferência é auditada pelo Sócio.
-* **Saída:** Relatório de fechamento de caixa e conferência realizada.
-* **Regras de Negócio:**
-  * Fechamento obrigatório duas vezes ao dia (às 14h e às 22h).
-  * Sangrias não são frequentes, pois 80% a 90% dos pagamentos ocorrem via meios digitais.
-
----
+  5. Caso haja divergência, a conferência é auditada e ajustada pelo Sócio.
+- **Saída:** Relatório de fechamento de caixa emitido e conferência auditada.
+- **Dados Envolvidos no Processo:**
+  - *Fechamento:* Data, turno (14h ou 22h), operador responsável, horário de encerramento, valor inicial do caixa (troco), valores esperados pelo sistema discriminados por forma de pagamento (dinheiro, PIX, crédito, débito).
+  - *Conferência e Auditoria:* Valor contado em dinheiro físico, cálculo da diferença (esperado x informado), motivo da divergência (se houver), sócio auditor, data/hora da auditoria e status (*conferido, ajustado, pendente*).
+  - *Sangria:* Data/hora, valor retirado, motivo e responsável (se houver).
+- **Exceções e Regras de Negócio:**
+  - *RN07 — Fechamento de Caixa:* Obrigatoriedade de realizar o fechamento duas vezes ao dia (às 14h e às 22h).
+  - *Sangria:* Pouco frequente, visto que 80% a 90% das transações ocorrem via pagamentos digitais.
 
 #### Processo 5: Gestão de Compras e Estoque
-* **Objetivo:** Manter os níveis de insumos equilibrados para evitar falta de produtos críticos e desperdícios.
-* **Atores:** Responsável por Compras (Sócio), Fornecedores.
-* **Entrada / Gatilho:** Conferência semanal do nível de estoque praticado.
-* **Fluxo Principal:**
+- **Objetivo:** Manter os níveis de insumos equilibrados para evitar falta de produtos críticos e desperdícios.
+- **Atores:** Responsável por Compras (Sócio), Fornecedores.
+- **Entrada / Gatilho:** Conferência semanal do nível de estoque praticado.
+- **Fluxo Principal:**
   1. O Responsável por Compras analisa o estoque atual e a média de consumo semanal fixada (ex: meta de 5 fardos de refrigerante/semana).
-  2. Calcula-se a necessidade de reposição: {Quantidade a comprar} = {Média Semanal} - {Estoque Remanescente}$.
-  3. O pedido é faturado via boleto bancário com o fornecedor escolhido (a padaria possui > 20 fornecedores).
+  2. Calcula-se a necessidade de reposição: {Quantidade a comprar} = {Média Semanal} - {Estoque Remanescente}.
+  3. O pedido é faturado via boleto bancário com o fornecedor escolhido (a padaria trabalha com mais de 20 fornecedores).
   4. **Recebimento:** No ato da entrega, toda mercadoria é conferida fisicamente antes da estocagem.
-* **Saída:** Estoque reabastecido e lançamento das obrigações a pagar.
-* **Regras de Negócio / Exceções:**
-  * Se houver divergência, danos ou produto vencido no momento da entrega, a carga é rejeitada e não é recebida.
-
----
+- **Saída:** Estoque reabastecido e lançamento das obrigações a pagar no financeiro.
+- **Dados Envolvidos no Processo:**
+  - *Cadastro do Insumo/Produto:* Código, nome, categoria, unidade de medida, estoque atual, estoque mínimo e média de consumo semanal.
+  - *Pedido de Compra:* Fornecedor, data do pedido, data prevista de entrega, itens solicitados (quantidade, valor unitário e valor total do pedido).
+  - *Recebimento/Conferência:* Data/hora do recebimento, responsável pela conferência, número da nota fiscal/documento de entrega, quantidade pedida vs. recebida, data de validade, estado da mercadoria e resultado (*aceita* ou *rejeitada* com motivo).
+- **Exceções e Regras de Negócio:**
+  - *RN14 — Conferência Obrigatória:* Se houver divergência, avarias ou produto vencido no ato da entrega, a carga é obrigatoriamente recusada e devolvida.
 
 #### Processo 6: Pagamento de Fornecedores
-* **Objetivo:** Quitar os compromissos financeiros gerados pelas aquisições de insumos e mercadorias de revenda.
-* **Atores:** Sócio / Administrador, Fornecedores.
-* **Entrada / Gatilho:** Vencimento dos boletos ou faturas emitidas pelos fornecedores.
-* **Fluxo Principal:**
-  1. O Sócio confere os boletos das compras de insumos registradas.
+- **Objetivo:** Quitar os compromissos financeiros gerados pelas aquisições de insumos e mercadorias de revenda.
+- **Atores:** Sócio / Administrador, Fornecedores.
+- **Entrada / Gatilho:** Vencimento dos boletos ou faturas emitidas pelos fornecedores.
+- **Fluxo Principal:**
+  1. O Sócio confere os boletos bancários relativos às compras de insumos e mercadorias recebidas.
   2. O Sócio efetua o pagamento bancário na data de vencimento acordada.
-  3. O comprovante de pagamento é guardado para fins de controle financeiro.
-* **Saída:** Títulos de fornecedores liquidados e controle de passivos atualizado.
-
----
+  3. O comprovante de pagamento é arquivado e o registro financeiro é atualizado.
+- **Saída:** Títulos de fornecedores liquidados e controle de passivos atualizado.
+- **Dados Envolvidos no Processo:**
+  - *Título/Boleto:* Fornecedor, número do boleto/documento fiscal, compra relacionada, valor da fatura, data de emissão e data de vencimento.
+  - *Quitação:* Data do pagamento, valor efetivamente pago, responsável pelo pagamento, comprovante arquivado (número de autenticação bancária/arquivo) e status (*a pagar* ou *pago*).
 
 #### Processo 7: Contas a Pagar (Despesas Operacionais Gerais)
-* **Objetivo:** Controlar e realizar o pagamento das contas de consumo e manutenção do estabelecimento.
-* **Atores:** Sócio / Administrador.
-* **Entrada / Gatilho:** Recebimento de faturas de despesas recorrentes (energia elétrica, água, etc.).
-* **Fluxo Principal:**
+- **Objetivo:** Controlar e realizar o pagamento das contas de consumo e manutenção do estabelecimento.
+- **Atores:** Sócio / Administrador.
+- **Entrada / Gatilho:** Recebimento de faturas de despesas recorrentes (energia elétrica, água, internet, manutenção, etc.).
+- **Fluxo Principal:**
   1. O Sócio recebe e centraliza as faturas de despesas operacionais do mês.
   2. O Sócio realiza os pagamentos devidos dentro dos prazos de vencimento.
   3. Os registros de quitação são arquivados para a gestão financeira interna.
-* **Saída:** Custos fixos e operacionais quitados, garantindo a continuidade dos serviços da padaria.
+- **Saída:** Custos fixos e operacionais quitados, garantindo a continuidade das operações da padaria.
+- **Dados Envolvidos no Processo:**
+  - *Despesa Operacional:* Tipo de despesa (energia elétrica, água, internet, etc.), credor/concessionária, mês de competência, valor, data de vencimento, status (*a pagar* ou *paga*), data do pagamento e comprovante arquivado.
 
 ---
 
 ### 2.3. Processos de Produção e Operação Interna
 
 #### Processo 8: Planejamento e Registro de Produção Diária
-* **Objetivo:** Definir e registrar a quantidade de panificação e confeitaria a ser produzida no dia.
-* **Atores:** Equipe de Produção (Padeiros/Confeiteiros).
-* **Entrada / Gatilho:** Início do expediente da equipe de produção (06h).
-* **Fluxo Principal:**
-  1. A equipe analisa visualmente as sobras do dia anterior e a demanda esperada para o turno.
+- **Objetivo:** Definir e registrar a quantidade de panificação e confeitaria a ser produzida no dia.
+- **Atores:** Equipe de Produção (Padeiros/Confeiteiros).
+- **Entrada / Gatilho:** Início do expediente da equipe de produção (06h).
+- **Fluxo Principal:**
+  1. A equipe analisa a quantidade de sobras do dia anterior e a demanda esperada para o turno.
   2. A equipe define a quantidade de fornadas/áreas a serem produzidas.
   3. A produção é realizada e disponibilizada para a área de vendas/balcão.
-* **Saída:** Produtos prontos colocados à disposição no salão e balcão.
-* **Melhoria Necessária com o Sistema:** Passar a registrar formalmente no sistema os lotes produzidos e eventuais perdas/descartes (que hoje não são contabilizados).
-
----
+- **Saída:** Produtos prontos disponibilizados no salão e balcão.
+- **Dados Envolvidos no Processo:**
+  - *Lote de Produção:* Data, turno, responsável (padeiro ou confeiteiro), produto, quantidade de sobras do dia anterior, quantidade planejada (fornadas), quantidade produzida, data/hora da disponibilização e local de destino (balcão ou salão).
+  - *Perdas e Descartes:* Produto descartado, quantidade, motivo da perda, data/hora e responsável pelo registro.
+- **Melhoria Necessária com o Sistema:**
+  - *RN06 — Registro Prévio:* Passar a registrar formalmente no sistema os lotes produzidos e eventuais perdas/descartes (que atualmente não são contabilizados).
 
 #### Processo 9: Gestão de Turnos e Controle de Acessos
-* **Objetivo:** Administrar as escalas dos colaboradores e restringir operações críticas de segurança.
-* **Atores:** Funcionários, Sócios.
-* **Entrada / Gatilho:** Troca de horários de trabalho.
-* **Fluxo Principal:**
-  1. O 1º Turno atua das 06h às 14h (equipe de 7 pessoas).
-  2. O 2º Turno atua das 14h às 22h (equipe de 5 pessoas).
-  3. As permissões no sistema são parametrizadas de acordo com o papel do usuário.
-* **Saída:** Escala operacional executada.
-* **Regras de Negócio:**
-  * **Alçada de Acesso:** Permissões para alterar preços, cadastrar produtos, aplicar descontos, cancelar itens ou visualizar relatórios são exclusivas dos **Sócios**.
+- **Objetivo:** Administrar as escalas dos colaboradores e restringir operações críticas de segurança e governança.
+- **Atores:** Funcionários, Sócios.
+- **Entrada / Gatilho:** Troca de horários de trabalho e acesso ao sistema.
+- **Fluxo Principal:**
+  1. O 1º Turno atua das 06h às 14h.
+  2. O 2º Turno atua das 14h às 22h.
+  3. As permissões no sistema são parametrizadas de acordo com o papel e cargo do usuário.
+- **Saída:** Escala operacional executada e operações auditadas.
+- **Dados Envolvidos no Processo:**
+  - *Colaborador:* Nome completo, CPF, cargo (balconista, operador de caixa, padeiro, confeiteiro, sócio), turno alocado e usuário de acesso.
+  - *Auditoria de Operações:* Perfil de acesso, permissões concedidas, log de operações críticas (usuário, operação realizada, data, hora e justificativa).
+- **Regras de Negócio:**
+  - *Alçada de Acesso:* Permissões para alterar preços, cadastrar produtos, aplicar descontos, cancelar itens ou visualizar relatórios gerenciais são **estritamente exclusivas dos Sócios**.
 
 [Fluxo de Processos](img/Fluxograma.png)
 
