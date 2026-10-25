@@ -310,28 +310,42 @@ Para garantir a rastreabilidade entre as necessidades da Padaria Delícia e a mo
 *Condições que a organização impõe sobre suas transações do dia a dia.*
 
 **RN01 — Produto vencido.** Produtos com prazo de validade expirado não podem ser vendidos.
+
 **RN02 — Estoque insuficiente.** Bloqueia venda acima do disponível em estoque, salvo autorização expressa do administrador/sócio.
+
 **RN03 — Desconto e alçadas.** Descontos acima de um percentual definido exigem autorização exclusiva dos sócios.
+
 **RN04 — Cancelamento restrito.** Cancelamentos após o fechamento de caixa exigem autorização do gerente ou administrador.
+
 **RN05 — Pedido sob encomenda (Sinal e Antecedência).** Exige antecedência mínima de 24 horas, registro de itens, data e horário de retirada, com cobrança prévia de 20% do valor como sinal; caso o cliente não retire o pedido, o sinal é retido para cobrir os custos de insumos.
+
 **RN06 — Produção diária e perdas.** A produção diária inicia às 06h, sendo obrigatório o registro formal no sistema dos lotes produzidos, sobras do dia anterior e eventuais perdas ou descartes.
+
 **RN07 — Fechamento e divergência de caixa.** O fechamento de caixa é obrigatório duas vezes ao dia (às 14h e às 22h), comparando o valor esperado pelo sistema com o contado em dinheiro; qualquer diferença exige o registro do motivo e auditoria/ajuste pelo sócio.
+
 **RN08 — Comanda e controle de atendimento no salão.** Toda comanda de salão ou balcão deve possuir número único, data e hora de abertura, local de consumo, e conter itens detalhados com quantidade ou peso (em kg para produtos vendidos a granel) e valores; o encerramento do atendimento exige o pagamento integral registrado.
+
 **RN09 — Prioridade de produtos críticos.** Produtos essenciais (ex.: pão francês) geram alertas de estoque mínimo com prioridade de reposição sobre os demais.
+
 **RN10 — Área e taxa de entrega (Delivery).** O delivery próprio via WhatsApp limita-se a um raio máximo de até 5 km com taxa fixa de R$ 4,00; pedidos via aplicativo (iFood) atendem até 10 km, com taxa calculada pela plataforma, sendo vedada a aceitação de pedidos fora do raio e exigindo pagamento exclusivamente eletrônico.
+
 **RN11 — Formas de pagamento e fracionamento.** O caixa aceita dinheiro, PIX e cartões, permitindo a divisão de uma mesma conta entre diferentes clientes ou modalidades de pagamento.
+
 **RN12 — Conferência e rejeição no recebimento de insumos.** Toda mercadoria entregue por fornecedores passa por inspeção física obrigatória antes da estocagem; havendo divergências de quantidade, avarias ou produtos vencidos, a carga é rejeitada com o respectivo motivo registrado.
+
 **RN13 — Cálculo de compras e reposição de estoque.** A quantidade a comprar é calculada pela média de consumo semanal menos o estoque remanescente (não podendo ser negativa; se o estoque atual for maior ou igual à média semanal, nenhum pedido de compra é gerado).
+
 **RN14 — Gestão financeira e quitação de passivos.** Os boletos de fornecedores são pagos na data de vencimento acordada e devem estar vinculados a uma compra registrada com fornecedor e valores conferidos; as despesas operacionais gerais são liquidadas dentro do prazo com arquivamento de comprovantes.
+
 **RN15 — Gestão de turnos, acessos e operações críticas.** O 1º turno opera das 06h às 14h e o 2º turno das 14h às 22h; o acesso ao sistema baseia-se em perfis por cargo, sendo que operações críticas (alterar preços, cadastrar produtos, aplicar descontos, cancelar itens e visualizar relatórios) registram obrigatoriamente o usuário, a data e a hora, sendo exclusivas dos sócios.
 
 ### 4.2 Restrições organizacionais, legais e fiscais
 Limitações externas ou internas que afetam o modelo — e por que importam.
 
-**RN16 — Documentação regulatória obrigatória.** Exigência legal (vigilância sanitária e corpo de bombeiros): todo produto e o próprio estabelecimento devem ter vinculados ficha técnica, laudo de bombeiro, laudo sanitário, alvará de funcionamento e código de defesa do consumidor. Importa porque a ausência desses documentos pode gerar multa ou interdição do estabelecimento — não é uma preferência da gestão, mas uma obrigação legal.
-**RN17 — Proteção de dados pessoais (LGPD).** Restrição legal: dados de clientes (nome e telefone) são considerados dados pessoais pela LGPD. O modelo exige controle de acesso, finalidade clara de uso (marketing pontual de produtos recém-produzidos) e validação de CPF único quando fornecido voluntariamente pelo cliente. Importa para mitigar riscos de sanções legais.
-**RN18 — Emissão obrigatória de documento fiscal (Restrição Fiscal).** Obrigatoriedade legal: toda venda concluída deve gerar o respectivo cupom ou nota fiscal por meio do sistema Saurus. Importa para garantir a conformidade tributária e a transparência fiscal perante os órgãos competentes.
-**RN19 — Proibição de venda de bebidas alcoólicas a menores (Restrição Legal).** Restrição legal: fica estritamente proibida a comercialização de bebidas alcoólicas a menores de 18 anos, sendo obrigatória a verificação da maioridade por meio de documento de identificação sempre que o cliente apresentar aparência jovem. Importa pelo cumprimento da legislação vigente (ECA), evitando penalidades e cassação do alvará de funcionamento.
+- **RN16 — Documentação regulatória obrigatória**: Todo produto e o estabelecimento devem ter vinculados os documentos regulatórios aplicáveis, incluindo ficha técnica, laudos de bombeiro e sanitário, alvará de funcionamento e código de defesa do consumidor. A ausência dos documentos exigidos pode gerar multas ou interdição.
+- **RN17 — Proteção de dados pessoais (LGPD)**: Os dados de clientes, como nome e telefone, são considerados dados pessoais. O sistema exige controle de acesso, finalidade clara de uso (marketing pontual de produtos recém-produzidos) e validação de CPF único quando fornecido voluntariamente pelo cliente.
+- **RN18 — Emissão obrigatória de documento fiscal**: Toda venda concluída deve gerar o respectivo cupom ou nota fiscal por meio do sistema Saurus, garantindo a conformidade tributária.
+- **RN19 — Proibição de venda de bebidas alcoólicas a menores**: É proibida a comercialização de bebidas alcoólicas a menores de 18 anos. A maioridade deve ser verificada por documento de identificação sempre que o cliente apresentar aparência jovem, conforme a legislação vigente.
 ---
 
 **## 5. Dicionário de Dados Conceitual (Preliminar)**  
