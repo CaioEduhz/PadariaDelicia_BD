@@ -1,12 +1,14 @@
 Entrega 1 — Modelo Conceitual (DER)  
 *Modelagem de um sistema de gestão de informações para uma organização de pequeno porte*
 
-**Integrantes do grupo:**   
-Caio Eduardo Hernandez		47791934  
-Davi Henrique Santos	Nascimento	47434899  
-Gustavo Reis		47455152  
-Isabela Calisto Oliveira		47645695  
-Maria Eduarda Peres		47644451
+| Integrante | RGM | GitHub |
+|------------|-----|------------------|
+| Caio Eduardo Hernandez  | 47791934  | [CaioEduhz](https://github.com/CaioEduhz) |
+| Davi Henrique Santos Nascimento  | 47434899 | [davihenryn](https://github.com/davihenryn2007-cmd) |
+| Gustavo Reis   | 47455152 | [GustaDoBronx](https://github.com/GustaDoBronx) |
+| Isabela Calisto Oliveira	 | 47645695 | [Isalist0](https://github.com/Isalist0) |
+| Maria Eduarda Peres | 47644451 | [maduperesz](https://github.com/maduperesz) |
+
 
 **## 1. Caracterização da Organização**  
 
@@ -18,9 +20,9 @@ De acordo com o levantamento realizado junto à gestão, os principais problemas
 
 A escolha da *Padaria Delícia II* como objeto de estudo justifica-se pela proximidade geográfica e facilidade de contato com os integrantes do grupo, pela sua relevância comunitária, pelo porte apropriado para análise e pela disponibilidade da gestão em contribuir com o projeto. A empresa apresenta problemas de organização que podem ser solucionados ou reduzidos mediante a implementação de ferramentas de gestão mais eficientes. Dessa forma, constitui um caso prático para analisar processos existentes e desenvolver soluções aplicáveis à sua rotina operacional.
 
-A existência da organização pode ser comprovada pelo cadastro empresarial ativo, pelos diretórios comerciais e pelo perfil público da padaria no Instagram. Os cadastros consultados informam como administradores Francisco Almir Pereira e José Aldir das Chagas, além do telefone (11) 2958-2840 e do e-mail [pyoner@ig.com.br](mailto:pyoner@ig.com.br).   
-Além disso, há também um registro anexado abaixo da reunião de levantamento de dados feita com o gerente da empresa. 
+A existência da organização pode ser comprovada pelo cadastro empresarial ativo, pelos diretórios comerciais e pelo perfil público da padaria no Instagram. Os cadastros consultados informam como administradores Francisco Almir Pereira e José Aldir das Chagas, além do telefone (11) 2958-2840 e do e-mail [pyoner@ig.com.br](mailto:pyoner@ig.com.br).
 
+Além disso, há um registro anexado abaixo da reunião de levantamento de dados realizada por videoconferência com o gerente da empresa. Embora um dos integrantes do grupo frequente presencialmente o estabelecimento, a reunião foi realizada nesse formato devido à preferência do responsável pela padaria, considerando a disponibilidade de agendas dos envolvidos.
 
 [Print de reunião com um dos donos da padaria](img/Reuniao.jpg)
 
@@ -28,152 +30,171 @@ Além disso, há também um registro anexado abaixo da reunião de levantamento 
 
 **## 2. Processos de Negócio**  
 
-Para garantir a rastreabilidade entre as necessidades da Padaria Délicia e a modelagem do banco de dados, os processos de negócio foram mapeados e estruturados detalhadamente a seguir.
+Para garantir a rastreabilidade entre as necessidades da Padaria Delícia e a modelagem do banco de dados, os processos de negócio foram mapeados e estruturados detalhadamente a seguir.
 
 ---
 ### 2.1. Processos Principais (Vendas e Atendimento)
 
 #### Processo 1: Atendimento no Salão e Balcão
-* **Objetivo:** Registrar o consumo presencial de produtos (por quilo ou unidade) e efetuar a cobrança no caixa.
-* **Atores:** Cliente, Balconista, Operador de Caixa, Sistema Saurus.
-* **Entrada / Gatilho:** Cliente solicita um produto no balcão ou consome no salão.
-* **Fluxo Principal:**
-  1. O Balconista pesa (se aplicável), embala e informa o valor do item.
+- **Objetivo:** Registrar o consumo presencial de produtos (por quilo ou unidade) e efetuar a cobrança no caixa.
+- **Atores:** Cliente, Balconista, Operador de Caixa, Sistema Saurus.
+- **Entrada / Gatilho:** Cliente solicita um produto no balcão ou consome no salão.
+- **Fluxo Principal:**
+  1. O Balconista pesa o produto (se aplicável), embala e informa o valor.
   2. O Balconista anota manualmente o item e valor na **comanda de papel**.
   3. O Cliente recebe a comanda e o produto.
   4. Ao finalizar o consumo/compras, o Cliente se dirige ao Caixa com a comanda de papel.
   5. O Operador de Caixa insere os itens no sistema Saurus e informa o valor total.
   6. O Cliente realiza o pagamento (Dinheiro, PIX ou Cartão).
   7. O Operador de Caixa registra o pagamento, emite o Cupom Fiscal no sistema Saurus e encerra a comanda.
-* **Saída:** Cupom/Nota Fiscal emitida, baixa de estoque e registro de venda no caixa.
-* **Exceções e Regras de Negócio:**
-  * *Venda de bebida alcoólica:* Exige conferência de documento de identidade caso o cliente aparenta ser jovem.
-  * *Evasão:* Clientes que saem sem pagar (problema atual decorrente do controle em papel).
-
----
+- **Saída:** Cupom/Nota Fiscal emitida, baixa de estoque e registro de venda no caixa.
+- **Dados Envolvidos no Processo:**
+  - *Comanda (Papel/Sistema):* Número da comanda, data, hora de abertura, local de consumo (balcão ou salão), itens (produto, forma de venda [UN ou KG], quantidade/peso em kg, valor unitário/preço por kg e valor total do item).
+  - *Fechamento/Pagamento:* Operador de caixa, valor total da venda, forma de pagamento (dinheiro, PIX, cartão de crédito/débito), valor pago, troco, data/hora de encerramento, número do cupom fiscal emitido pelo Saurus e CPF do cliente na nota (opcional/a validar).
+- **Exceções e Regras de Negócio:**
+  - *RN16 — Venda de bebida alcoólica:* Exige obrigatoriamente a conferência de documento de identidade caso o cliente aparenta ser menor de 18 anos.
+  - *Evasão:* Clientes que saem sem pagar (problema crítico decorrente do controle atual em papel).
 
 #### Processo 2: Gestão de Pedidos via Delivery
-* **Objetivo:** Receber, preparar, despachar e confirmar entregas solicitadas à distância.
-* **Atores:** Cliente, Operador de Caixa, Equipe de Produção, Motoboy (Terceirizado).
-* **Entrada / Gatilho:** Chegada de pedido via WhatsApp da padaria ou Plataforma iFood.
-* **Fluxo Principal:**
+- **Objetivo:** Receber, preparar, despachar e confirmar entregas solicitadas à distância.
+- **Atores:** Cliente, Operador de Caixa, Equipe de Produção, Motoboy (Terceirizado).
+- **Entrada / Gatilho:** Chegada de pedido via WhatsApp da padaria ou plataforma iFood.
+- **Fluxo Principal:**
   1. **Recepção:**
-     * *WhatsApp:* Caixa atende e anota o pedido manualmente.
-     * *iFood:* Pedido é impresso automaticamente no terminal de vendas.
+     - *WhatsApp:* Caixa atende, consulta/cadastra o cliente e anota o pedido manualmente.
+     - *iFood:* Pedido é impresso automaticamente no terminal de vendas.
   2. O Caixa encaminha a ordem de produção/separação para a cozinha/balcão.
   3. A Produção/Balcão separa o pedido e devolve para a expedição.
-  4. O Motoboy terceirizado é acionado e retira o pedido com a indicação da taxa/endereço.
+  4. O Motoboy terceirizado é acionado e retira o pedido com a indicação da taxa e do endereço.
   5. O Motoboy realiza a entrega e coleta a validação (código de verificação no iFood ou pagamento em maquininha).
-* **Saída:** Pedido entregue, taxa de entrega apurada e pagamento registrado.
-* **Regras de Negócio:**
-  * Raio máximo de entrega via WhatsApp: 5 km (Taxa fixa de R$ 4,00).
-  * Raio máximo via aplicativo (iFood): 10 km (Taxa calculada pela plataforma).
-  * Pagamento no delivery deve ser exclusivamente por meio eletrônico.
-
----
+- **Saída:** Pedido entregue, taxa de entrega apurada e pagamento registrado no caixa.
+- **Dados Envolvidos no Processo:**
+  - *Pedido:* Canal (WhatsApp ou iFood), número do pedido, data/hora de recebimento, dados do cliente (nome, telefone, endereço completo [logradouro, número, complemento, bairro, CEP] e distância em km).
+  - *Itens do Pedido:* Produto, quantidade e observações do item.
+  - *Valores e Entrega:* Valor dos itens, taxa de entrega, valor total, forma de pagamento eletrônico, status do pedido (*recebido, em separação, aguardando motoboy, em rota, entregue*), nome/telefone do motoboy, horário de saída, horário de entrega e código de validação/comprovante.
+- **Exceções e Regras de Negócio:**
+  - *RN12 — Raio e Taxa via WhatsApp:* Limite máximo de entrega de até 5 km com taxa fixa de R$ 4,00.
+  - *RN12 — Raio e Taxa via iFood:* Limite máximo de até 10 km com taxa calculada pela plataforma.
+  - *Forma de Pagamento:* No delivery, o pagamento deve ser feito exclusivamente por meio eletrônico.
 
 #### Processo 3: Encomendas Especiais (Bolos, Tortas e Salgados)
-* **Objetivo:** Registrar pedidos antecipados personalizados garantindo a cobertura dos custos de produção.
-* **Atores:** Cliente, Atendente de Caixa, Cozinha/Produção.
-* **Entrada / Gatilho:** Solicitação de encomenda presencial ou via WhatsApp com antecedência.
-* **Fluxo Principal:**
+- **Objetivo:** Registrar pedidos antecipados personalizados garantindo a cobertura dos custos de produção.
+- **Atores:** Cliente, Atendente de Caixa, Cozinha/Produção.
+- **Entrada / Gatilho:** Solicitação de encomenda presencial ou via WhatsApp com antecedência.
+- **Fluxo Principal:**
   1. Atendente registra os itens encomendados, data e horário de retirada.
   2. Atendente cobra **20% de sinal** do valor total da encomenda.
   3. O pedido é agendado no calendário de produção da cozinha.
   4. No dia combinado, a Produção prepara a encomenda.
   5. O Cliente retira o produto mediante o pagamento dos 80% restantes.
-* **Saída:** Produto entregue e sinal/saldo quitados.
-* **Exceções e Regras de Negócio:**
-  * Antecedência mínima para encomendar: 24 horas (1 dia).
-  * Se o cliente não retirar, o valor de 20% do sinal retido cobre custos de insumos e não é devolvido.
-  * Cancelamento só é aceito se a produção do item ainda não tiver sido iniciada.
+- **Saída:** Produto entregue e sinal/saldo quitados.
+- **Dados Envolvidos no Processo:**
+  - *Encomenda:* Número da encomenda, data do pedido, canal (presencial ou WhatsApp), dados do cliente (nome e telefone).
+  - *Itens da Encomenda:* Produto (bolo, torta ou salgado), quantidade, tamanho/peso, sabor/recheio, personalização (ex: mensagem no bolo) e observações.
+  - *Agendamento e Financeiro:* Data e horário de retirada, valor total, valor do sinal (20%) com data e forma de pagamento, saldo remanescente (80%) com data e forma de pagamento, e status (*agendada, em produção, pronta, retirada, cancelada, não retirada*).
+- **Exceções e Regras de Negócio:**
+  - *RN05 — Antecedência Mínima:* Mínimo de 24 horas (1 dia) para a realização do pedido.
+  - *Retenção de Sinal:* Se o cliente não retirar a encomenda, o valor de 20% retido cobre os custos de insumos e não é devolvido.
+  - *Cancelamento:* Aceito apenas se a produção do item ainda não tiver sido iniciada.
 
 ---
 
 ### 2.2. Processos de Apoio e Gestão Financeira
 
 #### Processo 4: Controle e Fechamento de Caixa
-* **Objetivo:** Garantir a conferência dos valores transacionados e a segurança no encerramento de turnos.
-* **Atores:** Operador de Caixa, Sócio / Gerente.
-* **Entrada / Gatilho:** Horário de troca de turno (14h e 22h).
-* **Fluxo Principal:**
+- **Objetivo:** Garantir a conferência dos valores transacionados e a segurança no encerramento de turnos.
+- **Atores:** Operador de Caixa, Sócio / Gerente.
+- **Entrada / Gatilho:** Horário de troca de turno (14h e 22h).
+- **Fluxo Principal:**
   1. O Operador de Caixa encerra os lançamentos no sistema Saurus.
-  2. O sistema gera o relatório com o esperado (vendas em dinheiro vs. pagamentos digitais).
+  2. O sistema gera o relatório com o valor esperado (vendas em dinheiro vs. pagamentos digitais).
   3. O Operador realiza a contagem do dinheiro físico no gaveteiro.
   4. O valor informado é confrontado com o total registrado pelo sistema.
-  5. Caso haja divergência, a conferência é auditada pelo Sócio.
-* **Saída:** Relatório de fechamento de caixa e conferência realizada.
-* **Regras de Negócio:**
-  * Fechamento obrigatório duas vezes ao dia (às 14h e às 22h).
-  * Sangrias não são frequentes, pois 80% a 90% dos pagamentos ocorrem via meios digitais.
-
----
+  5. Caso haja divergência, a conferência é auditada e ajustada pelo Sócio.
+- **Saída:** Relatório de fechamento de caixa emitido e conferência auditada.
+- **Dados Envolvidos no Processo:**
+  - *Fechamento:* Data, turno (14h ou 22h), operador responsável, horário de encerramento, valor inicial do caixa (troco), valores esperados pelo sistema discriminados por forma de pagamento (dinheiro, PIX, crédito, débito).
+  - *Conferência e Auditoria:* Valor contado em dinheiro físico, cálculo da diferença (esperado x informado), motivo da divergência (se houver), sócio auditor, data/hora da auditoria e status (*conferido, ajustado, pendente*).
+  - *Sangria:* Data/hora, valor retirado, motivo e responsável (se houver).
+- **Exceções e Regras de Negócio:**
+  - *RN07 — Fechamento de Caixa:* Obrigatoriedade de realizar o fechamento duas vezes ao dia (às 14h e às 22h).
+  - *Sangria:* Pouco frequente, visto que 80% a 90% das transações ocorrem via pagamentos digitais.
 
 #### Processo 5: Gestão de Compras e Estoque
-* **Objetivo:** Manter os níveis de insumos equilibrados para evitar falta de produtos críticos e desperdícios.
-* **Atores:** Responsável por Compras (Sócio), Fornecedores.
-* **Entrada / Gatilho:** Conferência semanal do nível de estoque praticado.
-* **Fluxo Principal:**
+- **Objetivo:** Manter os níveis de insumos equilibrados para evitar falta de produtos críticos e desperdícios.
+- **Atores:** Responsável por Compras (Sócio), Fornecedores.
+- **Entrada / Gatilho:** Conferência semanal do nível de estoque praticado.
+- **Fluxo Principal:**
   1. O Responsável por Compras analisa o estoque atual e a média de consumo semanal fixada (ex: meta de 5 fardos de refrigerante/semana).
-  2. Calcula-se a necessidade de reposição: {Quantidade a comprar} = {Média Semanal} - {Estoque Remanescente}$.
-  3. O pedido é faturado via boleto bancário com o fornecedor escolhido (a padaria possui > 20 fornecedores).
+  2. Calcula-se a necessidade de reposição: {Quantidade a comprar} = {Média Semanal} - {Estoque Remanescente}.
+  3. O pedido é faturado via boleto bancário com o fornecedor escolhido (a padaria trabalha com mais de 20 fornecedores).
   4. **Recebimento:** No ato da entrega, toda mercadoria é conferida fisicamente antes da estocagem.
-* **Saída:** Estoque reabastecido e lançamento das obrigações a pagar.
-* **Regras de Negócio / Exceções:**
-  * Se houver divergência, danos ou produto vencido no momento da entrega, a carga é rejeitada e não é recebida.
-
----
+- **Saída:** Estoque reabastecido e lançamento das obrigações a pagar no financeiro.
+- **Dados Envolvidos no Processo:**
+  - *Cadastro do Insumo/Produto:* Código, nome, categoria, unidade de medida, estoque atual, estoque mínimo e média de consumo semanal.
+  - *Pedido de Compra:* Fornecedor, data do pedido, data prevista de entrega, itens solicitados (quantidade, valor unitário e valor total do pedido).
+  - *Recebimento/Conferência:* Data/hora do recebimento, responsável pela conferência, número da nota fiscal/documento de entrega, quantidade pedida vs. recebida, data de validade, estado da mercadoria e resultado (*aceita* ou *rejeitada* com motivo).
+- **Exceções e Regras de Negócio:**
+  - *RN14 — Conferência Obrigatória:* Se houver divergência, avarias ou produto vencido no ato da entrega, a carga é obrigatoriamente recusada e devolvida.
 
 #### Processo 6: Pagamento de Fornecedores
-* **Objetivo:** Quitar os compromissos financeiros gerados pelas aquisições de insumos e mercadorias de revenda.
-* **Atores:** Sócio / Administrador, Fornecedores.
-* **Entrada / Gatilho:** Vencimento dos boletos ou faturas emitidas pelos fornecedores.
-* **Fluxo Principal:**
-  1. O Sócio confere os boletos das compras de insumos registradas.
+- **Objetivo:** Quitar os compromissos financeiros gerados pelas aquisições de insumos e mercadorias de revenda.
+- **Atores:** Sócio / Administrador, Fornecedores.
+- **Entrada / Gatilho:** Vencimento dos boletos ou faturas emitidas pelos fornecedores.
+- **Fluxo Principal:**
+  1. O Sócio confere os boletos bancários relativos às compras de insumos e mercadorias recebidas.
   2. O Sócio efetua o pagamento bancário na data de vencimento acordada.
-  3. O comprovante de pagamento é guardado para fins de controle financeiro.
-* **Saída:** Títulos de fornecedores liquidados e controle de passivos atualizado.
-
----
+  3. O comprovante de pagamento é arquivado e o registro financeiro é atualizado.
+- **Saída:** Títulos de fornecedores liquidados e controle de passivos atualizado.
+- **Dados Envolvidos no Processo:**
+  - *Título/Boleto:* Fornecedor, número do boleto/documento fiscal, compra relacionada, valor da fatura, data de emissão e data de vencimento.
+  - *Quitação:* Data do pagamento, valor efetivamente pago, responsável pelo pagamento, comprovante arquivado (número de autenticação bancária/arquivo) e status (*a pagar* ou *pago*).
 
 #### Processo 7: Contas a Pagar (Despesas Operacionais Gerais)
-* **Objetivo:** Controlar e realizar o pagamento das contas de consumo e manutenção do estabelecimento.
-* **Atores:** Sócio / Administrador.
-* **Entrada / Gatilho:** Recebimento de faturas de despesas recorrentes (energia elétrica, água, etc.).
-* **Fluxo Principal:**
+- **Objetivo:** Controlar e realizar o pagamento das contas de consumo e manutenção do estabelecimento.
+- **Atores:** Sócio / Administrador.
+- **Entrada / Gatilho:** Recebimento de faturas de despesas recorrentes (energia elétrica, água, internet, manutenção, etc.).
+- **Fluxo Principal:**
   1. O Sócio recebe e centraliza as faturas de despesas operacionais do mês.
   2. O Sócio realiza os pagamentos devidos dentro dos prazos de vencimento.
   3. Os registros de quitação são arquivados para a gestão financeira interna.
-* **Saída:** Custos fixos e operacionais quitados, garantindo a continuidade dos serviços da padaria.
+- **Saída:** Custos fixos e operacionais quitados, garantindo a continuidade das operações da padaria.
+- **Dados Envolvidos no Processo:**
+  - *Despesa Operacional:* Tipo de despesa (energia elétrica, água, internet, etc.), credor/concessionária, mês de competência, valor, data de vencimento, status (*a pagar* ou *paga*), data do pagamento e comprovante arquivado.
 
 ---
 
 ### 2.3. Processos de Produção e Operação Interna
 
 #### Processo 8: Planejamento e Registro de Produção Diária
-* **Objetivo:** Definir e registrar a quantidade de panificação e confeitaria a ser produzida no dia.
-* **Atores:** Equipe de Produção (Padeiros/Confeiteiros).
-* **Entrada / Gatilho:** Início do expediente da equipe de produção (06h).
-* **Fluxo Principal:**
-  1. A equipe analisa visualmente as sobras do dia anterior e a demanda esperada para o turno.
+- **Objetivo:** Definir e registrar a quantidade de panificação e confeitaria a ser produzida no dia.
+- **Atores:** Equipe de Produção (Padeiros/Confeiteiros).
+- **Entrada / Gatilho:** Início do expediente da equipe de produção (06h).
+- **Fluxo Principal:**
+  1. A equipe analisa a quantidade de sobras do dia anterior e a demanda esperada para o turno.
   2. A equipe define a quantidade de fornadas/áreas a serem produzidas.
   3. A produção é realizada e disponibilizada para a área de vendas/balcão.
-* **Saída:** Produtos prontos colocados à disposição no salão e balcão.
-* **Melhoria Necessária com o Sistema:** Passar a registrar formalmente no sistema os lotes produzidos e eventuais perdas/descartes (que hoje não são contabilizados).
-
----
+- **Saída:** Produtos prontos disponibilizados no salão e balcão.
+- **Dados Envolvidos no Processo:**
+  - *Lote de Produção:* Data, turno, responsável (padeiro ou confeiteiro), produto, quantidade de sobras do dia anterior, quantidade planejada (fornadas), quantidade produzida, data/hora da disponibilização e local de destino (balcão ou salão).
+  - *Perdas e Descartes:* Produto descartado, quantidade, motivo da perda, data/hora e responsável pelo registro.
+- **Melhoria Necessária com o Sistema:**
+  - *RN06 — Registro Prévio:* Passar a registrar formalmente no sistema os lotes produzidos e eventuais perdas/descartes (que atualmente não são contabilizados).
 
 #### Processo 9: Gestão de Turnos e Controle de Acessos
-* **Objetivo:** Administrar as escalas dos colaboradores e restringir operações críticas de segurança.
-* **Atores:** Funcionários, Sócios.
-* **Entrada / Gatilho:** Troca de horários de trabalho.
-* **Fluxo Principal:**
-  1. O 1º Turno atua das 06h às 14h (equipe de 7 pessoas).
-  2. O 2º Turno atua das 14h às 22h (equipe de 5 pessoas).
-  3. As permissões no sistema são parametrizadas de acordo com o papel do usuário.
-* **Saída:** Escala operacional executada.
-* **Regras de Negócio:**
-  * **Alçada de Acesso:** Permissões para alterar preços, cadastrar produtos, aplicar descontos, cancelar itens ou visualizar relatórios são exclusivas dos **Sócios**.
+- **Objetivo:** Administrar as escalas dos colaboradores e restringir operações críticas de segurança e governança.
+- **Atores:** Funcionários, Sócios.
+- **Entrada / Gatilho:** Troca de horários de trabalho e acesso ao sistema.
+- **Fluxo Principal:**
+  1. O 1º Turno atua das 06h às 14h.
+  2. O 2º Turno atua das 14h às 22h.
+  3. As permissões no sistema são parametrizadas de acordo com o papel e cargo do usuário.
+- **Saída:** Escala operacional executada e operações auditadas.
+- **Dados Envolvidos no Processo:**
+  - *Colaborador:* Nome completo, CPF, cargo (balconista, operador de caixa, padeiro, confeiteiro, sócio), turno alocado e usuário de acesso.
+  - *Auditoria de Operações:* Perfil de acesso, permissões concedidas, log de operações críticas (usuário, operação realizada, data, hora e justificativa).
+- **Regras de Negócio:**
+  - *Alçada de Acesso:* Permissões para alterar preços, cadastrar produtos, aplicar descontos, cancelar itens ou visualizar relatórios gerenciais são **estritamente exclusivas dos Sócios**.
 
 [Fluxo de Processos](img/Fluxograma.png)
 
@@ -183,152 +204,153 @@ Para garantir a rastreabilidade entre as necessidades da Padaria Délicia e a mo
 
 ***3.1 Requisitos Funcionais***
 
-**RF01 — Cadastro de produtos.** Código, nome, descrição, categoria, preço de venda, custo, unidade, estoque, estoque mínimo, validade (quando aplicável), status. Deve permitir anexar documentos regulatórios (ver RF25).
+- **RF01 — Cadastro de produtos.** Código, nome, descrição, categoria, preço de venda, custo, unidade, estoque, estoque mínimo, validade (quando aplicável), status. Deve permitir anexar documentos regulatórios (ver RF25).
 
-**RF02 — Controle de categorias.** Cadastro, edição, consulta e exclusão de categorias de produtos.
+- **RF02 — Controle de categorias.** Cadastro, edição, consulta e exclusão de categorias de produtos.
 
-**RF03 — Registro de vendas.** Produtos, quantidades, preço, descontos, forma de pagamento, valor recebido, troco, com cálculo automático do total.
+- **RF03 — Registro de vendas.** Produtos, quantidades, preço, descontos, forma de pagamento, valor recebido, troco, com cálculo automático do total.
 
-**RF04 — Emissão de comprovante.** Nome da padaria, data/hora, número da venda, produtos, valores, forma de pagamento.
+- **RF04 — Emissão de comprovante.** Nome da padaria, data/hora, número da venda, produtos, valores, forma de pagamento.
 
-**RN05 — Pedido sob encomenda (Antecedência e Multa por Não Retirada).** Solicitações de encomendas exigem antecedência mínima de 1 dia. O pagamento é realizado na retirada, porém, caso o cliente não compareça para retirar a encomenda produzida, aplica-se uma cobrança de 20% do valor total a título de multa para cobrir os custos de produção e evitar prejuízos ao estabelecimento.
+- **RN05 — Pedido sob encomenda (Antecedência e Multa por Não Retirada).** Solicitações de encomendas exigem antecedência mínima de 1 dia. O pagamento é realizado na retirada, porém, caso o cliente não compareça para retirar a encomenda produzida, aplica-se uma cobrança de 20% do valor total a título de multa para cobrir os custos de produção e evitar prejuízos ao estabelecimento.
 
-**RF06 — Alerta de estoque mínimo.** Gerar alerta quando um produto atingir o estoque mínimo configurado, com prioridade maior para produtos essenciais (ex.: pão francês) — ver RN10.
+- **RF06 — Alerta de estoque mínimo.** Gerar alerta quando um produto atingir o estoque mínimo configurado, com prioridade maior para produtos essenciais (ex.: pão francês) — ver RN10.
 
-**RF07 — Controle de validade.** Registro de datas de validade, alerta de vencimento próximo e bloqueio de venda de produtos vencidos.
+- **RF07 — Controle de validade.** Registro de datas de validade, alerta de vencimento próximo e bloqueio de venda de produtos vencidos.
 
-**RF08 — Controle de produção.** Registro dos produtos produzidos por dia, com atualização automática do estoque.
+- **RF08 — Controle de produção.** Registro dos produtos produzidos por dia, com atualização automática do estoque.
 
-**RF09 — Ficha técnica dos produtos.** Composição/ingredientes de cada produto produzido internamente; a ficha técnica também é um dos laudos obrigatórios anexados (RF25). 
+- **RF09 — Ficha técnica dos produtos.** Composição/ingredientes de cada produto produzido internamente; a ficha técnica também é um dos laudos obrigatórios anexados (RF25). 
 
-**RF10 — Controle de matéria-prima.** Baixa automática de ingredientes conforme a produção registrada.
+- **RF10 — Controle de matéria-prima.** Baixa automática de ingredientes conforme a produção registrada.
 
-**RF11 — Cadastro de fornecedores.** Razão social, CNPJ/CPF, contato, endereço, produtos fornecidos.
+- **RF11 — Cadastro de fornecedores.** Razão social, CNPJ/CPF, contato, endereço, produtos fornecidos.
 
-**RF12 — Registro de compras.** Fornecedor, data, produtos, quantidades, valores, nota fiscal; atualiza o estoque ao confirmar.
+- **RF12 — Registro de compras.** Fornecedor, data, produtos, quantidades, valores, nota fiscal; atualiza o estoque ao confirmar.
 
-**RF13 — Cadastro de clientes.** Base de dados de clientes (nome, contato, histórico de compras). Distinto do controle de consumo durante o atendimento, que é tratado no RF28.
+- **RF13 — Cadastro de clientes.** Base de dados de clientes (nome, contato, histórico de compras). Distinto do controle de consumo durante o atendimento, que é tratado no RF28.
 
-**RF14** **— Pedidos antecipados.** Cliente, produtos, data/horário de retirada, status do pedido.
+- **RF14** **— Pedidos antecipados.** Cliente, produtos, data/horário de retirada, status do pedido.
 
-**RF15** **— Encomendas personalizadas.** Sabor, tamanho, recheio, tema, data de entrega, observações — para bolos, tortas e kits de festa.
+- **RF15** **— Encomendas personalizadas.** Sabor, tamanho, recheio, tema, data de entrega, observações — para bolos, tortas e kits de festa.
 
-**RF16 — Controle de caixa.** Abertura, fechamento e conferência (total vendido, por forma de pagamento, sangrias, suprimentos, diferença apurada). Prioridade máxima: hoje o fechamento depende quase inteiramente de controle verbal.
+- **RF16 — Controle de caixa.** Abertura, fechamento e conferência (total vendido, por forma de pagamento, sangrias, suprimentos, diferença apurada). Prioridade máxima: hoje o fechamento depende quase inteiramente de controle verbal.
 
-**RF17 — Sangria e suprimento.** Registro de retiradas e entradas de dinheiro no caixa, com valor, horário, responsável e motivo.
+- **RF17 — Sangria e suprimento.** Registro de retiradas e entradas de dinheiro no caixa, com valor, horário, responsável e motivo.
 
-**RF18** **— Controle de funcionários.** Cadastro de funcionários e níveis de acesso. Equipe atual: 2 sócios (cargos de confiança) e 10 funcionários operacionais. 
+- **RF18** **— Controle de funcionários.** Cadastro de funcionários e níveis de acesso. Equipe atual: 2 sócios (cargos de confiança) e 10 funcionários operacionais. 
 
-**RF19 — Controle de permissões.** Restrição de operações por perfil de usuário \*e por turno de trabalho\* (manhã/noite), refletindo o modelo de acesso já praticado pela padaria.
+- **RF19 — Controle de permissões.** Restrição de operações por perfil de usuário \*e por turno de trabalho\* (manhã/noite), refletindo o modelo de acesso já praticado pela padaria.
 
-**RF20 — Cancelamento e devolução.** Registro de venda original, produto, motivo, responsável e data, com ajuste automático de estoque quando aplicável.
+- **RF20 — Cancelamento e devolução.** Registro de venda original, produto, motivo, responsável e data, com ajuste automático de estoque quando aplicável.
 
-**RF21 — Relatórios gerenciais.** Prioridade confirmada: vendas por período. Desejável: relatório de desperdício. Complementares: produtos mais/menos vendidos, faturamento, formas de pagamento, estoque, validade, compras, produção, desempenho de funcionários, clientes frequentes. Exportação para Excel/PDF é opcional, não obrigatória.
+- **RF21 — Relatórios gerenciais.** Prioridade confirmada: vendas por período. Desejável: relatório de desperdício. Complementares: produtos mais/menos vendidos, faturamento, formas de pagamento, estoque, validade, compras, produção, desempenho de funcionários, clientes frequentes. Exportação para Excel/PDF é opcional, não obrigatória.
 
-**RF22 — Dashboard (escalável).** Painel inicial com totais operacionais do dia (vendas, produto mais vendido, estoque baixo, encomendas, caixa atual) — sem necessidade de indicadores calculados (KPIs).
+- **RF22 — Dashboard (escalável).** Painel inicial com totais operacionais do dia (vendas, produto mais vendido, estoque baixo, encomendas, caixa atual) — sem necessidade de indicadores calculados (KPIs).
 
-**RF23** **— Pesquisa e filtros.** Busca de produtos, clientes, fornecedores, pedidos e vendas por nome, código, categoria, data, status etc. Cadastro de produtos e consulta de preço são as buscas mais frequentes e precisam ser rápidas.
+- **RF23** **— Pesquisa e filtros.** Busca de produtos, clientes, fornecedores, pedidos e vendas por nome, código, categoria, data, status etc. Cadastro de produtos e consulta de preço são as buscas mais frequentes e precisam ser rápidas.
 
-**RF24** **— Histórico de alterações.** Registro de usuário, ação, data/hora em operações importantes, para segurança e auditoria.
+- **RF24** **— Histórico de alterações.** Registro de usuário, ação, data/hora em operações importantes, para segurança e auditoria.
 
-**RF25** **— Anexação de documentos e laudos regulatórios.** Permitir anexar PDF/imagem a produtos ou ao cadastro da empresa: ficha técnica, laudo de bombeiro, laudo sanitário, alvará de funcionamento, código de defesa do consumidor.
+- **RF25** **— Anexação de documentos e laudos regulatórios.** Permitir anexar PDF/imagem a produtos ou ao cadastro da empresa: ficha técnica, laudo de bombeiro, laudo sanitário, alvará de funcionamento, código de defesa do consumidor.
 
-**RF26** **— Controle de consumo por comanda.** Abrir comanda ao iniciar o atendimento no salão, registrar os itens consumidos e vincular o fechamento ao pagamento antes da liberação do cliente. Ataca diretamente a causa do prejuízo relatado: clientes que saem sem pagar.
+- **RF26** **— Controle de consumo por comanda.** Abrir comanda ao iniciar o atendimento no salão, registrar os itens consumidos e vincular o fechamento ao pagamento antes da liberação do cliente. Ataca diretamente a causa do prejuízo relatado: clientes que saem sem pagar.
 
-**RF27 — Integração com WhatsApp (Escalável).** Notificações de status de pedido/encomenda e confirmação de delivery via WhatsApp.
+- **RF27 — Integração com WhatsApp (Escalável).** Notificações de status de pedido/encomenda e confirmação de delivery via WhatsApp.
 
-**RF28 - Venda rápida por código de barras/balança.** Leitura de código de barras e integração com balança para produtos pesados.
+- **RF28 - Venda rápida por código de barras/balança.** Leitura de código de barras e integração com balança para produtos pesados.
 
-**RF29 - Controle de desperdício e perdas.** Registro de perdas (vencimento, quebra, sobra do dia) com motivo. Nesse caso,alimenta o relatório de desperdício do RF21.
+- **RF29 - Controle de desperdício e perdas.** Registro de perdas (vencimento, quebra, sobra do dia) com motivo. Nesse caso,alimenta o relatório de desperdício do RF21.
 
 ***3.2 Requisitos Não Funcionais***
 
-**RNF01 — Desempenho.** Resposta em até 2 segundos nas operações comuns, especialmente busca de produto e preço.
+- **RNF01 — Desempenho.** Resposta em até 2 segundos nas operações comuns, especialmente busca de produto e preço.
 
-**RNF02 — Disponibilidade.** Sistema disponível durante todo o horário de funcionamento: segunda a sexta, 5h30–22h; sábado e domingo, 6h–22h.
+- **RNF02 — Disponibilidade.** Sistema disponível durante todo o horário de funcionamento: segunda a sexta, 5h30–22h; sábado e domingo, 6h–22h.
 
-**RNF03 — Segurança.** Autenticação obrigatória para funções administrativas; senhas armazenadas com criptografia/hash.
+- **RNF03 — Segurança.** Autenticação obrigatória para funções administrativas; senhas armazenadas com criptografia/hash.
 
-**RNF04 — Controle de acesso.** Cada usuário acessa apenas o que seu perfil e turno permitem.
+- **RNF04 — Controle de acesso.** Cada usuário acessa apenas o que seu perfil e turno permitem.
 
-**RNF05 — Integridade dos dados.** Vendas, estoque e pagamentos não podem ser alterados de forma inconsistente.
+- **RNF05 — Integridade dos dados.** Vendas, estoque e pagamentos não podem ser alterados de forma inconsistente.
 
-**RNF06 — Backup.** Backups periódicos do banco de dados. (Classificado pela gestão como desejável, não obrigatório.)
+- **RNF06 — Backup.** Backups periódicos do banco de dados. (Classificado pela gestão como desejável, não obrigatório.)
 
-**RNF07 — Recuperação de dados.** Restauração a partir de backup válido em caso de falha.
+- **RNF07 — Recuperação de dados.** Restauração a partir de backup válido em caso de falha.
 
-**RNF08 — Usabilidade.** Interface simples o suficiente para uma equipe operacional de 10 pessoas usar após treinamento básico.
+- **RNF08 — Usabilidade.** Interface simples o suficiente para uma equipe operacional de 10 pessoas usar após treinamento básico.
 
-**RNF09 — Responsividade.** Interface adaptável a computadores, tablets, notebooks e terminais de atendimento.
+- **RNF09 — Responsividade.** Interface adaptável a computadores, tablets, notebooks e terminais de atendimento.
 
-**RNF10 — Compatibilidade.** Funcionamento correto em Chrome, Edge, Firefox e Safari.
+- **RNF10 — Compatibilidade.** Funcionamento correto em Chrome, Edge, Firefox e Safari.
 
-**RNF11 — Escalabilidade.** Suportar o crescimento projetado de faturamento de \~R$ 190 mil/mês para \~R$ 250 mil/mês no ano seguinte, sem reformulação completa.
+- **RNF11 — Escalabilidade.** Suportar o crescimento projetado de faturamento de \~R$ 190 mil/mês para \~R$ 250 mil/mês no ano seguinte, sem reformulação completa.
 
-**RNF12 — Manutenção.** Código organizado e documentado.
+- **RNF12 — Manutenção.** Código organizado e documentado.
 
-**RNF13 — Auditoria.** Registro de usuário, data, horário e ação em operações críticas — confirmado como necessário pela gestão.
+- **RNF13 — Auditoria.** Registro de usuário, data, horário e ação em operações críticas — confirmado como necessário pela gestão.
 
-**RNF14 — Privacidade.** Proteção de dados pessoais de clientes e funcionários conforme a LGPD. Ainda que a gestão não perceba os dados coletados (nome, telefone) como sensíveis, eles são dados pessoais por definição legal.
+- **RNF14 — Privacidade.** Proteção de dados pessoais de clientes e funcionários conforme a LGPD. Ainda que a gestão não perceba os dados coletados (nome, telefone) como sensíveis, eles são dados pessoais por definição legal.
 
-**RNF15 — Confiabilidade.** Evitar perda ou duplicação de registros em vendas, pagamentos, estoque, compras e fechamento de caixa.
+- **RNF15 — Confiabilidade.** Evitar perda ou duplicação de registros em vendas, pagamentos, estoque, compras e fechamento de caixa.
 
-**RNF16 — Recuperação após falhas.** Manter os dados consistentes em caso de falha durante a operação financeira.
+- **RNF16 — Recuperação após falhas.** Manter os dados consistentes em caso de falha durante a operação financeira.
 
-**RNF17 — Tempo de aprendizado.** Novo operador deve aprender venda, consulta e fechamento de caixa em treinamento curto.
+- **RNF17 — Tempo de aprendizado.** Novo operador deve aprender venda, consulta e fechamento de caixa em treinamento curto.
 
-**RNF18 — Escalabilidade de usuários.** Suportar 12 usuários simultâneos (2 sócios \+ 10 funcionários) sem perda de desempenho.
+- **RNF18 — Escalabilidade de usuários.** Suportar 12 usuários simultâneos (2 sócios \+ 10 funcionários) sem perda de desempenho.
 
-**RNF19 — Implantação híbrida.** Operação combinando processamento/armazenamento local e sincronização em nuvem, conforme preferência da gestão.
+- **RNF19 — Implantação híbrida.** Operação combinando processamento/armazenamento local e sincronização em nuvem, conforme preferência da gestão.
 
 ---
 
 **## 4. Regras de Negócio**
 
-***4.1 Regras operacionais***  
+### 4.1 Regras operacionais  
 *Condições que a organização impõe sobre suas transações do dia a dia.*
 
-**RN01 — Produto vencido.** Não pode ser vendido.
+- **RN01 — Produto vencido.** Produtos com prazo de validade expirado não podem ser vendidos.
 
-**RN02 — Estoque insuficiente.** Bloqueia venda acima do disponível, salvo autorização do administrador.
+- **RN02 — Estoque insuficiente.** Bloqueia venda acima do disponível em estoque, salvo autorização expressa do administrador/sócio.
 
-**RN03 — Desconto.** Acima de um percentual definido, só com autorização.
+- **RN03 — Desconto e alçadas.** Descontos acima de um percentual definido exigem autorização exclusiva dos sócios.
 
-**RN04 — Cancelamento.** Após fechamento de caixa, exige autorização do gerente ou administrador.
+- **RN04 — Cancelamento restrito.** Cancelamentos após o fechamento de caixa exigem autorização do gerente ou administrador.
 
-**RN05 — Pedido sob encomenda.** Antecedência mínima definida pela padaria.
+- **RN05 — Pedido sob encomenda (Sinal e Antecedência).** Exige antecedência mínima de 24 horas, registro de itens, data e horário de retirada, com cobrança prévia de 20% do valor como sinal; caso o cliente não retire o pedido, o sinal é retido para cobrir os custos de insumos.
 
-**RN06 — Produção.** Quantidade produzida deve ser registrada antes da disponibilização para venda.
+- **RN06 — Produção diária e perdas.** A produção diária inicia às 06h, sendo obrigatório o registro formal no sistema dos lotes produzidos, sobras do dia anterior e eventuais perdas ou descartes.
 
-**RN07 — Caixa.** Fechamento compara valor esperado pelo sistema com valor informado pelo funcionário — resolve diretamente a divergência hoje apurada de forma verbal.
+- **RN07 — Fechamento e divergência de caixa.** O fechamento de caixa é obrigatório duas vezes ao dia (às 14h e às 22h), comparando o valor esperado pelo sistema com o contado em dinheiro; qualquer diferença exige o registro do motivo e auditoria/ajuste pelo sócio.
 
-**RN08 — Comanda em aberto.** Não permite encerrar o atendimento de um cliente com comanda em aberto sem pagamento registrado.
+- **RN08 — Comanda e controle de atendimento no salão.** Toda comanda de salão ou balcão deve possuir número único, data e hora de abertura, local de consumo, e conter itens detalhados com quantidade ou peso (em kg para produtos vendidos a granel) e valores; o encerramento do atendimento exige o pagamento integral registrado.
 
-**RN09 — Prioridade de produtos críticos.** Produtos essenciais (ex.: pão francês) geram alerta de estoque mínimo com prioridade sobre os demais.
+- **RN09 — Prioridade de produtos críticos.** Produtos essenciais (ex.: pão francês) geram alertas de estoque mínimo com prioridade de reposição sobre os demais.
 
-**RN10 — Área e taxa de entrega (Delivery).** O delivery próprio via WhatsApp limita-se a um raio máximo de até 5 km com taxa fixa de R$ 4,00; pedidos via aplicativo (iFood) atendem até 10 km, com taxa calculada pela própria plataforma.
-  
-**RN11 — Formas de pagamento e fracionamento.** O caixa aceita todas as modalidades de pagamento (dinheiro, PIX, cartões) e permite a divisão de uma mesma conta entre diferentes clientes ou formas de pagamento.
+- **RN10 — Área e taxa de entrega (Delivery).** O delivery próprio via WhatsApp limita-se a um raio máximo de até 5 km com taxa fixa de R$ 4,00; pedidos via aplicativo (iFood) atendem até 10 km, com taxa calculada pela plataforma, sendo vedada a aceitação de pedidos fora do raio e exigindo pagamento exclusivamente eletrônico.
 
-**RN12 — Conferência obrigatoria no recebimento de insumos.** Toda mercadoria recebida de fornecedores deve passar por inspeção física no ato da entrega; caso sejam identificadas divergências de quantidade, avarias ou produtos vencidos, a carga deve ser recusada imediatamente.
+- **RN11 — Formas de pagamento e fracionamento.** O caixa aceita dinheiro, PIX e cartões, permitindo a divisão de uma mesma conta entre diferentes clientes ou modalidades de pagamento.
 
-***4.2 Restrições organizacionais***  
-*Limitações externas ou internas que afetam o modelo — e por que importam.*
+- **RN12 — Conferência e rejeição no recebimento de insumos.** Toda mercadoria entregue por fornecedores passa por inspeção física obrigatória antes da estocagem; havendo divergências de quantidade, avarias ou produtos vencidos, a carga é rejeitada com o respectivo motivo registrado.
 
-**RN13 — Documentação regulatória obrigatória.** Exigência legal (vigilância sanitária e corpo de bombeiros): todo produto e o próprio estabelecimento devem ter vinculados ficha técnica, laudo de bombeiro, laudo sanitário, alvará de funcionamento e código de defesa do consumidor (RF25). Importa porque a ausência desses documentos pode gerar multa ou interdição do estabelecimento — não é uma preferência da gestão, é obrigação legal.
-  
-**RN14 — Proteção de dados pessoais (LGPD).** Restrição legal: dados de clientes (nome, telefone) são dados pessoais por definição da LGPD, mesmo que a gestão não os perceba como sensíveis. Importa porque o modelo de dados de clientes precisa prever controle de acesso e finalidade de uso desses campos, sob risco de sanção legal.
-  
-**RN15 — Emissão obrigatória de documento fiscal (Restrição Fiscal).** Obrigatoriedade legal: toda venda concluída deve gerar o respectivo cupom ou nota fiscal
-por meio do sistema Saurus. Importa para garantir a conformidade tributária e a transparência fiscal do estabelecimento.
+- **RN13 — Cálculo de compras e reposição de estoque.** A quantidade a comprar é calculada pela média de consumo semanal menos o estoque remanescente (não podendo ser negativa; se o estoque atual for maior ou igual à média semanal, nenhum pedido de compra é gerado).
 
-**RN16 — Proibição de venda de bebidas alcoólicas a menores (Restrição Legal).** Restrição legal: fica estritamente proibida a venda de bebidas alcoólicas a menores de 18 anos, sendo obrigatória a solicitação de documento de identificação sempre que o cliente aparentar ser jovem. Importa pelo cumprimento da legislação vigente (ECA), evitando penalidades e cassação do alvará.
+- **RN14 — Gestão financeira e quitação de passivos.** Os boletos de fornecedores são pagos na data de vencimento acordada e devem estar vinculados a uma compra registrada com fornecedor e valores conferidos; as despesas operacionais gerais são liquidadas dentro do prazo com arquivamento de comprovantes.
 
+- **RN15 — Gestão de turnos, acessos e operações críticas.** O 1º turno opera das 06h às 14h e o 2º turno das 14h às 22h; o acesso ao sistema baseia-se em perfis por cargo, sendo que operações críticas (alterar preços, cadastrar produtos, aplicar descontos, cancelar itens e visualizar relatórios) registram obrigatoriamente o usuário, a data e a hora, sendo exclusivas dos sócios.
+
+### 4.2 Restrições organizacionais, legais e fiscais
+Limitações externas ou internas que afetam o modelo — e por que importam.
+
+- **RN16 — Documentação regulatória obrigatória**: Todo produto e o estabelecimento devem ter vinculados os documentos regulatórios aplicáveis, incluindo ficha técnica, laudos de bombeiro e sanitário, alvará de funcionamento e código de defesa do consumidor. A ausência dos documentos exigidos pode gerar multas ou interdição.
+- **RN17 — Proteção de dados pessoais (LGPD)**: Os dados de clientes, como nome e telefone, são considerados dados pessoais. O sistema exige controle de acesso, finalidade clara de uso (marketing pontual de produtos recém-produzidos) e validação de CPF único quando fornecido voluntariamente pelo cliente.
+- **RN18 — Emissão obrigatória de documento fiscal**: Toda venda concluída deve gerar o respectivo cupom ou nota fiscal por meio do sistema Saurus, garantindo a conformidade tributária.
+- **RN19 — Proibição de venda de bebidas alcoólicas a menores**: É proibida a comercialização de bebidas alcoólicas a menores de 18 anos. A maioridade deve ser verificada por documento de identificação sempre que o cliente apresentar aparência jovem, conforme a legislação vigente.
 ---
 
 **## 5. Dicionário de Dados Conceitual (Preliminar)**  
 
-Confira o [Dicionário de Dados](Dicionario/index.html)
+Confira o [Dicionário de Dados](Dicionario/index.html) feito no software BRMW BrModelo.
 
 ---
 
@@ -597,134 +619,75 @@ Registramos duas limitações conhecidas do recorte atual. A validade está mode
 
 Se o grupo usou alguma ferramenta de IA (ChatGPT, Claude, Gemini, Perplexity etc.) em qualquer parte do trabalho, registre **para cada uso relevante**:
 
+| Item | O que registrar |
 |------|------------------|  
-**| \*\*Ferramenta e etapa\*\* |** Claude foi usado para a escritura da introdução. |  
-**| \*\*Motivação\*\* |** Para mapeamento de informações relevantes e para a revisão de dados faltantes. |  
-**| \*\*Prompt(s) utilizados\*\* |**   
-Olá, claude\! Faça uma introdução com base nesse texto, no arquivo da entrevista e nas informações dos links que eu te mandar.   
-Me fale as informações faltantes para uma introdução completa:
+| **Ferramenta e etapa** | Claude foi usado para a escritura da introdução. |  
+| **Motivação** | Para mapeamento de informações relevantes e para a revisão de dados faltantes. |  
+| **Prompt(s) utilizados** |  Olá, claude\! Faça uma introdução com base nesse texto, no arquivo da entrevista e nas informações dos links que eu te mandar. Me fale as informações faltantes para uma introdução completa: * Nome e natureza da organização: *qual organização real o grupo escolheu (com acesso garantido para pesquisa de campo) — pode ser uma empresa (livraria, lanchonete, pet shop), uma ONG, uma associação comunitária ou outra instituição.*   * Contexto e porte: *com ou sem fins lucrativos; tamanho da operação; número de pessoas envolvidas (funcionários, voluntários, membros, fiéis); volume de atividades (vendas, atendimentos, doações, rituais, eventos).*   * Problemas e necessidades identificados: *qual é a "crise operacional" — o que está desorganizado hoje (planilhas soltas, papel, falta de controle de estoque/doações/cadastros, etc.)?*   * Justificativa da escolha: *por que essa organização foi escolhida e por que ela é um bom caso para o projeto?*   * Evidências da organização: *comprove que a organização existe e que o grupo teve acesso a ela — ex.: fotos do local/da visita, link da organização no Google (Google Maps/Google Meu Negócio, site, rede social), endereço completo e forma de contato (telefone, e-mail, responsável pela organização).* https://wanderboat.ai/restaurants/brazil/regi%C3%A3o-imediata-de-s%C3%A3o-paulo/padaria-del%C3%ADcia/pFyXZmTJSiejlYw5WReEkg; https://www.solutudo.com.br/empresas/sp/s-paulo/panificadoras-e-padarias/padaria-delicia-ii-ltda-17960017; https://cnpj.biz/13565217000190; https://cnpja.com/office/13565217000190; https://www.instagram.com/delicia2padaria?igsi=cDIxa3dnMmhtMHly; documento do levantamento de dados com o dono da empresa |
+| **Resposta recebida** | A Padaria Delícia II Ltda., nome fantasia Padaria Delícia II, é uma microempresa com fins lucrativos localizada na Rua Impata, nº 765, Vila Ré, São Paulo-SP, CEP 03663-010. Inscrita no CNPJ 13.565.217/0001-90, iniciou suas atividades em 19 de abril de 2011 e encontra-se com situação cadastral ativa. Sua atividade principal é o comércio varejista de produtos de padaria e confeitaria, com predominância de revenda, enquanto sua atividade secundária compreende a fabricação de produtos de padaria e confeitaria com predominância de produção própria.  A organização desempenha papel relevante na comunidade local ao comercializar produtos de consumo cotidiano e atender moradores da Vila Ré e de regiões próximas. A equipe é composta por 12 pessoas, sendo 2 sócios e 10 funcionários responsáveis pela operação diária, e a padaria atende em média 200 clientes por dia, além de aproximadamente 50 pedidos de delivery diários. Seu porte é adequado à realização de uma pesquisa acadêmica, pois permite observar diretamente processos como atendimento ao público, vendas, produção, controle de estoque, compras e organização administrativa. De acordo com o levantamento realizado junto à gestão, os principais problemas identificados na Padaria Delícia II estão relacionados ao controle de caixa e ao controle de clientes. A empresa não realiza um controle sistemático de entrada e saída de clientes, e o acompanhamento do consumo apresenta falhas, havendo casos em que clientes se retiram sem efetuar o pagamento, o que gera prejuízo financeiro. Esse controle é feito majoritariamente de forma verbal, com uso pontual de fichas de papel, e o controle de estoque também é realizado de maneira totalmente manual. Essa situação caracteriza a crise operacional da empresa e evidencia a necessidade de um sistema que centralize e padronize o controle de caixa, de clientes e de estoque.  A empresa apresenta problemas de organização que podem ser solucionados ou reduzidos mediante a implementação de ferramentas de gestão mais eficientes. Dessa forma, constitui um caso prático para analisar processos existentes e desenvolver soluções aplicáveis à sua rotina operacional.  A existência da organização pode ser comprovada pelo cadastro empresarial ativo, pelos diretórios comerciais e pelo perfil público da padaria no Instagram. Os cadastros consultados informam como administradores Francisco Almir Pereira e José Aldir das Chagas, além do telefone (11) 2958-2840 e do e-mail pyoner@ig.com.br. |
+| **Fontes consultadas e verificadas** | A IA citou somente as fontes fornecidas. Isso se mostra no exemplo: “De acordo com o levantamento realizado junto à gestão”. |  
+| **Trechos rejeitados ou corrigidos** | Foi adicionada uma justificativa mais explícita, na qual estava faltando para ficar completa e correta ao modelo condizente. Além de ser citado o porquê a reunião foi feita via videoconferência.|  
+| **Justificativa da escolha final** | Foi mantida  a resposta sugerida, somente adicionando informações. A forma escrita foi bem avaliada e compreendida pelo grupo, sendo assim, não havendo alterações do que foi entregue pela IA. |  
+| **Reflexão crítica** | Não houveram vieses, foram fornecidos os materiais necessários para a atividade desejada. |
 
-* Nome e natureza da organização: *qual organização real o grupo escolheu (com acesso garantido para pesquisa de campo) — pode ser uma empresa (livraria, lanchonete, pet shop), uma ONG, uma associação comunitária ou outra instituição.*  
-* Contexto e porte: *com ou sem fins lucrativos; tamanho da operação; número de pessoas envolvidas (funcionários, voluntários, membros, fiéis); volume de atividades (vendas, atendimentos, doações, rituais, eventos).*  
-* Problemas e necessidades identificados: *qual é a "crise operacional" — o que está desorganizado hoje (planilhas soltas, papel, falta de controle de estoque/doações/cadastros, etc.)?*  
-* Justificativa da escolha: *por que essa organização foi escolhida e por que ela é um bom caso para o projeto?*  
-* Evidências da organização: *comprove que a organização existe e que o grupo teve acesso a ela — ex.: fotos do local/da visita, link da organização no Google (Google Maps/Google Meu Negócio, site, rede social), endereço completo e forma de contato (telefone, e-mail, responsável pela organização).*
-
-https://wanderboat.ai/restaurants/brazil/regi%C3%A3o-imediata-de-s%C3%A3o-paulo/padaria-del%C3%ADcia/pFyXZmTJSiejlYw5WReEkg
-
-https://www.solutudo.com.br/empresas/sp/s-paulo/panificadoras-e-padarias/padaria-delicia-ii-ltda-17960017
-
-https://cnpj.biz/13565217000190
-
-https://cnpja.com/office/13565217000190
-
-https://www.instagram.com/delicia2padaria?igsi=cDIxa3dnMmhtMHly
-
-documento do levantamento de dados com o dono da empresa |
-
-**| \*\*Resposta recebida\*\* |** A Padaria Delícia II Ltda., nome fantasia Padaria Delícia II, é uma microempresa com fins lucrativos localizada na Rua Impata, nº 765, Vila Ré, São Paulo-SP, CEP 03663-010. Inscrita no CNPJ 13.565.217/0001-90, iniciou suas atividades em 19 de abril de 2011 e encontra-se com situação cadastral ativa. Sua atividade principal é o comércio varejista de produtos de padaria e confeitaria, com predominância de revenda, enquanto sua atividade secundária compreende a fabricação de produtos de padaria e confeitaria com predominância de produção própria.
-
-A organização desempenha papel relevante na comunidade local ao comercializar produtos de consumo cotidiano e atender moradores da Vila Ré e de regiões próximas. A equipe é composta por 12 pessoas, sendo 2 sócios e 10 funcionários responsáveis pela operação diária, e a padaria atende em média 200 clientes por dia, além de aproximadamente 50 pedidos de delivery diários. Seu porte é adequado à realização de uma pesquisa acadêmica, pois permite observar diretamente processos como atendimento ao público, vendas, produção, controle de estoque, compras e organização administrativa.
-
-De acordo com o levantamento realizado junto à gestão, os principais problemas identificados na Padaria Delícia II estão relacionados ao controle de caixa e ao controle de clientes. A empresa não realiza um controle sistemático de entrada e saída de clientes, e o acompanhamento do consumo apresenta falhas, havendo casos em que clientes se retiram sem efetuar o pagamento, o que gera prejuízo financeiro. Esse controle é feito majoritariamente de forma verbal, com uso pontual de fichas de papel, e o controle de estoque também é realizado de maneira totalmente manual. Essa situação caracteriza a crise operacional da empresa e evidencia a necessidade de um sistema que centralize e padronize o controle de caixa, de clientes e de estoque.
-
-A empresa apresenta problemas de organização que podem ser solucionados ou reduzidos mediante a implementação de ferramentas de gestão mais eficientes. Dessa forma, constitui um caso prático para analisar processos existentes e desenvolver soluções aplicáveis à sua rotina operacional.
-
-A existência da organização pode ser comprovada pelo cadastro empresarial ativo, pelos diretórios comerciais e pelo perfil público da padaria no Instagram. Os cadastros consultados informam como administradores Francisco Almir Pereira e José Aldir das Chagas, além do telefone (11) 2958-2840 e do e-mail pyoner@ig.com.br. |
-
-**| \*\*Fontes consultadas e verificadas\*\*** | A IA citou somente as fontes fornecidas. Isso se mostra no exemplo: “De acordo com o levantamento realizado junto à gestão”. |  
-**| \*\*Trechos rejeitados ou corrigidos\*\* |** Foi adicionada uma justificativa mais explícita, na qual estava faltando para ficar completa e correta ao modelo condizente. |  
-**| \*\*Justificativa da escolha final\*\* |** Foi mantida  a resposta sugerida, somente adicionando informações. A forma escrita foi bem avaliada e compreendida pelo grupo, sendo assim, não havendo alterações do que foi entregue pela IA. |  
-**| \*\*Reflexão crítica\*\* |** Não houveram vieses, foram fornecidos os materiais necessários para a atividade desejada. |
-
+| Item | O que registrar |
 |------|------------------|
-**| \*\*Ferramenta e etapa\*\* |** Claude foi usada para revisão de requisitos. |  
-**| \*\*Motivação\*\* |** Estava com uma grande quantidade de requisitos, o grupo pensou na possibilidade de existir algum que poderia ser excluído editado. |  
-**| \*\*Prompt(s) utilizados\*\*** | Complemente, adicione ou exclua os requisitos funcionais e não funcionais de acordo com tudo que te mandei e com o arquivo texto.txt. |  
-**| \*\*Resposta recebida\*\* |** O que é redundante e pode sair:
+| **Ferramenta e etapa** | Gemini foi usado para revisão de requisitos e regras de negócio. |  
+| **Motivação** | Havia uma grande quantidade de requisitos, o grupo pensou na possibilidade de existir algum que poderia ser excluído ou editado. |  
+| **Prompt(s) utilizados** | Complemente, adicione ou exclua os requisitos funcionais e não funcionais de acordo com tudo que te mandei e com o arquivo texto.txt. |  
+| **Resposta recebida** | O que é redundante e pode sair: * **RN13 (Acesso por turno)** e **RN14 (Horário de funcionamento contínuo)** não são realmente regras de negócio no sentido de modelagem — são só repetições do que já está no RF21/RNF04 (acesso por turno) e no RNF02 e na Introdução (horário de funcionamento). Manter os dois só em Section 3 é mais limpo; aqui eles só ocupam espaço sem adicionar nada nas restrições organizacionais.  * A nota "(era RN11 na versão anterior)" é resíduo de edição, não é conteúdo do trabalho.   * A seção final "O que mudou em relação à lista original" também não corresponde a nenhuma seção pedida pelo professor — é só o changelog da conversa. Isso deixa a 4.2 só com as duas restrições que são genuinamente legais/estatutárias (documentação regulatória e LGPD), que são exemplos muito mais fortes.
+| **Fontes consultadas e verificadas** | RF01: Cadastro de produtos; RF02: Controle de categorias; RF03: Registro de vendas; RF04: Múltiplas formas de pagamento; RF05: Emissão de comprovantes; RF06: Controle automático de estoque; RF07: Alerta de estoque mínimo; RF08: Controle de validade; RF09: Controle de produção; RF10: Ficha técnica dos produtos; RF11: Controle de matéria-prima; RF12: Cadastro de fornecedores; RF13: Registro de compras; RF14: Cadastro de clientes; RF15: Programa de fidelidade; RF16: Pedidos antecipados; RF17: Encomendas personalizadas; RF18: Controle de caixa; RF19: Registro de sangrias e suprimentos; RF20: Cadastro de funcionários; RF21: Controle de permissões por perfil e turno; RF22: Cancelamentos e devoluções; RF23: Relatórios gerenciais; RF24: Dashboard operacional; RF25: Pesquisa e filtros; RF26: Histórico de alterações; RF27: Anexação de documentos e laudos regulatórios; RF28: Controle de consumo por comanda; RF29: Integração com WhatsApp. RNF01: Desempenho; RNF02: Disponibilidade; RNF03: Segurança; RNF04: Controle de acesso; RNF05: Integridade dos dados; RNF06: Backup; RNF07: Recuperação de dados; RNF08: Usabilidade; RNF09: Responsividade; RNF10: Compatibilidade com navegadores; RNF11: Escalabilidade do sistema; RNF12: Manutenibilidade; RNF13: Auditoria; RNF14: Privacidade e conformidade com a LGPD; RNF15: Confiabilidade; RNF16: Recuperação após falhas; RNF17: Facilidade de aprendizado; RNF18: Suporte a usuários simultâneos; RNF19: Implantação híbrida. RN01: Proibição da venda de produtos vencidos; RN02: Bloqueio de vendas acima do estoque disponível, salvo autorização; RN03: Autorização para descontos acima do limite estabelecido; RN04: Autorização para cancelamentos após o fechamento do caixa; RN05: Antecedência mínima para encomendas; RN06: Registro da produção antes da disponibilização para venda; RN07: Conferência entre o caixa esperado e o valor informado; RN08: Liberação de pontos de fidelidade após confirmação do pagamento; RN09: Proibição de encerramento de atendimento com comanda em aberto sem pagamento; RN10: Prioridade de alertas para produtos essenciais com estoque baixo; RN11: Manutenção da documentação regulatória exigida por lei; RN12: Proteção dos dados pessoais conforme a LGPD. |  
+| **Trechos rejeitados ou corrigidos** | Adicionado: RF27, RF28, RF29, RN10, RN11, RN12, RN15 e RN16 com mais detalhamento. |  
+| **Justificativa da escolha final** | Mantiveram-se partes do que foi retornado. Mas houve a necessidade de adicionar mais informações pelos levantamentos que foram feitos em grupo com o gerente do estabelecimento|  
+| **Reflexão crítica** | A IA foi limitada pelo material fornecido. Ou seja, executou perfeitamente o comando, sem vieses ou alucinações. |
 
-* **RN13 (Acesso por turno)** e **RN14 (Horário de funcionamento contínuo)** não são realmente regras de negócio no sentido de modelagem — são só repetições do que já está no RF21/RNF04 (acesso por turno) e no RNF02 e na Introdução (horário de funcionamento). Manter os dois só em Section 3 é mais limpo; aqui eles só ocupam espaço sem adicionar nada nas restrições organizacionais.  
-* A nota "(era RN11 na versão anterior)" é resíduo de edição, não é conteúdo do trabalho.  
-* A seção final "O que mudou em relação à lista original" também não corresponde a nenhuma seção pedida pelo professor — é só o changelog da conversa. 
+| Item | O que registrar |
+|------|------------------| 
+| **Ferramenta e etapa** | Claude foi usado para organização do dicionário de dados |  
+| **Motivação** | Foi recorrido à essa IA pois o Claude tem proficiência com dados extensos e complexos, algo característico de um dicionário de dados |  
+| **Prompt(s) utilizados** | Desenvolva um dicionário de dados, se baseando nos conteúdos enviados nos documentos anexados (arquivos em PDF com os todos os requisitos e com o modelo de dicionário de dados a ser desenvolvido.) |  
+| **Resposta recebida** | Exato conteúdo no tópico 5 do presente documento. |  
+| **Fontes consultadas e verificadas** | Documentação de modelo de dicionário de dados enviada pelo professor e documentação com informações relevantes da empresa |  
+| **Trechos rejeitados ou corrigidos** | Foi retirado o requisito de fidelidade por não fazer sentido com o cenário de uma padaria e foi reformulado o dicionário para que não incluísse o requisito removido. Também a formatação foi reformulada, solicitando que ele entregasse um arquivo HTML com as informações do dicionário. |  
+| **Justificativa da escolha final** | É coerente com a modelagem conceitual desenvolvida, além de coincidir com as informações nas outras etapas do trabalho, como o DER e os requisitos. |  
+| **Reflexão crítica** | Não foi identificado nenhum erro ou viés algorítmico claro nas respostas fornecidas pela inteligência artificial. |
 
-Isso deixa a 4.2 só com as duas restrições que são genuinamente legais/estatutárias (documentação regulatória e LGPD), que são exemplos muito mais fortes.
+| Item | O que registrar |
+|------|------------------|
+| **Ferramenta e etapa** | Gemini foi usado para organização e ordenamento de processos. |  
+| **Motivação** | Otimização de tempo e maior organização. |  
+| **Prompt(s) utilizados** | Com base na entrevista e todos os dados e processos fornecidos, faça um mapeamento de processos na pretensão da criação de um fluxograma. |  
+| **Resposta recebida** | Cadastro e controle de clientes: hoje não há controle sistemático de entrada, saída e consumo dos clientes atendidos no salão, o que abre brecha para clientes saírem sem pagar; Controle de caixa: fechamento e conferência de caixa dependem quase inteiramente de controle verbal, com uso pontual de fichas de papel; Controle de estoque: movimentação de produtos é registrada de forma totalmente manual, sem sistema de apoio; Produção e compras (fluxo de mercadoria): entrada de insumos, produção diária e disponibilização dos produtos para venda; Vendas, atendimento e entregas: atendimento no balcão e pedidos por delivery (cerca de 50 por dia), com integração desejada ao WhatsApp. |  
+| **Fontes consultadas e verificadas** | Documentação da entrevista |  
+| **Trechos rejeitados ou corrigidos** | Foi mais detalhado cada processo e adicionado partes de contas à pagar e pagamento aos fornecedores. |  
+| **Justificativa da escolha final** | É coerente ao que foi pedido, e foi bem revisado pelo grupo. |  
+| **Reflexão crítica** | Não foi identificado nenhum erro ou viés algorítmico claro nas respostas fornecidas pela inteligência artificial. |
 
-*Exato texto da seção 3: “Requisitos do Sistema”* |
+| Item | O que registrar |
+|------|------------------| 
+| **Ferramenta e etapa** | MyMapAi foi usado para fluxograma. |  
+| **Motivação** | Construir visual em BPMN. |  
+| **Prompt(s) utilizados** | Com base na entrevista e todos os dados e processos fornecidos, poderia criar um visual em BPMN? |  
+| **Resposta recebida** | O exato fluxograma, mas com baixa resolução. |  
+| **Fontes consultadas e verificadas** | Os principais processos da empresa, citado na seção 2\. |  
+| **Trechos rejeitados ou corrigidos** | Usado ChatGpt na tentativa de melhoria de resolução. |  
+| **Justificativa da escolha final** | É coerente ao que foi pedido, e foi bem revisado pelo grupo. |  
+| **Reflexão crítica** | Não foi identificado nenhum erro ou viés algorítmico claro nas respostas fornecidas pela inteligência artificial. |  
 
-**| \*\*Fontes consultadas e verificadas\*\* |** A IA citou somente as fontes fornecidas (documento de requisitos feito pelo grupo). |  
-**| \*\*Trechos rejeitados ou corrigidos\*\* |** Nada foi alterado pelo grupo. |  
-**| \*\*Justificativa da escolha final\*\* |** O grupo manteve exatamente o que foi retornado. A resposta estava equivalente ao desejado. |  
-**| \*\*Reflexão crítica\*\* |** A IA foi limitada pelo material fornecido. Ou seja, executei perfeitamente o comando, sem vieses ou alucinações. |
+| Item | O que registrar |
+|------|------------------| 
+| **Ferramenta e etapa** | Claude (Anthropic) foi usado na redação da Seção 8 (Justificativa Técnica), com base no modelo conceitual das seções 5 e 6.|
+| **Motivação** | A Seção 8 exige defender cada decisão de modelagem contra alternativas. O grupo já havia tomado essas decisões, mas a argumentação não estava registrada. A IA foi usada para explicitá-la por escrito.|
+| **Prompt(s) utilizados** | Pedido de justificativa técnica das decisões de abstração e modelagem (entidades, atributos, relacionamentos e cardinalidades), acompanhado do arquivo da modelagem conceitual completo.|
+| **Resposta recebida** | Justificativa em seis blocos (critério de abstração, entidades, atributos, cardinalidades, proporcionalidade e limitações), sempre confrontando a escolha com a alternativa descartada. Exemplos: \- PRODUTO e MATERIA\_PRIMA separados, para evitar atributos nulos; \- COMANDA separada de VENDA, para não contaminar o faturamento; \- Participação parcial de CLIENTE em VENDA, por viabilidade operacional; \- VL\_UNITARIO no item, para preservar o preço histórico; \- Atributos derivados como desnormalização controlada (RNF01). Uma segunda resposta condensou o texto à metade.|
+| **Fontes consultadas e verificadas** | Nenhuma fonte externa. O grupo conferiu o texto com o dicionário de dados (seção 5), o DER (seção 7) e os números da entrevista (200 clientes/dia, 50 deliveries, 12 usuários, 19 entidades).|
+| **Trechos rejeitados ou corrigidos** | Foram mantidas apenas as justificativas que correspondiam ao raciocínio real do grupo, pois a IA às vezes tratava como deliberadas escolhas feitas por conveniência. As limitações da seção 8.6 foram validadas pelo grupo.|
+| **Justificativa da escolha final** | Foi mantida a versão condensada, por ser proporcional ao peso da seção e preservar a comparação com as alternativas. As decisões de modelagem foram do grupo, não da IA.|
+| **Reflexão crítica** | A IA tende a apresentar toda decisão como intencional e bem fundamentada, o que gera texto convincente, mas nem sempre fiel ao processo real. Por isso, o grupo revisou cada justificativa. Não houve alucinação, pois o modelo completo foi fornecido, e não foram identificados vieses.|
 
-|------|------------------|  
-**| \*\*Ferramenta e etapa\*\* |** Claude foi usado para organização do dicionário de dados |  
-**| \*\*Motivação\*\* |** Foi recorrido à essa IA pois o Claude tem proficiência com dados extensos e complexos, algo característico de um dicionário de dados |  
-**| \*\*Prompt(s) utilizados\*\* |** Desenvolva um dicionário de dados, se baseando nos conteúdos enviados nos documentos anexados (arquivos em PDF com os todos os requisitos e com o modelo de dicionário de dados a ser desenvolvido.) |  
-**| \*\*Resposta recebida\*\* |** Exato conteúdo no tópico 5 do presente documento. |  
-**| \*\*Fontes consultadas e verificadas\*\* |** Documentação de modelo de dicionário de dados enviada pelo professor e documentação com informações relevantes da empresa |  
-**| \*\*Trechos rejeitados ou corrigidos\*\* |** Foi retirado o requisito de fidelidade por não fazer sentido com o cenário de uma padaria e foi reformulado o dicionário para que não incluísse o requisito removido. Também a formatação foi reformulada, solicitando que ele entregasse um arquivo HTML com as informações do dicionário. |  
-**| \*\*Justificativa da escolha final\*\* |** É coerente com a modelagem conceitual desenvolvida, além de coincidir com as informações nas outras etapas do trabalho, como o DER e os requisitos. |  
-**| \*\*Reflexão crítica\*\* |** Não foi identificado nenhum erro ou viés algorítmico claro nas respostas fornecidas pela inteligência artificial. |
-
-|------|------------------|  
-**| \*\*Ferramenta e etapa\*\* |** Gemini foi usado para organização e ordenamento de processos. |  
-**| \*\*Motivação\*\* |** Otimização de tempo e maior organização. |  
-**| \*\*Prompt(s) utilizados\*\* |** Com base na entrevista e todos os dados e processos fornecidos, faça um mapeamento de processos na pretensão da criação de um fluxograma. |  
-**| \*\*Resposta recebida\*\* |** Cadastro e controle de clientes: hoje não há controle sistemático de entrada, saída e consumo dos clientes atendidos no salão, o que abre brecha para clientes saírem sem pagar.  
-Controle de caixa: fechamento e conferência de caixa dependem quase inteiramente de controle verbal, com uso pontual de fichas de papel.  
-Controle de estoque: movimentação de produtos é registrada de forma totalmente manual, sem sistema de apoio.  
-Produção e compras (fluxo de mercadoria): entrada de insumos, produção diária e disponibilização dos produtos para venda.  
-Vendas, atendimento e entregas: atendimento no balcão e pedidos por delivery (cerca de 50 por dia), com integração desejada ao WhatsApp. |  
-**| \*\*Fontes consultadas e verificadas\*\* |** Documentação da entrevista |  
-**| \*\*Trechos rejeitados ou corrigidos\*\* |** Foi mais detalhado cada processo e adicionado partes de contas à pagar e pagamento aos fornecedores. |  
-**| \*\*Justificativa da escolha final\*\* |** É coerente ao que foi pedido, e foi bem revisado pelo grupo. |  
-**| \*\*Reflexão crítica\*\* |** Não foi identificado nenhum erro ou viés algorítmico claro nas respostas fornecidas pela inteligência artificial. |
-
-|------|------------------|  
-**| \*\*Ferramenta e etapa\*\* |** Claude foi usado para organização do Diagrama de Entidade e Relacionamento (DER). |  
-**| \*\*Motivação\*\* |** Dados extensos, demandando muito tempo para implementação.  |  
-**| \*\*Prompt(s) utilizados\*\* |** Claude, poderia desenvolver um diagrama de entidade e relacionamento (DER) de acordo com o formato BrModelo (exemplo na imagem em anexo) e com as informações do documento(pdf em anexo)? |  
-**| \*\*Resposta recebida\*\* |** Imagem do tópico 7, mas com muitas Chaves Estrangeiras. |  
-**| \*\*Fontes consultadas e verificadas\*\* |** Dicionário de dados e imagem exemplo do desejado.  |  
-**| \*\*Trechos rejeitados ou corrigidos\*\* |** Foi retornado uma imagem com Foreign Keys (Chaves Estrangeiras), no qual foi corrigido, convertendo para Primary Keys (Chaves Primárias) novamente. |  
-**| \*\*Justificativa da escolha final\*\* |** Coerente com a modelagem conceitual que foi desenvolvido e com o material fornecido. |  
-**| \*\*Reflexão crítica\*\* |** Não foi identificado nenhum erro ou viés algorítmico claro nas respostas fornecidas pela inteligência artificial. |
-
-|------|------------------|  
-**| \*\*Ferramenta e etapa\*\* |** MyMapAi foi usado para fluxograma. |  
-**| \*\*Motivação\*\* |** Construir visual em BPMN. |  
-**| \*\*Prompt(s) utilizados\*\* |** Com base na entrevista e todos os dados e processos fornecidos, poderia criar um visual em BPMN? |  
-**| \*\*Resposta recebida\*\* |** O exato fluxograma, mas com baixa resolução. |  
-**| \*\*Fontes consultadas e verificadas\*\* |** Os principais processos da empresa, citado na seção 2\. |  
-**| \*\*Trechos rejeitados ou corrigidos\*\* |** Usado ChatGpt na tentativa de melhoria de resolução. |  
-**| \*\*Justificativa da escolha final\*\* |** É coerente ao que foi pedido, e foi bem revisado pelo grupo. |  
-**| \*\*Reflexão crítica\*\* |** Não foi identificado nenhum erro ou viés algorítmico claro nas respostas fornecidas pela inteligência artificial. |  
-
-|------|------------------|  
-**| \*\*Ferramenta e etapa\*\* |** Claude (Anthropic) foi usado na redação da Seção 8 (Justificativa Técnica), com base no modelo conceitual das seções 5 e 6.
-**\*Motivação\*** A Seção 8 exige defender cada decisão de modelagem contra alternativas. O grupo já havia tomado essas decisões, mas a argumentação não estava registrada. A IA foi usada para explicitá-la por escrito.
-**\*Prompt(s) utilizados\*** Pedido de justificativa técnica das decisões de abstração e modelagem (entidades, atributos, relacionamentos e cardinalidades), acompanhado do arquivo da modelagem conceitual completo.
-**\*Resposta recebida\*** Justificativa em seis blocos (critério de abstração, entidades, atributos, cardinalidades, proporcionalidade e limitações), sempre confrontando a escolha com a alternativa descartada. Exemplos:
-
-\- PRODUTO e MATERIA\_PRIMA separados, para evitar atributos nulos.
-
-\- COMANDA separada de VENDA, para não contaminar o faturamento.
-
-\- Participação parcial de CLIENTE em VENDA, por viabilidade operacional.
-
-\- VL\_UNITARIO no item, para preservar o preço histórico.
-
-\- Atributos derivados como desnormalização controlada (RNF01).
-
-Uma segunda resposta condensou o texto à metade.
-
-**\*Fontes consultadas e verificadas\*** Nenhuma fonte externa. O grupo conferiu o texto com o dicionário de dados (seção 5), o DER (seção 7) e os números da entrevista (200 clientes/dia, 50 deliveries, 12 usuários, 19 entidades).
-**\*Trechos rejeitados ou corrigidos\*** Foram mantidas apenas as justificativas que correspondiam ao raciocínio real do grupo, pois a IA às vezes tratava como deliberadas escolhas feitas por conveniência. As limitações da seção 8.6 foram validadas pelo grupo.
-**\*Justificativa da escolha final\*** Foi mantida a versão condensada, por ser proporcional ao peso da seção e preservar a comparação com as alternativas. As decisões de modelagem foram do grupo, não da IA.
-**\*Reflexão crítica\*** A IA tende a apresentar toda decisão como intencional e bem fundamentada, o que gera texto convincente, mas nem sempre fiel ao processo real. Por isso, o grupo revisou cada justificativa. Não houve alucinação, pois o modelo completo foi fornecido, e não foram identificados vieses.
-
-|---|---|
-| **Ferramenta e etapa** | Claude foi usado na etapa de escrita da seção 6 (Modelagem Conceitual).
+| Item | O que registrar |
+|------|------------------|
+| **Ferramenta e etapa** | Claude foi usado na etapa de escrita da seção 6 (Modelagem Conceitual).|
 | **Motivação** | Como o modelo ficou com muitas entidades (19 no total) e vários relacionamentos, ficava difícil escrever tudo em texto corrido sem esquecer nada ou repetir informação. Usamos a IA para ajudar a organizar esse conteúdo em tópicos (entidades, atributos, relacionamentos e restrições), já que ela consegue lidar melhor com uma quantidade grande de dados do que a gente escrevendo manualmente. |
 | **Prompt(s) utilizados** | Poderia listar todos com base no arquivo enviado? Preciso separar em entidades, atributos, relacionamentos (com cardinalidade) e restrições, seguindo o que já está no dicionário de dados que te mandei antes. |
 | **Resposta recebida** | A modelagem conceitual foi desenvolvida a partir dos principais processos e requisitos identificados na Padaria Delícia II, buscando representar as informações necessárias para o controle de produtos, estoque, produção, compras, vendas, clientes e operações de caixa. **6.1 Entidades reconhecidas:** foram listadas as 19 entidades do modelo — CATEGORIA, PRODUTO, MATERIA_PRIMA, ITEM_FICHA_TECNICA, DOCUMENTO_REGULATORIO, FORNECEDOR, COMPRA, ITEM_COMPRA, PRODUCAO, CLIENTE, FUNCIONARIO, COMANDA, ITEM_COMANDA, VENDA, ITEM_VENDA, CANCELAMENTO_DEVOLUCAO, CAIXA, MOVIMENTACAO_CAIXA e LOG_AUDITORIA — cada uma com uma frase curta explicando sua função (por exemplo, a entidade COMANDA existe justamente para resolver o problema real da padaria, que é cliente saindo sem pagar; e CAIXA representa cada sessão, da abertura até a conferência final). **6.2 Atributos e classificações:** a resposta manteve a mesma convenção de prefixos que já estava no dicionário de dados (ID_ para chave primária, NM_ para nome, CD_ para código, DT_ para data, QT_ para quantidade, VL_ para valor monetário, TP_ para tipo/categoria e DS_ para descrição). Os atributos foram detalhados para as entidades principais — CATEGORIA, PRODUTO, MATERIA_PRIMA, CLIENTE, FUNCIONARIO, VENDA e CAIXA — e para as demais entidades foi indicado que os atributos completos estão no Dicionário de Dados Conceitual, para não duplicar informação. **6.3 Relacionamentos pertinentes:** foram listados 21 relacionamentos com suas cardinalidades. O ponto que achamos mais importante de entender (e não só copiar) foi o relacionamento N:M entre PRODUTO e MATERIA_PRIMA, que precisou ser resolvido com uma entidade associativa (ITEM_FICHA_TECNICA), porque um relacionamento N:M não pode ser implementado diretamente em um banco relacional. Também aparecem os vínculos opcionais, como CLIENTE — COMANDA e CLIENTE — VENDA (o cliente pode não se identificar) e o relacionamento 1:1 opcional entre COMANDA e VENDA, que representa o momento em que uma comanda aberta no salão se transforma em uma venda fechada. **6.4 Restrições e políticas organizacionais:** foram reunidas as regras de negócio que o modelo precisa respeitar, como não deixar vender produto vencido, bloquear venda acima do estoque, exigir autorização para desconto alto ou para cancelamento depois do caixa fechado, dar prioridade nos alertas de estoque mínimo para produtos essenciais (tipo o pão francês), controlar o acesso por perfil/turno de funcionário, manter log de auditoria nas operações mais sensíveis e seguir a LGPD no tratamento dos dados de cliente e funcionário. |
