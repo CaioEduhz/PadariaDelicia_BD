@@ -545,7 +545,7 @@ MATERIA\_PRIMA.
 
 **## 7. Diagrama Entidade-Relacionamento (DER)**  
 
-O Diagrama Entidade-Relacionamento (DER), feito pelo software BRModelo (BRMW), foi anexado junto ao repositório, confira [***aqui***]([DER](https://app.brmodeloweb.com/publicview/6ae3cf51222486b04fbbc9b4) ).
+O Diagrama Entidade-Relacionamento (DER), feito pelo software BRModelo (BRMW), foi anexado junto ao repositório, confira [***aqui***](https://app.brmodeloweb.com/publicview/6ae3cf51222486b04fbbc9b4).
 
 ---
 
