@@ -457,7 +457,7 @@
       <!-- === MENU LATERAL — busca, links das seções e lista de entidades === -->
       <aside class="sidebar">
         <div class="brand"><span class="brand-mark">Délicia II</span></div>
-        <p class="brand-sub">DICIONÁRIO DE DADOS · v2.4</p>
+        <p class="brand-sub">DICIONÁRIO DE DADOS · v2.5</p>
         <input aria-label="Buscar entidade" class="sidebar-search" id="sidebar-search" placeholder="Buscar entidade…" type="text"/>
         <!-- Links do menu -->
         <nav>
@@ -492,6 +492,7 @@
             <li><a data-search="log_auditoria" href="#c-log-auditoria"><span class="nav-num">4.20</span>LOG_AUDITORIA</a></li>
             <li><a data-search="encomenda" href="#c-encomenda"><span class="nav-num">4.21</span>ENCOMENDA</a></li>
             <li><a data-search="delivery" href="#c-delivery"><span class="nav-num">4.22</span>DELIVERY</a></li>
+            <li><a data-search="conta_pagar" href="#c-conta-pagar"><span class="nav-num">4.23</span>CONTA_PAGAR</a></li>
           </ul>
           <div class="sidebar-group-label">Referência</div>
           <ul>
@@ -533,11 +534,11 @@
               <tbody>
                 <tr>
                   <td>Versão</td>
-                  <td>2.4</td>
+                  <td>2.5</td>
                 </tr>
                 <tr>
                   <td>Data de atualização</td>
-                  <td>25/10/2026</td>
+                  <td>28/10/2026</td>
                 </tr>
                 <tr>
                   <td>SGBD</td>
@@ -588,6 +589,11 @@
                   <td>2.4</td>
                   <td>25/10/2026</td>
                   <td>Pagamento misto (nova entidade PAGAMENTO_VENDA, RN14 e D07); matriz de acesso fechada (equipe de desenvolvimento = grupo do projeto; sangria e fechamento por quem estiver no caixa; relatórios e compras só para sócios); remoção dos status de entidades, atributos, regras e domínios e da legenda das convenções.</td>
+                </tr>
+                <tr>
+                  <td>2.5</td>
+                  <td>28/10/2026</td>
+                  <td>Novos atributos ENCOMENDA.VL_SINAL, DELIVERY.TP_CANAL_ORIGEM e VENDA.CD_CUPOM_FISCAL (vínculo com o Saurus); nova entidade CONTA_PAGAR ligada a FORNECEDOR; domínios D14 e D15; regras RN23 e RN24.</td>
                 </tr>
               </tbody>
             </table>
@@ -870,6 +876,14 @@
                   <td><span class="card-badge">(1,1)</span></td>
                   <td>PROPOSTA, ainda fora do DER: venda de balcão não tem entrega; venda por delivery gera no máximo uma entrega</td>
                 </tr>
+                <tr>
+                  <td><code class="attr-name">FORNECEDOR</code></td>
+                  <td>gera</td>
+                  <td><code class="attr-name">CONTA_PAGAR</code></td>
+                  <td><span class="card-badge">(0,N)</span></td>
+                  <td><span class="card-badge">(1,1)</span></td>
+                  <td>um fornecedor pode ter várias contas a pagar (boletos); toda conta pertence a um fornecedor</td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -897,6 +911,10 @@
             <p>FORNECEDOR → COMPRA registrada com um ou mais ITEM_COMPRA, cada um referenciando ou um PRODUTO de revenda ou uma MATERIA_PRIMA (nunca os dois) → confirmação da compra atualiza QT_ESTOQUE do produto ou insumo correspondente.</p>
           </div>
           <div class="flow-item">
+            <div class="flow-title">Contas a pagar <span class="ref-tag"><a class="ref" href="#rn23">RN23</a></span></div>
+            <p>compra a um FORNECEDOR, paga por boleto → o vencimento é registrado em CONTA_PAGAR (DT_VENCIMENTO e VL_VALOR), com status PENDENTE → no controle semanal, o responsável por compras consulta o que vence → ao pagar, preenche-se DT_PAGAMENTO e o status passa a PAGA.</p>
+          </div>
+          <div class="flow-item">
             <div class="flow-title">Fluxo de mercadoria — produção <span class="ref-tag"><a class="ref" href="#rf08">RF08</a>, <a class="ref" href="#rf09">RF09</a>, <a class="ref" href="#rf10">RF10</a></span></div>
             <p>a composição de cada PRODUTO acabado é definida previamente em ITEM_FICHA_TECNICA → ao registrar uma PRODUCAO, o sistema dá baixa em QT_ESTOQUE de cada MATERIA_PRIMA conforme a QT_QUANTIDADE prevista na ficha técnica, e soma QT_PRODUZIDA ao QT_ESTOQUE do PRODUTO acabado, disponibilizando-o para venda (<a class="ref" href="#rn06">RN06</a>).</p>
           </div>
@@ -910,7 +928,7 @@
           </div>
           <div class="flow-item">
             <div class="flow-title">Encomendas — prática confirmada na entrevista; detalhes a validar <span class="ref-tag"><a class="ref" href="#rf14">RF14</a>/<a class="ref" href="#rf15">RF15</a></span></div>
-            <p>CLIENTE solicita uma ENCOMENDA de um PRODUTO com data de retirada/entrega → status evolui de PENDENTE a ENTREGUE ou CANCELADA. Fluxo isolado, sem ligação com VENDA ou COMANDA nesta versão preliminar — mantido isolado nesta versão preliminar, sem integração com a cobrança do sinal.</p>
+            <p>CLIENTE solicita uma ENCOMENDA de um PRODUTO com data de retirada/entrega → status evolui de PENDENTE a ENTREGUE ou CANCELADA. Fluxo isolado, sem ligação com VENDA ou COMANDA nesta versão preliminar — mantido isolado nesta versão preliminar, o sinal cobrado é registrado em VL_SINAL, sem integração com VENDA nesta versão preliminar.</p>
           </div>
           <div class="flow-item">
             <div class="flow-title">Auditoria — transversal a todos os fluxos acima <span class="ref-tag"><a class="ref" href="#rf24">RF24</a>, <a class="ref" href="#rnf13">RNF13</a></span></div>
@@ -1223,7 +1241,7 @@ QT_ESTOQUE_MINIMO + (DT_VALIDADE) + IN_PRODUTO_ESSENCIAL + IN_ATIVO</pre>
                 </thead>
                 <tbody>
                   <tr>
-                    <td>CATEGORIA possui PRODUTO</td>
+                    <td>PRODUTO possui CATEGORIA</td>
                     <td><span class="card-badge">(1,1)</span></td>
                     <td><span class="card-badge">(0,N)</span></td>
                   </tr>
@@ -1613,6 +1631,11 @@ DS_ARQUIVO + DT_EMISSAO + (DT_VALIDADE)</pre>
                 <tbody>
                   <tr>
                     <td>FORNECEDOR origina COMPRA</td>
+                    <td><span class="card-badge">(0,N)</span></td>
+                    <td><span class="card-badge">(1,1)</span></td>
+                  </tr>
+                  <tr>
+                    <td>FORNECEDOR gera CONTA_PAGAR</td>
                     <td><span class="card-badge">(0,N)</span></td>
                     <td><span class="card-badge">(1,1)</span></td>
                   </tr>
@@ -2295,11 +2318,11 @@ DS_SENHA_HASH + IN_ATIVO</pre>
             <!-- Notação formal da entidade -->
             <pre class="notation">VENDA = @ID_VENDA + DT_VENDA + [TP_BALCAO | TP_DELIVERY] +
 VL_TOTAL + (VL_DESCONTO) + VL_RECEBIDO + VL_TROCO +
-[TP_CONCLUIDA | TP_CANCELADA]</pre>
+[TP_CONCLUIDA | TP_CANCELADA] + (CD_CUPOM_FISCAL)</pre>
             <!-- Leitura: explicação em linguagem de negócio -->
             <div class="reading">
               <span class="reading-label">Leitura</span>
-              <p>A comanda de origem é opcional porque nem toda venda nasce de uma comanda do salão (delivery e balcão avulso não passam por comanda). VL_DESCONTO é opcional porque desconto acima de um percentual definido só é aplicado mediante autorização (<a class="ref" href="#rn03">RN03</a>). O pagamento é registrado em PAGAMENTO_VENDA, que admite mais de uma modalidade por venda (<a class="ref" href="#rn14">RN14</a>).</p>
+              <p>A comanda de origem é opcional porque nem toda venda nasce de uma comanda do salão (delivery e balcão avulso não passam por comanda). VL_DESCONTO é opcional porque desconto acima de um percentual definido só é aplicado mediante autorização (<a class="ref" href="#rn03">RN03</a>). O pagamento é registrado em PAGAMENTO_VENDA, que admite mais de uma modalidade por venda (<a class="ref" href="#rn14">RN14</a>). CD_CUPOM_FISCAL guarda o código do cupom ou nota emitido pelo sistema Saurus e faz a ligação entre os dois sistemas; é opcional porque a emissão ocorre no Saurus e o código só existe depois dela (<a class="ref" href="#rn24">RN24</a>).</p>
             </div>
             <!-- Tabela de atributos: tipo lógico, obrigatoriedade, descrição e regras -->
             <h4>Atributos</h4>
@@ -2371,6 +2394,13 @@ VL_TOTAL + (VL_DESCONTO) + VL_RECEBIDO + VL_TROCO +
                     <td>Situação da venda.</td>
                     <td><a class="ref" href="#rn04">RN04</a></td>
                   </tr>
+                  <tr>
+                    <td class="col-attr"><code class="attr-name">CD_CUPOM_FISCAL</code></td>
+                    <td>Texto</td>
+                    <td class="col-req"><span class="req-no">Não</span></td>
+                    <td>Código do cupom ou nota fiscal emitido pelo sistema Saurus para esta venda. Liga a venda daqui ao documento fiscal de lá. Único quando preenchido.</td>
+                    <td><a class="ref" href="#rn24">RN24</a>, <a class="ref" href="#rf04">RF04</a></td>
+                  </tr>
                 </tbody>
               </table>
             </div>
@@ -2430,7 +2460,7 @@ VL_TOTAL + (VL_DESCONTO) + VL_RECEBIDO + VL_TROCO +
               </table>
             </div>
             <!-- Regras e requisitos que se aplicam à entidade -->
-            <p class="indices"><strong>Regras e requisitos da entidade:</strong> <a class="ref" href="#rf03">RF03</a>, <a class="ref" href="#rf04">RF04</a>, <a class="ref" href="#rn14">RN14</a>, <a class="ref" href="#rn16">RN16</a>, <a class="ref" href="#rf16">RF16</a>, <a class="ref" href="#rn07">RN07</a>, <a class="ref" href="#rf13">RF13</a>, <a class="ref" href="#rf26">RF26</a></p>
+            <p class="indices"><strong>Regras e requisitos da entidade:</strong> <a class="ref" href="#rf03">RF03</a>, <a class="ref" href="#rf04">RF04</a>, <a class="ref" href="#rn14">RN14</a>, <a class="ref" href="#rn16">RN16</a>, <a class="ref" href="#rf16">RF16</a>, <a class="ref" href="#rn07">RN07</a>, <a class="ref" href="#rf13">RF13</a>, <a class="ref" href="#rf26">RF26</a>, <a class="ref" href="#rn24">RN24</a></p>
           </section>
 
           <!-- --- 4.15 ITEM_VENDA — conceitual --- -->
@@ -3003,15 +3033,15 @@ VL_VALOR + DT_HORA + DS_MOTIVO</pre>
               <span class="entity-num">4.21</span>
               <h3>ENCOMENDA</h3>
             </div>
-            <p class="note-box">A entrevista de 09/10/2026 confirmou que a padaria aceita encomendas: solicitação com um dia de antecedência, sinal de 20% e cancelamento somente antes de o produto ficar pronto (<a class="ref" href="#rn17">RN17</a>). Ainda não foram validados os atributos de personalização (<a class="ref" href="#rf15">RF15</a>) nem o registro do sinal.</p>
+            <p class="note-box">A entrevista de 09/10/2026 confirmou que a padaria aceita encomendas: solicitação com um dia de antecedência, sinal de 20% e cancelamento somente antes de o produto ficar pronto (<a class="ref" href="#rn17">RN17</a>). Ainda não foram validados os atributos de personalização (<a class="ref" href="#rf15">RF15</a>) nem se o sinal é cobrado em todas as encomendas.</p>
             <!-- Notação formal da entidade -->
             <pre class="notation">ENCOMENDA = @ID_ENCOMENDA + DT_RETIRADA_ENTREGA +
 [TP_PENDENTE | TP_CONFIRMADA | TP_ENTREGUE | TP_CANCELADA] +
-(DS_PERSONALIZACAO)</pre>
+(VL_SINAL) + (DS_PERSONALIZACAO)</pre>
             <!-- Leitura: explicação em linguagem de negócio -->
             <div class="reading">
               <span class="reading-label">Leitura</span>
-              <p>DS_PERSONALIZACAO unifica em um único campo de texto livre as características de encomendas personalizadas (sabor, tamanho, recheio, tema; <a class="ref" href="#rf15">RF15</a>), evitando criar atributos estruturados para detalhes ainda não validados com a gestão. O sinal de 20% informado na entrevista não possui atributo nesta entidade (P03).</p>
+              <p>DS_PERSONALIZACAO unifica em um único campo de texto livre as características de encomendas personalizadas (sabor, tamanho, recheio, tema; <a class="ref" href="#rf15">RF15</a>), evitando criar atributos estruturados para detalhes ainda não validados com a gestão. VL_SINAL guarda o valor do sinal cobrado (a entrevista informou sinal de 20%); registra-se o valor, não o percentual. É opcional até a gestão confirmar se o sinal é cobrado em toda encomenda.</p>
             </div>
             <!-- Tabela de atributos: tipo lógico, obrigatoriedade, descrição e regras -->
             <h4>Atributos</h4>
@@ -3047,6 +3077,13 @@ VL_VALOR + DT_HORA + DS_MOTIVO</pre>
                     <td class="col-req"><span class="req-yes">Sim</span></td>
                     <td>Situação da encomenda.</td>
                     <td><a class="ref" href="#rf14">RF14</a></td>
+                  </tr>
+                  <tr>
+                    <td class="col-attr"><code class="attr-name">VL_SINAL</code></td>
+                    <td>Monetário</td>
+                    <td class="col-req"><span class="req-no">Não</span></td>
+                    <td>Valor do sinal (entrada) cobrado na encomenda. Segundo a entrevista, o sinal é de 20% e cobre parte dos custos se o cliente não retirar o produto.</td>
+                    <td><a class="ref" href="#rn17">RN17</a></td>
                   </tr>
                   <tr>
                     <td class="col-attr"><code class="attr-name">DS_PERSONALIZACAO</code></td>
@@ -3095,7 +3132,8 @@ VL_VALOR + DT_HORA + DS_MOTIVO</pre>
             </div>
             <p class="note-box">Entidade proposta, ainda ausente do DER atual. Os atributos foram conferidos com a entrevista de 09/10/2026 (perguntas 7 a 9): pedidos por WhatsApp e aplicativos como iFood, entrega por terceiro/motoboy com código de verificação, taxa fixa de R$ 4,00 no WhatsApp e raio de 5 km (10 km por plataforma).</p>
             <!-- Notação formal da entidade -->
-            <pre class="notation">DELIVERY = @ID_DELIVERY + DS_ENDERECO_ENTREGA + VL_TAXA_ENTREGA +
+            <pre class="notation">DELIVERY = @ID_DELIVERY + [TP_WHATSAPP | TP_APLICATIVO] +
+DS_ENDERECO_ENTREGA + VL_TAXA_ENTREGA +
 (DT_SAIDA) + (DT_ENTREGA) +
 [TP_PENDENTE | TP_EM_PREPARACAO | TP_SAIU_PARA_ENTREGA | TP_ENTREGUE | TP_CANCELADA] +
 (DS_OBSERVACAO)</pre>
@@ -3124,6 +3162,13 @@ VL_VALOR + DT_HORA + DS_MOTIVO</pre>
                     <td class="col-req"><span class="req-yes">Sim</span></td>
                     <td>Identificador único da entrega.</td>
                     <td>—</td>
+                  </tr>
+                  <tr>
+                    <td class="col-attr"><code class="attr-name">TP_CANAL_ORIGEM</code></td>
+                    <td>Lista fechada (<a class="ref" href="#d14">D14</a>)</td>
+                    <td class="col-req"><span class="req-yes">Sim</span></td>
+                    <td>Canal pelo qual o pedido chegou: WhatsApp da padaria ou aplicativo de entrega (ex.: iFood). Define o raio de atendimento e quem fixa a taxa.</td>
+                    <td><a class="ref" href="#rn12">RN12</a>, <a class="ref" href="#rn13">RN13</a></td>
                   </tr>
                   <tr>
                     <td class="col-attr"><code class="attr-name">DS_ENDERECO_ENTREGA</code></td>
@@ -3193,6 +3238,103 @@ VL_VALOR + DT_HORA + DS_MOTIVO</pre>
             <!-- Regras e requisitos que se aplicam à entidade -->
             <p class="indices"><strong>Regras e requisitos da entidade:</strong> <a class="ref" href="#rn12">RN12</a>, <a class="ref" href="#rn13">RN13</a>, <a class="ref" href="#rn16">RN16</a></p>
           </section>
+
+          <!-- --- 4.23 CONTA_PAGAR — conceitual --- -->
+          <section class="entity" id="c-conta-pagar">
+            <div class="entity-head">
+              <span class="entity-num">4.23</span>
+              <h3>CONTA_PAGAR</h3>
+            </div>
+            <!-- Notação formal da entidade -->
+            <pre class="notation">CONTA_PAGAR = @ID_CONTA_PAGAR + DT_VENCIMENTO + VL_VALOR +
+(DT_PAGAMENTO) + [TP_PENDENTE | TP_PAGA | TP_VENCIDA] + (DS_DESCRICAO)</pre>
+            <!-- Leitura: explicação em linguagem de negócio -->
+            <div class="reading">
+              <span class="reading-label">Leitura</span>
+              <p>Registra o que a padaria deve a cada fornecedor e quando vence. A entrevista informou que os pagamentos são feitos por boleto e que o controle de vencimentos é semanal (<a class="ref" href="#rn23">RN23</a>). DT_PAGAMENTO só é preenchida quando a conta é paga, e DS_DESCRICAO é livre (ex.: número do boleto ou referência da compra). O vínculo com o fornecedor é um relacionamento, sem chave estrangeira neste modelo conceitual.</p>
+            </div>
+            <!-- Tabela de atributos: tipo lógico, obrigatoriedade, descrição e regras -->
+            <h4>Atributos</h4>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Atributo</th>
+                    <th>Tipo lógico</th>
+                    <th>Obrigatório</th>
+                    <th>Descrição</th>
+                    <th>Regras e requisitos</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="col-attr"><code class="attr-name">ID_CONTA_PAGAR</code></td>
+                    <td>Identificador</td>
+                    <td class="col-req"><span class="req-yes">Sim</span></td>
+                    <td>Identificador da conta a pagar.</td>
+                    <td>—</td>
+                  </tr>
+                  <tr>
+                    <td class="col-attr"><code class="attr-name">DT_VENCIMENTO</code></td>
+                    <td>Data</td>
+                    <td class="col-req"><span class="req-yes">Sim</span></td>
+                    <td>Data de vencimento do boleto/obrigação.</td>
+                    <td><a class="ref" href="#rn23">RN23</a></td>
+                  </tr>
+                  <tr>
+                    <td class="col-attr"><code class="attr-name">VL_VALOR</code></td>
+                    <td>Monetário</td>
+                    <td class="col-req"><span class="req-yes">Sim</span></td>
+                    <td>Valor a pagar. Deve ser maior que zero.</td>
+                    <td><a class="ref" href="#rn23">RN23</a></td>
+                  </tr>
+                  <tr>
+                    <td class="col-attr"><code class="attr-name">DT_PAGAMENTO</code></td>
+                    <td>Data</td>
+                    <td class="col-req"><span class="req-no">Não</span></td>
+                    <td>Data em que a conta foi paga. Vazia enquanto não paga.</td>
+                    <td><a class="ref" href="#rn23">RN23</a></td>
+                  </tr>
+                  <tr>
+                    <td class="col-attr"><code class="attr-name">TP_STATUS</code></td>
+                    <td>Lista fechada (<a class="ref" href="#d15">D15</a>)</td>
+                    <td class="col-req"><span class="req-yes">Sim</span></td>
+                    <td>Situação da conta a pagar.</td>
+                    <td><a class="ref" href="#rn23">RN23</a></td>
+                  </tr>
+                  <tr>
+                    <td class="col-attr"><code class="attr-name">DS_DESCRICAO</code></td>
+                    <td>Texto</td>
+                    <td class="col-req"><span class="req-no">Não</span></td>
+                    <td>Descrição livre da conta (ex.: número do boleto, referência da compra).</td>
+                    <td>—</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- Relacionamentos desta entidade, com cardinalidade (mín., máx.) -->
+            <h4>Relacionamentos</h4>
+            <div class="table-wrap">
+              <table class="table-compact">
+                <thead>
+                  <tr>
+                    <th>Relacionamento</th>
+                    <th>Esta entidade (mín., máx.)</th>
+                    <th>Outra entidade (mín., máx.)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>FORNECEDOR gera CONTA_PAGAR</td>
+                    <td><span class="card-badge">(1,1)</span></td>
+                    <td><span class="card-badge">(0,N)</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- Regras e requisitos que se aplicam à entidade -->
+            <p class="indices"><strong>Regras e requisitos da entidade:</strong> <a class="ref" href="#rn23">RN23</a>, <a class="ref" href="#rn19">RN19</a></p>
+          </section>
         </section>
 
         <!-- === 5. DOMÍNIOS DE VALORES — listas fechadas (D01…) === -->
@@ -3252,7 +3394,7 @@ VL_VALOR + DT_HORA + DS_MOTIVO</pre>
                   <td>Canal da venda</td>
                   <td><code>VENDA.TP_CANAL</code></td>
                   <td><code class="attr-name">BALCAO</code> <code class="attr-name">DELIVERY</code> </td>
-                  <td>WhatsApp e aplicativos (iFood) são origens de pedidos de delivery e não estão representados (P04).</td>
+                  <td>Canal da venda (balcão ou delivery). A origem do pedido de delivery (WhatsApp ou aplicativo) fica em DELIVERY.TP_CANAL_ORIGEM (D14).</td>
                 </tr>
                 <tr id="d07">
                   <td class="col-attr"><code class="attr-name">D07</code></td>
@@ -3302,6 +3444,20 @@ VL_VALOR + DT_HORA + DS_MOTIVO</pre>
                   <td><code>DELIVERY.TP_STATUS</code></td>
                   <td><code class="attr-name">PENDENTE</code> <code class="attr-name">EM_PREPARACAO</code> <code class="attr-name">SAIU_PARA_ENTREGA</code> <code class="attr-name">ENTREGUE</code> <code class="attr-name">CANCELADA</code> </td>
                   <td>Fluxo confirmado (perg. 7 a 9). CANCELADA não foi confirmado para entregas. Valor no feminino, como nas demais entidades (a versão anterior usava CANCELADO).</td>
+                </tr>
+                <tr id="d14">
+                  <td class="col-attr"><code class="attr-name">D14</code></td>
+                  <td>Canal de origem do delivery</td>
+                  <td><code>DELIVERY.TP_CANAL_ORIGEM</code></td>
+                  <td><code class="attr-name">WHATSAPP</code> <code class="attr-name">APLICATIVO</code> </td>
+                  <td>Entrevista, perg. 7: pedidos pelo WhatsApp da padaria ou por aplicativos como iFood. Não confundir com VENDA.TP_CANAL (D06), que só separa balcão de delivery.</td>
+                </tr>
+                <tr id="d15">
+                  <td class="col-attr"><code class="attr-name">D15</code></td>
+                  <td>Status da conta a pagar</td>
+                  <td><code>CONTA_PAGAR.TP_STATUS</code></td>
+                  <td><code class="attr-name">PENDENTE</code> <code class="attr-name">PAGA</code> <code class="attr-name">VENCIDA</code> </td>
+                  <td>Valores propostos pelo grupo, ainda não validados com a gestão. VENCIDA pode ser calculada a partir de DT_VENCIMENTO.</td>
                 </tr>
               </tbody>
             </table>
@@ -3422,7 +3578,7 @@ VL_VALOR + DT_HORA + DS_MOTIVO</pre>
                 </tr>
                 <tr id="rn17">
                   <td class="col-attr"><code class="attr-name">RN17</code></td>
-                  <td><strong>Encomendas e sinal.</strong> A padaria aceita encomendas com solicitação feita com um dia de antecedência e solicita sinal de 20%. O sinal ainda não possui atributo em ENCOMENDA. Caso o cliente não retire a encomenda, o sinal cobre parte dos custos para reduzir prejuízos. A regra de cancelamento informada é limitada: encomendas podem ser canceladas se o produto ainda não estiver pronto.</td>
+                  <td><strong>Encomendas e sinal.</strong> A padaria aceita encomendas com solicitação feita com um dia de antecedência e solicita sinal de 20%. O valor do sinal é registrado em ENCOMENDA.VL_SINAL. Caso o cliente não retire a encomenda, o sinal cobre parte dos custos para reduzir prejuízos. A regra de cancelamento informada é limitada: encomendas podem ser canceladas se o produto ainda não estiver pronto.</td>
                   <td>Entrevista, perg. 5 e 11</td>
                   <td>ENCOMENDA</td>
                 </tr>
@@ -3455,6 +3611,18 @@ VL_VALOR + DT_HORA + DS_MOTIVO</pre>
                   <td><strong>Cancelamento e devolução.</strong> Segundo a entrevista, o cancelamento é aceito em casos de encomenda desde que o produto ainda não esteja pronto. Devoluções podem ser aceitas quando não houver indício de má-fé do cliente. Os critérios objetivos, a pessoa que registra a ocorrência e o fluxo de autorização devem ser formalizados pela gestão antes da implantação.</td>
                   <td>Entrevista, perg. 5</td>
                   <td>CANCELAMENTO_DEVOLUCAO, ENCOMENDA</td>
+                </tr>
+                <tr id="rn23">
+                  <td class="col-attr"><code class="attr-name">RN23</code></td>
+                  <td><strong>Contas a pagar.</strong> A padaria paga os fornecedores por boleto e controla os vencimentos semanalmente. Cada vencimento é registrado em CONTA_PAGAR, ligada a um fornecedor. DT_PAGAMENTO fica vazia até o pagamento. A ligação com COMPRA não foi definida e não faz parte desta versão.</td>
+                  <td>Entrevista, perg. 13; decisão do grupo</td>
+                  <td>CONTA_PAGAR, FORNECEDOR</td>
+                </tr>
+                <tr id="rn24">
+                  <td class="col-attr"><code class="attr-name">RN24</code></td>
+                  <td><strong>Vínculo com o cupom fiscal.</strong> A emissão de cupom/nota é feita pelo sistema Saurus. Este sistema só guarda o código emitido em VENDA.CD_CUPOM_FISCAL, preenchido após a emissão. A forma de obter o código (digitação, arquivo ou integração) ainda será definida.</td>
+                  <td>Entrevista, perg. 4; decisão do grupo</td>
+                  <td>VENDA</td>
                 </tr>
               </tbody>
             </table>
@@ -4689,11 +4857,17 @@ VL_VALOR + DT_HORA + DS_MOTIVO</pre>
                     <td>NÃO</td>
                     <td>—</td>
                   </tr>
+                  <tr>
+                    <td class="col-attr"><code class="attr-name">CD_CUPOM_FISCAL</code></td>
+                    <td>varchar(44)</td>
+                    <td>SIM</td>
+                    <td>—</td>
+                  </tr>
                 </tbody>
               </table>
             </div>
             <!-- Índices e restrições da tabela -->
-            <p class="indices"><strong>Índices e restrições:</strong> PK ID_VENDA; índice em DT_VENDA (relatórios por período, <a class="ref" href="#rf21">RF21</a>); índice em ID_CAIXA; índice em ID_CLIENTE.</p>
+            <p class="indices"><strong>Índices e restrições:</strong> PK ID_VENDA; índice em DT_VENDA (relatórios por período, <a class="ref" href="#rf21">RF21</a>); índice em ID_CAIXA; índice em ID_CLIENTE; índice único em CD_CUPOM_FISCAL (o MySQL aceita vários nulos num índice único).</p>
           </section>
 
           <!-- --- 8.15 ITEM_VENDA — físico --- -->
@@ -5129,6 +5303,12 @@ VL_VALOR + DT_HORA + DS_MOTIVO</pre>
                     <td>—</td>
                   </tr>
                   <tr>
+                    <td class="col-attr"><code class="attr-name">VL_SINAL</code></td>
+                    <td>decimal(10,2)</td>
+                    <td>SIM</td>
+                    <td>—</td>
+                  </tr>
+                  <tr>
                     <td class="col-attr"><code class="attr-name">DS_PERSONALIZACAO</code></td>
                     <td>text</td>
                     <td>SIM</td>
@@ -5164,6 +5344,12 @@ VL_VALOR + DT_HORA + DS_MOTIVO</pre>
                     <td>integer</td>
                     <td>NÃO</td>
                     <td>PK</td>
+                  </tr>
+                  <tr>
+                    <td class="col-attr"><code class="attr-name">TP_CANAL_ORIGEM</code></td>
+                    <td>varchar(20)</td>
+                    <td>NÃO</td>
+                    <td>—</td>
                   </tr>
                   <tr>
                     <td class="col-attr"><code class="attr-name">DS_ENDERECO_ENTREGA</code></td>
@@ -5207,6 +5393,73 @@ VL_VALOR + DT_HORA + DS_MOTIVO</pre>
             <!-- Índices e restrições da tabela -->
             <p class="indices"><strong>Índices e restrições:</strong> PK ID_DELIVERY. O vínculo com VENDA ainda não existe fisicamente: será definido na modelagem lógica, depois de a entidade entrar no DER.</p>
           </section>
+
+          <!-- --- 8.23 CONTA_PAGAR — físico --- -->
+          <section class="entity" id="f-conta-pagar">
+            <div class="entity-head">
+              <span class="entity-num">8.23</span>
+              <h3>CONTA_PAGAR</h3>
+            </div>
+            <!-- Colunas físicas: tipo, nulo e chave -->
+            <div class="table-wrap">
+              <table class="table-compact">
+                <thead>
+                  <tr>
+                    <th>Coluna</th>
+                    <th>Tipo</th>
+                    <th>Aceita nulo</th>
+                    <th>Chave</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="col-attr"><code class="attr-name">ID_CONTA_PAGAR</code></td>
+                    <td>integer</td>
+                    <td>NÃO</td>
+                    <td>PK</td>
+                  </tr>
+                  <tr>
+                    <td class="col-attr"><code class="attr-name">ID_FORNECEDOR</code></td>
+                    <td>integer</td>
+                    <td>NÃO</td>
+                    <td>FK → FORNECEDOR</td>
+                  </tr>
+                  <tr>
+                    <td class="col-attr"><code class="attr-name">DT_VENCIMENTO</code></td>
+                    <td>date</td>
+                    <td>NÃO</td>
+                    <td>—</td>
+                  </tr>
+                  <tr>
+                    <td class="col-attr"><code class="attr-name">VL_VALOR</code></td>
+                    <td>decimal(10,2)</td>
+                    <td>NÃO</td>
+                    <td>—</td>
+                  </tr>
+                  <tr>
+                    <td class="col-attr"><code class="attr-name">DT_PAGAMENTO</code></td>
+                    <td>date</td>
+                    <td>SIM</td>
+                    <td>—</td>
+                  </tr>
+                  <tr>
+                    <td class="col-attr"><code class="attr-name">TP_STATUS</code></td>
+                    <td>varchar(10)</td>
+                    <td>NÃO</td>
+                    <td>—</td>
+                  </tr>
+                  <tr>
+                    <td class="col-attr"><code class="attr-name">DS_DESCRICAO</code></td>
+                    <td>varchar(255)</td>
+                    <td>SIM</td>
+                    <td>—</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- Índices e restrições da tabela -->
+            <p class="indices"><strong>Índices e restrições:</strong> PK ID_CONTA_PAGAR; índice em ID_FORNECEDOR; índice composto em (TP_STATUS, DT_VENCIMENTO), para o controle semanal de vencimentos; CHECK VL_VALOR &gt; 0 (aplicada a partir do MySQL 8.0.16).</p>
+          </section>
         </section>
 
         <!-- === 9. EVIDÊNCIAS DA ENTREVISTA — o que a padaria informou e o impacto no modelo === -->
@@ -5237,7 +5490,7 @@ VL_VALOR + DT_HORA + DS_MOTIVO</pre>
                 <tr>
                   <td>Fiscal</td>
                   <td>Utiliza o sistema Saurus para controle fiscal e emissão de nota/cupom.</td>
-                  <td>Tratar integração ou coexistência com Saurus como dependência a avaliar; não presumir substituição.</td>
+                  <td>Guardar o código do cupom/nota em VENDA.CD_CUPOM_FISCAL para ligar com o Saurus; a emissão fiscal continua no Saurus. A forma de integração ainda precisa ser avaliada.</td>
                 </tr>
                 <tr>
                   <td>Delivery</td>
@@ -5296,7 +5549,7 @@ VL_VALOR + DT_HORA + DS_MOTIVO</pre>
 
         <!-- === RODAPÉ — versão e integrantes === -->
         <footer class="doc-footer">
-          <div>Entrega 1 — Modelo Conceitual (DER) · Dicionário de Dados · Versão 2.4 (25/10/2026)</div>
+          <div>Entrega 1 — Modelo Conceitual (DER) · Dicionário de Dados · Versão 2.5 (28/10/2026)</div>
           <div class="team">Integrantes: Caio Eduardo Hernandez, Davi Henrique Santos, Gustavo Reis, Isabela Calisto, Maria Eduarda Peres.</div>
         </footer>
       </main>
