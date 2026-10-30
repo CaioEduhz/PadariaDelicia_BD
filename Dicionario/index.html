@@ -3475,7 +3475,6 @@ DS_ENDERECO_ENTREGA + VL_TAXA_ENTREGA +
                 <tr>
                   <th>ID</th>
                   <th>Regra</th>
-                  <th>Fonte</th>
                   <th>Aplica-se a</th>
                 </tr>
               </thead>
@@ -3483,145 +3482,127 @@ DS_ENDERECO_ENTREGA + VL_TAXA_ENTREGA +
                 <tr id="rn01">
                   <td class="col-attr"><code class="attr-name">RN01</code></td>
                   <td><strong>Produto vencido.</strong> Produto vencido não pode ser vendido.</td>
-                  <td>README</td>
                   <td>PRODUTO, ITEM_VENDA</td>
                 </tr>
                 <tr id="rn02">
                   <td class="col-attr"><code class="attr-name">RN02</code></td>
                   <td><strong>Estoque insuficiente.</strong> A venda acima do estoque disponível é bloqueada, salvo autorização de sócio.</td>
-                  <td>README</td>
                   <td>PRODUTO, ITEM_VENDA</td>
                 </tr>
                 <tr id="rn03">
                   <td class="col-attr"><code class="attr-name">RN03</code></td>
                   <td><strong>Desconto e alçadas.</strong> Descontos acima de um percentual definido exigem autorização exclusiva dos sócios.</td>
-                  <td>README; entrevista, perg. 5</td>
                   <td>VENDA, ITEM_VENDA</td>
                 </tr>
                 <tr id="rn04">
                   <td class="col-attr"><code class="attr-name">RN04</code></td>
                   <td><strong>Cancelamento restrito.</strong> Cancelamento após o fechamento de caixa exige autorização de sócio.</td>
-                  <td>README; entrevista, perg. 5 e 18</td>
+
                   <td>VENDA, CANCELAMENTO_DEVOLUCAO</td>
                 </tr>
                 <tr id="rn05">
                   <td class="col-attr"><code class="attr-name">RN05</code></td>
                   <td><strong>Antecedência de encomenda.</strong> Encomenda exige antecedência mínima definida pela padaria: um dia, segundo a entrevista.</td>
-                  <td>README; entrevista, perg. 11</td>
                   <td>ENCOMENDA</td>
                 </tr>
                 <tr id="rn06">
                   <td class="col-attr"><code class="attr-name">RN06</code></td>
                   <td><strong>Registro da produção.</strong> A quantidade produzida deve ser registrada antes de ser disponibilizada para venda. Hoje a produção não é registrada (perg. 15).</td>
-                  <td>README; entrevista, perg. 15</td>
                   <td>PRODUCAO</td>
                 </tr>
                 <tr id="rn07">
                   <td class="col-attr"><code class="attr-name">RN07</code></td>
                   <td><strong>Conferência do caixa.</strong> O fechamento de caixa compara o valor esperado pelo sistema com o valor informado pelo funcionário.</td>
-                  <td>README; entrevista, perg. 10</td>
                   <td>CAIXA</td>
                 </tr>
                 <tr id="rn08">
                   <td class="col-attr"><code class="attr-name">RN08</code></td>
                   <td><strong>Comanda em aberto.</strong> Não é permitido encerrar o atendimento de um cliente com comanda em aberto sem pagamento registrado.</td>
-                  <td>README; entrevista, perg. 1</td>
                   <td>COMANDA, VENDA</td>
                 </tr>
                 <tr id="rn09">
                   <td class="col-attr"><code class="attr-name">RN09</code></td>
                   <td><strong>Produtos críticos.</strong> Produtos essenciais (ex.: pão francês) geram alerta de estoque mínimo com prioridade sobre os demais.</td>
-                  <td>README</td>
                   <td>PRODUTO</td>
                 </tr>
                 <tr id="rn10">
                   <td class="col-attr"><code class="attr-name">RN10</code></td>
                   <td><strong>Documentação regulatória.</strong> Todo produto e o próprio estabelecimento devem ter vinculados ficha técnica, laudo de bombeiro, laudo sanitário, alvará de funcionamento e código de defesa do consumidor (exigência legal; a ausência pode gerar multa ou interdição).</td>
-                  <td>README</td>
                   <td>DOCUMENTO_REGULATORIO</td>
                 </tr>
                 <tr id="rn11">
                   <td class="col-attr"><code class="attr-name">RN11</code></td>
                   <td><strong>Proteção de dados pessoais (LGPD).</strong> Dados pessoais de clientes e funcionários exigem finalidade definida, controle de acesso e retenção compatível. A prática relatada (guarda por tempo indeterminado) precisa ser revista (P07).</td>
-                  <td>README; entrevista, perg. 19</td>
                   <td>CLIENTE, FUNCIONARIO</td>
                 </tr>
                 <tr id="rn12">
                   <td class="col-attr"><code class="attr-name">RN12</code></td>
                   <td><strong>Área de entrega.</strong> Pedidos recebidos diretamente pela padaria (por exemplo, WhatsApp) são atendidos em raio de até 5 km. Pedidos feitos por plataformas de entrega são atendidos em raio de até 10 km. O sistema deve validar o canal de origem e a distância antes de confirmar a entrega. Um mesmo cliente pode informar mais de um endereço de entrega, desde que dentro do raio. Interpretação do grupo: o raio de 5 km vale para os pedidos que não vêm de plataforma; confirmar com a gestão. O método de cálculo da distância e o ponto de referência devem ser definidos na implementação.</td>
-                  <td>Entrevista, perg. 8 e 9</td>
                   <td>DELIVERY</td>
                 </tr>
                 <tr id="rn13">
                   <td class="col-attr"><code class="attr-name">RN13</code></td>
                   <td><strong>Taxa de entrega.</strong> Para pedidos recebidos diretamente pelo WhatsApp, a taxa de entrega informada é fixa em R$ 4,00. Para pedidos feitos por plataformas como iFood, a taxa é definida pela própria plataforma. O sistema deve registrar a taxa efetivamente aplicada em cada entrega, sem presumir que a taxa da plataforma seja igual à taxa do WhatsApp.</td>
-                  <td>Entrevista, perg. 8</td>
                   <td>DELIVERY</td>
                 </tr>
                 <tr id="rn14">
                   <td class="col-attr"><code class="attr-name">RN14</code></td>
                   <td><strong>Formas de pagamento e pagamento misto.</strong> A padaria aceita “todas as formas de pagamento”; para o sistema, as modalidades adotadas são DINHEIRO, PIX, DEBITO, CREDITO e VALE_ALIMENTACAO (domínio <a class="ref" href="#d07">D07</a>). O cliente pode dividir o pagamento entre pessoas, e uma mesma venda pode combinar modalidades. Cada modalidade usada é registrada como uma parcela em PAGAMENTO_VENDA, com seu valor, e a soma das parcelas deve cobrir o total da venda após o desconto. O troco só existe quando há parcela em dinheiro. Em delivery só valem modalidades eletrônicas (<a class="ref" href="#rn16">RN16</a>).</td>
-                  <td>Entrevista, perg. 3 e 9; decisão do grupo</td>
                   <td>VENDA, PAGAMENTO_VENDA</td>
                 </tr>
                 <tr id="rn15">
                   <td class="col-attr"><code class="attr-name">RN15</code></td>
                   <td><strong>Conferência de mercadoria.</strong> Toda mercadoria deve ser conferida no ato da entrega, antes de ser armazenada. Se houver divergência, avaria ou outra inconformidade, a padaria informou que não recebe a mercadoria. Proposta, não confirmada na entrevista: registrar a recusa e o motivo; o modelo atual (COMPRA) não possui atributo para isso e só registra compras recebidas e aceitas. O controle atual de compras e vencimentos é realizado semanalmente; há uma pessoa especificamente responsável pelas compras.</td>
-                  <td>Entrevista, perg. 14</td>
                   <td>COMPRA, ITEM_COMPRA</td>
                 </tr>
                 <tr id="rn16">
                   <td class="col-attr"><code class="attr-name">RN16</code></td>
                   <td><strong>Pagamento e confirmação de entrega.</strong> As entregas são realizadas por terceiros/motoboys. A entrevista informou que a entrega utiliza um código de verificação e que o pagamento do delivery deve ser eletrônico. A conclusão da entrega deve ser registrada somente após a confirmação exigida pelo processo.</td>
-                  <td>Entrevista, perg. 9</td>
                   <td>DELIVERY, VENDA</td>
                 </tr>
                 <tr id="rn17">
                   <td class="col-attr"><code class="attr-name">RN17</code></td>
                   <td><strong>Encomendas e sinal.</strong> A padaria aceita encomendas com solicitação feita com um dia de antecedência e solicita sinal de 20%. O valor do sinal é registrado em ENCOMENDA.VL_SINAL. Caso o cliente não retire a encomenda, o sinal cobre parte dos custos para reduzir prejuízos. A regra de cancelamento informada é limitada: encomendas podem ser canceladas se o produto ainda não estiver pronto.</td>
-                  <td>Entrevista, perg. 5 e 11</td>
                   <td>ENCOMENDA</td>
                 </tr>
                 <tr id="rn18">
                   <td class="col-attr"><code class="attr-name">RN18</code></td>
                   <td><strong>Fechamento de caixa.</strong> O fechamento de caixa ocorre duas vezes ao dia, na troca de turnos às 14h e às 22h. A gestão informou que aproximadamente 80% a 90% dos pagamentos são digitais e que atualmente não há necessidade de sangria. Decisão do grupo: mesmo com a baixa porcentagem de pagamentos em dinheiro, a estrutura de MOVIMENTACAO_CAIXA será criada para receber os registros de sangria e suprimento; a sangria não deve ser descrita como rotina atual da padaria.</td>
-                  <td>Entrevista, perg. 10</td>
                   <td>CAIXA, MOVIMENTACAO_CAIXA</td>
                 </tr>
                 <tr id="rn19">
                   <td class="col-attr"><code class="attr-name">RN19</code></td>
                   <td><strong>Controle semanal de estoque.</strong> A reposição é baseada em uma média de consumo semanal: a quantidade comprada repõe o que foi consumido para manter a média habitual. O sistema deve apoiar consulta de consumo e estoque para auxiliar a pessoa responsável pelas compras. A quantidade exata de fornecedores não é conhecida; o entrevistado estimou que sejam mais de 20, com compras distribuídas entre fornecedores.</td>
-                  <td>Entrevista, perg. 12 e 13</td>
                   <td>PRODUTO, MATERIA_PRIMA, COMPRA</td>
                 </tr>
                 <tr id="rn20">
                   <td class="col-attr"><code class="attr-name">RN20</code></td>
                   <td><strong>Produção, sobras e perdas.</strong> Atualmente não há receita padronizada nem registro sistêmico de produção, sobras ou descartes. A equipe de produção faz uma estimativa no início do expediente e a análise da quantidade a produzir considera as sobras. A ficha técnica e o controle de perdas existentes no modelo devem ser tratados como funcionalidades propostas para o sistema futuro, não como processos já praticados pela padaria.</td>
-                  <td>Entrevista, perg. 15 e 16</td>
                   <td>ITEM_FICHA_TECNICA, PRODUCAO</td>
                 </tr>
                 <tr id="rn21">
                   <td class="col-attr"><code class="attr-name">RN21</code></td>
                   <td><strong>Venda por peso.</strong> O balconista pesa o produto, embala e registra o preço na comanda de papel; o cliente paga depois no caixa. O sistema deverá suportar quantidade fracionada/peso e o preço calculado conforme o peso e o valor vigente do produto.</td>
-                  <td>Entrevista, perg. 2</td>
                   <td>PRODUTO, ITEM_VENDA</td>
                 </tr>
                 <tr id="rn22">
                   <td class="col-attr"><code class="attr-name">RN22</code></td>
                   <td><strong>Cancelamento e devolução.</strong> Segundo a entrevista, o cancelamento é aceito em casos de encomenda desde que o produto ainda não esteja pronto. Devoluções podem ser aceitas quando não houver indício de má-fé do cliente. Os critérios objetivos, a pessoa que registra a ocorrência e o fluxo de autorização devem ser formalizados pela gestão antes da implantação.</td>
-                  <td>Entrevista, perg. 5</td>
                   <td>CANCELAMENTO_DEVOLUCAO, ENCOMENDA</td>
                 </tr>
                 <tr id="rn23">
                   <td class="col-attr"><code class="attr-name">RN23</code></td>
                   <td><strong>Contas a pagar.</strong> A padaria paga os fornecedores por boleto e controla os vencimentos semanalmente. Cada vencimento é registrado em CONTA_PAGAR, ligada a um fornecedor. DT_PAGAMENTO fica vazia até o pagamento. A ligação com COMPRA não foi definida e não faz parte desta versão.</td>
-                  <td>Entrevista, perg. 13; decisão do grupo</td>
                   <td>CONTA_PAGAR, FORNECEDOR</td>
                 </tr>
                 <tr id="rn24">
                   <td class="col-attr"><code class="attr-name">RN24</code></td>
                   <td><strong>Vínculo com o cupom fiscal.</strong> A emissão de cupom/nota é feita pelo sistema Saurus. Este sistema só guarda o código emitido em VENDA.CD_CUPOM_FISCAL, preenchido após a emissão. A forma de obter o código (digitação, arquivo ou integração) ainda será definida.</td>
-                  <td>Entrevista, perg. 4; decisão do grupo</td>
+                  <td>VENDA</td>
+                </tr>
+                <tr id="rn25">
+                  <td class="col-attr"><code class="attr-name">RN25</code></td>
+                  <td><strong>Proibição de venda de bebidas alcoólicas a menores.</strong> É proibida a comercialização de bebidas alcoólicas a menores de 18 anos. A maioridade deve ser verificada por documento de identificação sempre que o cliente apresentar aparência jovem, conforme a legislação vigente.</td>
                   <td>VENDA</td>
                 </tr>
               </tbody>
