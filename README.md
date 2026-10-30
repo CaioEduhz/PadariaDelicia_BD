@@ -138,11 +138,11 @@ Para garantir a rastreabilidade entre as necessidades da Padaria Delícia e a mo
   - *RN14 — Conferência Obrigatória:* Se houver divergência, avarias ou produto vencido no ato da entrega, a carga é obrigatoriamente recusada e devolvida.
 
 #### Processo 6: Pagamento de Fornecedores
-- **Objetivo:** Quitar os compromissos financeiros gerados pelas aquisições de insumos e mercadorias de revenda.
+- **Objetivo:** Quitar os compromissos financeiros gerados pelas aquisições de insumos, mercadorias de revenda e despesas (água, luz, etc.).
 - **Atores:** Sócio / Administrador, Fornecedores.
 - **Entrada / Gatilho:** Vencimento dos boletos ou faturas emitidas pelos fornecedores.
 - **Fluxo Principal:**
-  1. O Sócio confere os boletos bancários relativos às compras de insumos e mercadorias recebidas.
+  1. O Sócio confere os boletos bancários relativos às compras de insumos, mercadorias de revenda e despesas (água, luz, etc.).
   2. O Sócio efetua o pagamento bancário na data de vencimento acordada.
   3. O comprovante de pagamento é arquivado e o registro financeiro é atualizado.
 - **Saída:** Títulos de fornecedores liquidados e controle de passivos atualizado.
@@ -374,7 +374,7 @@ Confira o [Dicionário de Dados](Dicionario/index.html) feito no software BRMW B
 
 **DOCUMENTO\_REGULATORIO:** armazena documentos e laudos regulatórios, podendo estar relacionado a um produto específico ou ao estabelecimento.  
 
-**FORNECEDOR:** representa as pessoas ou empresas responsáveis pelo fornecimento de produtos e matérias-primas.  
+**FORNECEDOR:** representa as pessoas ou empresas responsáveis pelo fornecimento de produtos, serviços e matérias-primas.  
 
 **COMPRA:** registra as compras realizadas pela padaria junto aos fornecedores.  
 
