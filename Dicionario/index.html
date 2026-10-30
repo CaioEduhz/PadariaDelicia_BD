@@ -457,7 +457,7 @@
       <!-- === MENU LATERAL — busca, links das seções e lista de entidades === -->
       <aside class="sidebar">
         <div class="brand"><span class="brand-mark">Delícia II</span></div>
-        <p class="brand-sub">DICIONÁRIO DE DADOS · v2.5</p>
+        <p class="brand-sub">DICIONÁRIO DE DADOS · v2.6</p>
         <input aria-label="Buscar entidade" class="sidebar-search" id="sidebar-search" placeholder="Buscar entidade…" type="text"/>
         <!-- Links do menu -->
         <nav>
@@ -534,11 +534,11 @@
               <tbody>
                 <tr>
                   <td>Versão</td>
-                  <td>2.5</td>
+                  <td>2.6</td>
                 </tr>
                 <tr>
                   <td>Data de atualização</td>
-                  <td>28/10/2026</td>
+                  <td>29/10/2026</td>
                 </tr>
                 <tr>
                   <td>SGBD</td>
@@ -594,6 +594,11 @@
                   <td>2.5</td>
                   <td>28/10/2026</td>
                   <td>Novos atributos ENCOMENDA.VL_SINAL, DELIVERY.TP_CANAL_ORIGEM e VENDA.CD_CUPOM_FISCAL (vínculo com o Saurus); nova entidade CONTA_PAGAR ligada a FORNECEDOR; domínios D14 e D15; regras RN23 e RN24.</td>
+                </tr>
+                <tr>
+                  <td>2.6</td>
+                  <td>29/10/2026</td>
+                  <td>Revisão da obrigatoriedade dos atributos: PRODUTO.VL_CUSTO, DOCUMENTO_REGULATORIO.DT_EMISSAO e VENDA.VL_TROCO passam a opcionais (notação, tabelas de atributos e dicionário físico); obrigatoriedade condicional sinalizada em COMANDA.DT_FECHAMENTO, CAIXA (fechamento), CONTA_PAGAR.DT_PAGAMENTO e DELIVERY.DT_ENTREGA, com a convenção explicada na seção 3; ajuste de redação em FORNECEDOR.NM_FORNECEDOR.</td>
                 </tr>
               </tbody>
             </table>
@@ -1036,6 +1041,7 @@
             </table>
           </div>
           <p class="section-intro" style="margin-top:14px;"><strong>Campos de escolha:</strong> a notação lista os valores entre colchetes com o prefixo <code>TP_</code> (ex.: <code>[TP_ABERTA | TP_FECHADA]</code>); os valores armazenados não repetem o prefixo e estão na <a href="#dominios">tabela de domínios</a>.</p>
+          <p class="section-intro"><strong>Coluna "Obrigatório":</strong> <em>Sim</em> = o atributo sempre tem valor (não aceita nulo no físico). <em>Não</em> = pode ficar vazio, entre parênteses na notação formal. <em>Não</em> acompanhado de uma observação (por exemplo, "exigido ao fechar") = obrigatoriedade condicional: o campo nasce vazio e passa a ser exigido quando o evento indicado acontece; no físico aceita nulo, e a exigência é validada pela aplicação.</p>
         </section>
 
         <!-- === 4. DICIONÁRIO CONCEITUAL — uma subseção por entidade (sem chaves estrangeiras) === -->
@@ -1120,12 +1126,12 @@
             </div>
             <!-- Notação formal da entidade -->
             <pre class="notation">PRODUTO = @ID_PRODUTO + CD_PRODUTO + NM_PRODUTO + (DS_PRODUTO) +
-VL_PRECO_VENDA + VL_CUSTO + CD_UNIDADE + QT_ESTOQUE +
+VL_PRECO_VENDA + (VL_CUSTO) + CD_UNIDADE + QT_ESTOQUE +
 QT_ESTOQUE_MINIMO + (DT_VALIDADE) + IN_PRODUTO_ESSENCIAL + IN_ATIVO</pre>
             <!-- Leitura: explicação em linguagem de negócio -->
             <div class="reading">
               <span class="reading-label">Leitura</span>
-              <p>Representa exclusivamente produtos acabados vendáveis ao cliente (itens de revenda ou de produção própria já finalizados), distintos dos insumos, que ficam em MATERIA_PRIMA. CD_PRODUTO é o código de negócio (<a class="ref" href="#rf01">RF01</a>), distinto de ID_PRODUTO, identificador interno que não deve ser exposto como código de negócio. DT_VALIDADE é opcional porque só se aplica a produtos perecíveis (<a class="ref" href="#rf01">RF01</a>); IN_PRODUTO_ESSENCIAL sinaliza itens como o pão francês, cuja falta é crítica (<a class="ref" href="#rn09">RN09</a>).</p>
+              <p>Representa exclusivamente produtos acabados vendáveis ao cliente (itens de revenda ou de produção própria já finalizados), distintos dos insumos, que ficam em MATERIA_PRIMA. CD_PRODUTO é o código de negócio (<a class="ref" href="#rf01">RF01</a>), distinto de ID_PRODUTO, identificador interno que não deve ser exposto como código de negócio. DT_VALIDADE é opcional porque só se aplica a produtos perecíveis (<a class="ref" href="#rf01">RF01</a>); VL_CUSTO é opcional porque a padaria não tem receita padronizada nem registro de produção (<a class="ref" href="#rn20">RN20</a>), o que impede conhecer o custo dos itens de produção própria; IN_PRODUTO_ESSENCIAL sinaliza itens como o pão francês, cuja falta é crítica (<a class="ref" href="#rn09">RN09</a>).</p>
             </div>
             <!-- Tabela de atributos: tipo lógico, obrigatoriedade, descrição e regras -->
             <h4>Atributos</h4>
@@ -1179,9 +1185,9 @@ QT_ESTOQUE_MINIMO + (DT_VALIDADE) + IN_PRODUTO_ESSENCIAL + IN_ATIVO</pre>
                   <tr>
                     <td class="col-attr"><code class="attr-name">VL_CUSTO</code></td>
                     <td>Monetário</td>
-                    <td class="col-req"><span class="req-yes">Sim</span></td>
-                    <td>Custo unitário de aquisição ou produção.</td>
-                    <td><a class="ref" href="#rf21">RF21</a></td>
+                    <td class="col-req"><span class="req-no">Não</span></td>
+                    <td>Custo unitário de aquisição ou produção, quando conhecido. Em itens de revenda vem das compras; em itens de produção própria pode não existir enquanto não houver receita padronizada.</td>
+                    <td><a class="ref" href="#rf21">RF21</a>, <a class="ref" href="#rn20">RN20</a></td>
                   </tr>
                   <tr>
                     <td class="col-attr"><code class="attr-name">CD_UNIDADE</code></td>
@@ -1462,11 +1468,11 @@ QT_ESTOQUE + (QT_ESTOQUE_MINIMO)</pre>
             <!-- Notação formal da entidade -->
             <pre class="notation">DOCUMENTO_REGULATORIO = @ID_DOCUMENTO +
 [TP_FICHA_TECNICA | TP_LAUDO_BOMBEIRO | TP_LAUDO_SANITARIO | TP_ALVARA_FUNCIONAMENTO | TP_CODIGO_DEFESA_CONSUMIDOR] +
-DS_ARQUIVO + DT_EMISSAO + (DT_VALIDADE)</pre>
+DS_ARQUIVO + (DT_EMISSAO) + (DT_VALIDADE)</pre>
             <!-- Leitura: explicação em linguagem de negócio -->
             <div class="reading">
               <span class="reading-label">Leitura</span>
-              <p>O documento pode estar vinculado a um produto específico (ex.: ficha técnica de um item) ou ao estabelecimento como um todo (ex.: alvará de funcionamento), caso em que não há produto relacionado.</p>
+              <p>O documento pode estar vinculado a um produto específico (ex.: ficha técnica de um item) ou ao estabelecimento como um todo (ex.: alvará de funcionamento), caso em que não há produto relacionado. DT_EMISSAO e DT_VALIDADE são opcionais porque nem todo tipo de documento tem essas datas: o código de defesa do consumidor, por exemplo, é uma lei afixada no estabelecimento e não tem emissão nem validade.</p>
             </div>
             <!-- Tabela de atributos: tipo lógico, obrigatoriedade, descrição e regras -->
             <h4>Atributos</h4>
@@ -1506,8 +1512,8 @@ DS_ARQUIVO + DT_EMISSAO + (DT_VALIDADE)</pre>
                   <tr>
                     <td class="col-attr"><code class="attr-name">DT_EMISSAO</code></td>
                     <td>Data</td>
-                    <td class="col-req"><span class="req-yes">Sim</span></td>
-                    <td>Data de emissão do documento.</td>
+                    <td class="col-req"><span class="req-no">Não</span></td>
+                    <td>Data de emissão do documento, quando existir (o código de defesa do consumidor, por exemplo, não tem data de emissão).</td>
                     <td>—</td>
                   </tr>
                   <tr>
@@ -1583,7 +1589,7 @@ DS_ARQUIVO + DT_EMISSAO + (DT_VALIDADE)</pre>
                     <td class="col-attr"><code class="attr-name">NM_FORNECEDOR</code></td>
                     <td>Texto</td>
                     <td class="col-req"><span class="req-yes">Sim</span></td>
-                    <td>Razão social do fornecedor.</td>
+                    <td>Razão social (pessoa jurídica) ou nome completo (pessoa física) do fornecedor.</td>
                     <td><a class="ref" href="#rf11">RF11</a></td>
                   </tr>
                   <tr>
@@ -2176,9 +2182,9 @@ DS_SENHA_HASH + IN_ATIVO</pre>
                   <tr>
                     <td class="col-attr"><code class="attr-name">DT_FECHAMENTO</code></td>
                     <td>Data/hora</td>
-                    <td class="col-req"><span class="req-no">Não</span></td>
+                    <td class="col-req"><span class="req-no">Não</span><br/><span class="req-note">exigido ao fechar</span></td>
                     <td>Data/hora de fechamento da comanda. Preenchido somente quando o pagamento é confirmado.</td>
-                    <td>—</td>
+                    <td><a class="ref" href="#rn08">RN08</a></td>
                   </tr>
                   <tr>
                     <td class="col-attr"><code class="attr-name">TP_STATUS</code></td>
@@ -2317,12 +2323,12 @@ DS_SENHA_HASH + IN_ATIVO</pre>
             </div>
             <!-- Notação formal da entidade -->
             <pre class="notation">VENDA = @ID_VENDA + DT_VENDA + [TP_BALCAO | TP_DELIVERY] +
-VL_TOTAL + (VL_DESCONTO) + VL_RECEBIDO + VL_TROCO +
+VL_TOTAL + (VL_DESCONTO) + VL_RECEBIDO + (VL_TROCO) +
 [TP_CONCLUIDA | TP_CANCELADA] + (CD_CUPOM_FISCAL)</pre>
             <!-- Leitura: explicação em linguagem de negócio -->
             <div class="reading">
               <span class="reading-label">Leitura</span>
-              <p>A comanda de origem é opcional porque nem toda venda nasce de uma comanda do salão (delivery e balcão avulso não passam por comanda). VL_DESCONTO é opcional porque desconto acima de um percentual definido só é aplicado mediante autorização (<a class="ref" href="#rn03">RN03</a>). O pagamento é registrado em PAGAMENTO_VENDA, que admite mais de uma modalidade por venda (<a class="ref" href="#rn14">RN14</a>). CD_CUPOM_FISCAL guarda o código do cupom ou nota emitido pelo sistema Saurus e faz a ligação entre os dois sistemas; é opcional porque a emissão ocorre no Saurus e o código só existe depois dela (<a class="ref" href="#rn24">RN24</a>).</p>
+              <p>A comanda de origem é opcional porque nem toda venda nasce de uma comanda do salão (delivery e balcão avulso não passam por comanda). VL_DESCONTO é opcional porque desconto acima de um percentual definido só é aplicado mediante autorização (<a class="ref" href="#rn03">RN03</a>). VL_TROCO é opcional porque só existe quando há parcela paga em dinheiro, o que não ocorre na maioria das vendas (80% a 90% dos pagamentos são digitais e o delivery é sempre eletrônico). O pagamento é registrado em PAGAMENTO_VENDA, que admite mais de uma modalidade por venda (<a class="ref" href="#rn14">RN14</a>). CD_CUPOM_FISCAL guarda o código do cupom ou nota emitido pelo sistema Saurus e faz a ligação entre os dois sistemas; é opcional porque a emissão ocorre no Saurus e o código só existe depois dela (<a class="ref" href="#rn24">RN24</a>).</p>
             </div>
             <!-- Tabela de atributos: tipo lógico, obrigatoriedade, descrição e regras -->
             <h4>Atributos</h4>
@@ -2383,9 +2389,9 @@ VL_TOTAL + (VL_DESCONTO) + VL_RECEBIDO + VL_TROCO +
                   <tr>
                     <td class="col-attr"><code class="attr-name">VL_TROCO</code></td>
                     <td>Monetário</td>
-                    <td class="col-req"><span class="req-yes">Sim</span></td>
-                    <td>Troco calculado automaticamente; só existe quando há parcela paga em dinheiro.</td>
-                    <td><a class="ref" href="#rf03">RF03</a></td>
+                    <td class="col-req"><span class="req-no">Não</span></td>
+                    <td>Troco calculado automaticamente. Preenchido somente quando há parcela paga em dinheiro; fica vazio nas demais vendas.</td>
+                    <td><a class="ref" href="#rf03">RF03</a>, <a class="ref" href="#rn14">RN14</a></td>
                   </tr>
                   <tr>
                     <td class="col-attr"><code class="attr-name">TP_STATUS</code></td>
@@ -2727,7 +2733,7 @@ DS_MOTIVO</pre>
             <!-- Leitura: explicação em linguagem de negócio -->
             <div class="reading">
               <span class="reading-label">Leitura</span>
-              <p>O funcionário de fechamento, DT_FECHAMENTO e os valores de fechamento (VL_TOTAL_SISTEMA, VL_TOTAL_INFORMADO e VL_DIFERENCA) só existem depois que o caixa é fechado; enquanto TP_STATUS = ABERTO permanecem vazios.</p>
+              <p>O funcionário de fechamento, DT_FECHAMENTO e os valores de fechamento (VL_TOTAL_SISTEMA, VL_TOTAL_INFORMADO e VL_DIFERENCA) só existem depois que o caixa é fechado; enquanto TP_STATUS = ABERTO permanecem vazios e, ao fechar (TP_STATUS = FECHADO), passam a ser exigidos (<a class="ref" href="#rn07">RN07</a>).</p>
             </div>
             <!-- Tabela de atributos: tipo lógico, obrigatoriedade, descrição e regras -->
             <h4>Atributos</h4>
@@ -2760,9 +2766,9 @@ DS_MOTIVO</pre>
                   <tr>
                     <td class="col-attr"><code class="attr-name">DT_FECHAMENTO</code></td>
                     <td>Data/hora</td>
-                    <td class="col-req"><span class="req-no">Não</span></td>
+                    <td class="col-req"><span class="req-no">Não</span><br/><span class="req-note">exigido ao fechar</span></td>
                     <td>Data/hora de fechamento.</td>
-                    <td>—</td>
+                    <td><a class="ref" href="#rn07">RN07</a></td>
                   </tr>
                   <tr>
                     <td class="col-attr"><code class="attr-name">VL_ABERTURA</code></td>
@@ -2774,21 +2780,21 @@ DS_MOTIVO</pre>
                   <tr>
                     <td class="col-attr"><code class="attr-name">VL_TOTAL_SISTEMA</code></td>
                     <td>Monetário</td>
-                    <td class="col-req"><span class="req-no">Não</span></td>
+                    <td class="col-req"><span class="req-no">Não</span><br/><span class="req-note">exigido ao fechar</span></td>
                     <td>Total esperado, calculado pelo sistema a partir das vendas do período.</td>
                     <td><a class="ref" href="#rn07">RN07</a></td>
                   </tr>
                   <tr>
                     <td class="col-attr"><code class="attr-name">VL_TOTAL_INFORMADO</code></td>
                     <td>Monetário</td>
-                    <td class="col-req"><span class="req-no">Não</span></td>
+                    <td class="col-req"><span class="req-no">Não</span><br/><span class="req-note">exigido ao fechar</span></td>
                     <td>Total informado pelo funcionário na conferência física.</td>
                     <td><a class="ref" href="#rn07">RN07</a></td>
                   </tr>
                   <tr>
                     <td class="col-attr"><code class="attr-name">VL_DIFERENCA</code></td>
                     <td>Monetário</td>
-                    <td class="col-req"><span class="req-no">Não</span></td>
+                    <td class="col-req"><span class="req-no">Não</span><br/><span class="req-note">exigido ao fechar</span></td>
                     <td>Diferença apurada entre o valor do sistema e o informado. Resolve a divergência hoje apurada de forma verbal.</td>
                     <td><a class="ref" href="#rn07">RN07</a></td>
                   </tr>
@@ -3194,7 +3200,7 @@ DS_ENDERECO_ENTREGA + VL_TAXA_ENTREGA +
                   <tr>
                     <td class="col-attr"><code class="attr-name">DT_ENTREGA</code></td>
                     <td>Data/hora</td>
-                    <td class="col-req"><span class="req-no">Não</span></td>
+                    <td class="col-req"><span class="req-no">Não</span><br/><span class="req-note">exigido se ENTREGUE</span></td>
                     <td>Data e hora da conclusão da entrega. Preenchido quando a entrega é concluída e confirmada pelo código de verificação.</td>
                     <td><a class="ref" href="#rn16">RN16</a></td>
                   </tr>
@@ -3291,7 +3297,7 @@ DS_ENDERECO_ENTREGA + VL_TAXA_ENTREGA +
                   <tr>
                     <td class="col-attr"><code class="attr-name">DT_PAGAMENTO</code></td>
                     <td>Data</td>
-                    <td class="col-req"><span class="req-no">Não</span></td>
+                    <td class="col-req"><span class="req-no">Não</span><br/><span class="req-note">exigido se PAGA</span></td>
                     <td>Data em que a conta foi paga. Vazia enquanto não paga.</td>
                     <td><a class="ref" href="#rn23">RN23</a></td>
                   </tr>
@@ -4079,7 +4085,7 @@ DS_ENDERECO_ENTREGA + VL_TAXA_ENTREGA +
                   <tr>
                     <td class="col-attr"><code class="attr-name">VL_CUSTO</code></td>
                     <td>decimal(10,2)</td>
-                    <td>NÃO</td>
+                    <td>SIM</td>
                     <td>—</td>
                   </tr>
                   <tr>
@@ -4262,7 +4268,7 @@ DS_ENDERECO_ENTREGA + VL_TAXA_ENTREGA +
                   <tr>
                     <td class="col-attr"><code class="attr-name">DT_EMISSAO</code></td>
                     <td>date</td>
-                    <td>NÃO</td>
+                    <td>SIM</td>
                     <td>—</td>
                   </tr>
                   <tr>
@@ -4829,7 +4835,7 @@ DS_ENDERECO_ENTREGA + VL_TAXA_ENTREGA +
                   <tr>
                     <td class="col-attr"><code class="attr-name">VL_TROCO</code></td>
                     <td>decimal(10,2)</td>
-                    <td>NÃO</td>
+                    <td>SIM</td>
                     <td>—</td>
                   </tr>
                   <tr>
@@ -5530,7 +5536,7 @@ DS_ENDERECO_ENTREGA + VL_TAXA_ENTREGA +
 
         <!-- === RODAPÉ — versão e integrantes === -->
         <footer class="doc-footer">
-          <div>Entrega 1 — Modelo Conceitual (DER) · Dicionário de Dados · Versão 2.5 (28/10/2026)</div>
+          <div>Entrega 1 — Modelo Conceitual (DER) · Dicionário de Dados · Versão 2.6 (29/10/2026)</div>
           <div class="team">Integrantes: Caio Eduardo Hernandez, Davi Henrique Santos, Gustavo Reis, Isabela Calisto, Maria Eduarda Peres.</div>
         </footer>
       </main>
