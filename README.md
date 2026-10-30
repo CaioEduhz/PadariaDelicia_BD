@@ -212,7 +212,7 @@ Para garantir a rastreabilidade entre as necessidades da Padaria Delícia e a mo
 
 - **RF04 — Emissão de comprovante.** Nome da padaria, data/hora, número da venda, produtos, valores, forma de pagamento.
 
-- **RN05 — Pedido sob encomenda (Antecedência e Multa por Não Retirada).** Solicitações de encomendas exigem antecedência mínima de 1 dia. O pagamento é realizado na retirada, porém, caso o cliente não compareça para retirar a encomenda produzida, aplica-se uma cobrança de 20% do valor total a título de multa para cobrir os custos de produção e evitar prejuízos ao estabelecimento.
+- **RF05 — Controle automático de estoque.** Após a conclusão da venda, o sistema deverá permitir a emissão ou visualização de um comprovante contendo: Nome da padaria; Data e horário; Número da venda;	Produtos vendidos;	Quantidades;	Valores;	Descontos;	Forma de pagamento;	Valor total.
 
 - **RF06 — Alerta de estoque mínimo.** Gerar alerta quando um produto atingir o estoque mínimo configurado, com prioridade maior para produtos essenciais (ex.: pão francês) — ver RN10.
 
@@ -258,10 +258,6 @@ Para garantir a rastreabilidade entre as necessidades da Padaria Delícia e a mo
 
 - **RF27 — Integração com WhatsApp (Escalável).** Notificações de status de pedido/encomenda e confirmação de delivery via WhatsApp.
 
-- **RF28 - Venda rápida por código de barras/balança.** Leitura de código de barras e integração com balança para produtos pesados.
-
-- **RF29 - Controle de desperdício e perdas.** Registro de perdas (vencimento, quebra, sobra do dia) com motivo. Nesse caso,alimenta o relatório de desperdício do RF21.
-
 ***3.2 Requisitos Não Funcionais***
 
 - **RNF01 — Desempenho.** Resposta em até 2 segundos nas operações comuns, especialmente busca de produto e preço.
@@ -306,9 +302,6 @@ Para garantir a rastreabilidade entre as necessidades da Padaria Delícia e a mo
 
 **## 4. Regras de Negócio**
 
-### 4.1 Regras operacionais  
-*Condições que a organização impõe sobre suas transações do dia a dia.*
-
 - **RN01 — Produto vencido.** Produtos com prazo de validade expirado não podem ser vendidos.
 
 - **RN02 — Estoque insuficiente.** Bloqueia venda acima do disponível em estoque, salvo autorização expressa do administrador/sócio.
@@ -327,25 +320,38 @@ Para garantir a rastreabilidade entre as necessidades da Padaria Delícia e a mo
 
 - **RN09 — Prioridade de produtos críticos.** Produtos essenciais (ex.: pão francês) geram alertas de estoque mínimo com prioridade de reposição sobre os demais.
 
-- **RN10 — Área e taxa de entrega (Delivery).** O delivery próprio via WhatsApp limita-se a um raio máximo de até 5 km com taxa fixa de R$ 4,00; pedidos via aplicativo (iFood) atendem até 10 km, com taxa calculada pela plataforma, sendo vedada a aceitação de pedidos fora do raio e exigindo pagamento exclusivamente eletrônico.
+- **RN10 — Documentação regulatória.** Todo produto e o próprio estabelecimento devem ter vinculados ficha técnica, laudo de bombeiro, laudo sanitário, alvará de funcionamento e código de defesa do consumidor (exigência legal; a ausência pode gerar multa ou interdição).
 
-- **RN11 — Formas de pagamento e fracionamento.** O caixa aceita dinheiro, PIX e cartões, permitindo a divisão de uma mesma conta entre diferentes clientes ou modalidades de pagamento.
+- **RN11 — Proteção de dados pessoais (LGPD).** Dados pessoais de clientes e funcionários exigem finalidade definida, controle de acesso e retenção compatível. A prática relatada (guarda por tempo indeterminado) precisa ser revista (P07).
 
-- **RN12 — Conferência e rejeição no recebimento de insumos.** Toda mercadoria entregue por fornecedores passa por inspeção física obrigatória antes da estocagem; havendo divergências de quantidade, avarias ou produtos vencidos, a carga é rejeitada com o respectivo motivo registrado.
+- **RN12 — Área de entrega.** Pedidos recebidos diretamente pela padaria (por exemplo, WhatsApp) são atendidos em raio de até 5 km. Pedidos feitos por plataformas de entrega são atendidos em raio de até 10 km. O sistema deve validar o canal de origem e a distância antes de confirmar a entrega. Um mesmo cliente pode informar mais de um endereço de entrega, desde que dentro do raio. Interpretação do grupo: o raio de 5 km vale para os pedidos que não vêm de plataforma; confirmar com a gestão. O método de cálculo da distância e o ponto de referência devem ser definidos na implementação.
 
-- **RN13 — Cálculo de compras e reposição de estoque.** A quantidade a comprar é calculada pela média de consumo semanal menos o estoque remanescente (não podendo ser negativa; se o estoque atual for maior ou igual à média semanal, nenhum pedido de compra é gerado).
+- **RN13 — Taxa de entrega.** Para pedidos recebidos diretamente pelo WhatsApp, a taxa de entrega informada é fixa em R$ 4,00. Para pedidos feitos por plataformas como iFood, a taxa é definida pela própria plataforma. O sistema deve registrar a taxa efetivamente aplicada em cada entrega, sem presumir que a taxa da plataforma seja igual à taxa do WhatsApp.
 
-- **RN14 — Gestão financeira e quitação de passivos.** Os boletos de fornecedores são pagos na data de vencimento acordada e devem estar vinculados a uma compra registrada com fornecedor e valores conferidos; as despesas operacionais gerais são liquidadas dentro do prazo com arquivamento de comprovantes.
+- **RN14 — Formas de pagamento e pagamento misto.** A padaria aceita “todas as formas de pagamento”; para o sistema, as modalidades adotadas são DINHEIRO, PIX, DEBITO, CREDITO e VALE_ALIMENTACAO (domínio D07). O cliente pode dividir o pagamento entre pessoas, e uma mesma venda pode combinar modalidades. Cada modalidade usada é registrada como uma parcela em PAGAMENTO_VENDA, com seu valor, e a soma das parcelas deve cobrir o total da venda após o desconto. O troco só existe quando há parcela em dinheiro. Em delivery só valem modalidades eletrônicas (RN16).
 
-- **RN15 — Gestão de turnos, acessos e operações críticas.** O 1º turno opera das 06h às 14h e o 2º turno das 14h às 22h; o acesso ao sistema baseia-se em perfis por cargo, sendo que operações críticas (alterar preços, cadastrar produtos, aplicar descontos, cancelar itens e visualizar relatórios) registram obrigatoriamente o usuário, a data e a hora, sendo exclusivas dos sócios.
+- **RN15 — Conferência de mercadoria.** Toda mercadoria deve ser conferida no ato da entrega, antes de ser armazenada. Se houver divergência, avaria ou outra inconformidade, a padaria informou que não recebe a mercadoria. Proposta, não confirmada na entrevista: registrar a recusa e o motivo; o modelo atual (COMPRA) não possui atributo para isso e só registra compras recebidas e aceitas. O controle atual de compras e vencimentos é realizado semanalmente; há uma pessoa especificamente responsável pelas compras.
 
-### 4.2 Restrições organizacionais, legais e fiscais
-Limitações externas ou internas que afetam o modelo — e por que importam.
+- **RN16 — Pagamento e confirmação de entrega.**: As entregas são realizadas por terceiros/motoboys. A entrevista informou que a entrega utiliza um código de verificação e que o pagamento do delivery deve ser eletrônico. A conclusão da entrega deve ser registrada somente após a confirmação exigida pelo processo.
+  
+- **RN17 — Encomendas e sinal.**: A padaria aceita encomendas com solicitação feita com um dia de antecedência e solicita sinal de 20%. O valor do sinal é registrado em ENCOMENDA.VL_SINAL. Caso o cliente não retire a encomenda, o sinal cobre parte dos custos para reduzir prejuízos. A regra de cancelamento informada é limitada: encomendas podem ser canceladas se o produto ainda não estiver pronto.
 
-- **RN16 — Documentação regulatória obrigatória**: Todo produto e o estabelecimento devem ter vinculados os documentos regulatórios aplicáveis, incluindo ficha técnica, laudos de bombeiro e sanitário, alvará de funcionamento e código de defesa do consumidor. A ausência dos documentos exigidos pode gerar multas ou interdição.
-- **RN17 — Proteção de dados pessoais (LGPD)**: Os dados de clientes, como nome e telefone, são considerados dados pessoais. O sistema exige controle de acesso, finalidade clara de uso (marketing pontual de produtos recém-produzidos) e validação de CPF único quando fornecido voluntariamente pelo cliente.
-- **RN18 — Emissão obrigatória de documento fiscal**: Toda venda concluída deve gerar o respectivo cupom ou nota fiscal por meio do sistema Saurus, garantindo a conformidade tributária.
-- **RN19 — Proibição de venda de bebidas alcoólicas a menores**: É proibida a comercialização de bebidas alcoólicas a menores de 18 anos. A maioridade deve ser verificada por documento de identificação sempre que o cliente apresentar aparência jovem, conforme a legislação vigente.
+- **RN18 — Fechamento de caixa.**: O fechamento de caixa ocorre duas vezes ao dia, na troca de turnos às 14h e às 22h. A gestão informou que aproximadamente 80% a 90% dos pagamentos são digitais e que atualmente não há necessidade de sangria. Decisão do grupo: mesmo com a baixa porcentagem de pagamentos em dinheiro, a estrutura de MOVIMENTACAO_CAIXA será criada para receber os registros de sangria e suprimento; a sangria não deve ser descrita como rotina atual da padaria.
+
+- **RN19 — Controle semanal de estoque.**: A reposição é baseada em uma média de consumo semanal: a quantidade comprada repõe o que foi consumido para manter a média habitual. O sistema deve apoiar consulta de consumo e estoque para auxiliar a pessoa responsável pelas compras. A quantidade exata de fornecedores não é conhecida; o entrevistado estimou que sejam mais de 20, com compras distribuídas entre fornecedores.
+
+- **RN20 — Produção, sobras e perdas.** Atualmente não há receita padronizada nem registro sistêmico de produção, sobras ou descartes. A equipe de produção faz uma estimativa no início do expediente e a análise da quantidade a produzir considera as sobras. A ficha técnica e o controle de perdas existentes no modelo devem ser tratados como funcionalidades propostas para o sistema futuro, não como processos já praticados pela padaria.
+
+- **RN21 — Venda por peso.** O balconista pesa o produto, embala e registra o preço na comanda de papel; o cliente paga depois no caixa. O sistema deverá suportar quantidade fracionada/peso e o preço calculado conforme o peso e o valor vigente do produto.
+
+- **RN22 — Cancelamento e devolução.**: Segundo a entrevista, o cancelamento é aceito em casos de encomenda desde que o produto ainda não esteja pronto. Devoluções podem ser aceitas quando não houver indício de má-fé do cliente. Os critérios objetivos, a pessoa que registra a ocorrência e o fluxo de autorização devem ser formalizados pela gestão antes da implantação.
+  
+- **RN23 — Contas a pagar.**: A padaria paga os fornecedores por boleto e controla os vencimentos semanalmente. Cada vencimento é registrado em CONTA_PAGAR, ligada a um fornecedor. DT_PAGAMENTO fica vazia até o pagamento. A ligação com COMPRA não foi definida e não faz parte desta versão.
+
+- **RN24 — Vínculo com o cupom fiscal.**: A emissão de cupom/nota é feita pelo sistema Saurus. Este sistema só guarda o código emitido em VENDA.CD_CUPOM_FISCAL, preenchido após a emissão. A forma de obter o código (digitação, arquivo ou integração) ainda será definida.
+
+- **RN25 — Proibição de venda de bebidas alcoólicas a menores.**: É proibida a comercialização de bebidas alcoólicas a menores de 18 anos. A maioridade deve ser verificada por documento de identificação sempre que o cliente apresentar aparência jovem, conforme a legislação vigente.
+  
 ---
 
 **## 5. Dicionário de Dados Conceitual (Preliminar)**  
