@@ -25,6 +25,7 @@ A existência da organização pode ser comprovada pelo cadastro empresarial ati
 Além disso, há um registro anexado abaixo da reunião de levantamento de dados realizada por videoconferência com o gerente da empresa. Embora um dos integrantes do grupo frequente presencialmente o estabelecimento, a reunião foi realizada nesse formato devido à preferência do responsável pela padaria, considerando a disponibilidade de agendas dos envolvidos.
 
 [Print de reunião com um dos donos da padaria](img/Reuniao.jpg)
+[Consulte o resumo do levantamento de dados](Levantamento/Levantamento.md)
 
 ---
 
