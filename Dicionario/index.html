@@ -611,7 +611,7 @@
           <h2 class="section-title">Visão geral do modelo</h2>
           <p class="section-intro">Esse modelo representa um comércio do ramo alimentício que opera com serviços de panificadora, restaurante, pizzaria e sorveteria, no qual cada cliente entra, compra determinado produto e, posteriormente, paga o valor da venda deste produto. A entrevista de 09/10/2026 identificou processos ainda manuais (comandas em papel e pedidos de delivery por WhatsApp anotados manualmente), controle de estoque e compras semanal, ausência de registro de perdas e sobras e produção sem receita padronizada.</p>
           <h4 class="h4s">Entidades e relacionamentos</h4>
-          <p class="section-intro">A cardinalidade de cada entidade indica o mínimo e o máximo de vezes em que uma ocorrência dela participa do relacionamento. Exemplo: CATEGORIA (0,N): uma categoria tem de zero a N produtos; PRODUTO (1,1): um produto pertence a exatamente uma categoria. Os valores foram derivados da obrigatoriedade das chaves estrangeiras e ainda precisam ser conferidos com o DER (<a class="ref" href="#p01">P01</a>).</p>
+          <p class="section-intro">A cardinalidade de cada entidade indica o mínimo e o máximo de vezes em que uma ocorrência dela participa do relacionamento. Exemplo: CATEGORIA (0,N): uma categoria tem de zero a N produtos; PRODUTO (1,1): um produto pertence a exatamente uma categoria. Os valores foram derivados da obrigatoriedade das chaves estrangeiras e ainda precisam ser conferidos com o DER.</p>
           <div class="table-wrap">
             <table>
               <thead>
@@ -727,7 +727,7 @@
                   <td><code class="attr-name">ITEM_COMANDA</code></td>
                   <td><span class="card-badge">(0,N)</span></td>
                   <td><span class="card-badge">(1,1)</span></td>
-                  <td>a comanda é aberta antes do primeiro item consumido (<a class="ref" href="#rf26">RF26</a>), por isso o mínimo é 0 (a conferir com o DER, P01)</td>
+                  <td>a comanda é aberta antes do primeiro item consumido (<a class="ref" href="#rf26">RF26</a>), por isso o mínimo é 0 (a conferir com o DER)</td>
                 </tr>
                 <tr>
                   <td><code class="attr-name">PRODUTO</code></td>
@@ -2570,7 +2570,7 @@ VL_PAGO</pre>
             <!-- Leitura: explicação em linguagem de negócio -->
             <div class="reading">
               <span class="reading-label">Leitura</span>
-              <p>Cada ocorrência é uma parcela do pagamento de uma venda, em uma única modalidade. Uma venda paga de uma só forma tem uma ocorrência; uma venda com pagamento dividido ou misto (por exemplo, parte em dinheiro e parte em PIX, ou a conta dividida entre pessoas) tem várias. ID_PAGAMENTO é o sequencial da parcela dentro da venda. A soma de VL_PAGO deve cobrir o valor da venda (<a class="ref" href="#rn14">RN14</a>). Entidade proposta, ainda fora do DER (<a class="ref" href="#p17">P17</a>).</p>
+              <p>Cada ocorrência é uma parcela do pagamento de uma venda, em uma única modalidade. Uma venda paga de uma só forma tem uma ocorrência; uma venda com pagamento dividido ou misto (por exemplo, parte em dinheiro e parte em PIX, ou a conta dividida entre pessoas) tem várias. ID_PAGAMENTO é o sequencial da parcela dentro da venda. A soma de VL_PAGO deve cobrir o valor da venda (<a class="ref" href="#rn14">RN14</a>).</p>
             </div>
             <!-- Tabela de atributos: tipo lógico, obrigatoriedade, descrição e regras -->
             <h4>Atributos</h4>
@@ -3365,7 +3365,7 @@ DS_ENDERECO_ENTREGA + VL_TAXA_ENTREGA +
                   <td>Unidade de medida</td>
                   <td><code>PRODUTO.CD_UNIDADE</code><br/><code>MATERIA_PRIMA.CD_UNIDADE</code></td>
                   <td><code class="attr-name">UN</code> <code class="attr-name">KG</code> <code class="attr-name">CX</code> <code class="attr-name">L (exemplos)</code> </td>
-                  <td>Lista definitiva a definir pela padaria (P13).</td>
+                  <td>Lista definitiva a definir pela padaria.</td>
                 </tr>
                 <tr id="d02">
                   <td class="col-attr"><code class="attr-name">D02</code></td>
@@ -3538,7 +3538,7 @@ DS_ENDERECO_ENTREGA + VL_TAXA_ENTREGA +
                 </tr>
                 <tr id="rn11">
                   <td class="col-attr"><code class="attr-name">RN11</code></td>
-                  <td><strong>Proteção de dados pessoais (LGPD).</strong> Dados pessoais de clientes e funcionários exigem finalidade definida, controle de acesso e retenção compatível. A prática relatada (guarda por tempo indeterminado) precisa ser revista (P07).</td>
+                  <td><strong>Proteção de dados pessoais (LGPD).</strong> Dados pessoais de clientes e funcionários exigem finalidade definida, controle de acesso e retenção compatível.</td>
                   <td>CLIENTE, FUNCIONARIO</td>
                 </tr>
                 <tr id="rn12">
@@ -3986,7 +3986,7 @@ DS_ENDERECO_ENTREGA + VL_TAXA_ENTREGA +
         <section class="block" id="fisico">
           <span class="section-num">8</span>
           <h2 class="section-title">Dicionário físico (MySQL 8.0)</h2>
-          <p class="section-intro"><strong>SGBD definido: MySQL 8.0.</strong> Foi escolhido por oferecer suporte ao modelo relacional, integridade referencial, transações, controle de acesso, índices e armazenamento adequado ao volume estimado de operações da Padaria Delícia II. A escolha é uma decisão técnica do projeto e deverá ser validada pela equipe responsável pela implantação (<a class="ref" href="#p09">P09</a>).</p>
+          <p class="section-intro"><strong>SGBD definido: MySQL 8.0.</strong> Foi escolhido por oferecer suporte ao modelo relacional, integridade referencial, transações, controle de acesso, índices e armazenamento adequado ao volume estimado de operações da Padaria Delícia II. A escolha é uma decisão técnica do projeto e deverá ser validada pela equipe responsável pela implantação.</p>
           <p class="section-intro"><strong>Mecanismo de armazenamento:</strong> InnoDB, por oferecer transações, integridade referencial por chaves estrangeiras, bloqueio em nível de linha e recuperação após falhas. O InnoDB cria automaticamente um índice para cada chave estrangeira.</p>
           <p class="section-intro"><strong>Codificação:</strong> utf8mb4. <strong>Collation:</strong> utf8mb4_0900_ai_ci. A codificação permite armazenar corretamente caracteres acentuados da língua portuguesa, e a collation permite comparações textuais sem diferenciação entre maiúsculas e minúsculas e, conforme suas regras, sem diferenciação de acentos.</p>
           <p class="section-intro">Esta parte lista tipos, chaves e índices. As chaves estrangeiras existem apenas aqui: o modelo conceitual representa os vínculos como relacionamentos. Os atributos, descrições e regras estão na seção 4.</p>
