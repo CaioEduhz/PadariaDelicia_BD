@@ -318,7 +318,7 @@ Para garantir a rastreabilidade entre as necessidades da Padaria Delícia e a mo
 
 - **RN05 — Pedido sob encomenda (Sinal e Antecedência).** Exige antecedência mínima de 24 horas, registro de itens, data e horário de retirada, com cobrança prévia de 20% do valor como sinal; caso o cliente não retire o pedido, o sinal é retido para cobrir os custos de insumos.
 
-- **RN06 — Produção diária e perdas.** A produção diária inicia às 06h, sendo obrigatório o registro formal no sistema dos lotes produzidos, sobras do dia anterior e eventuais perdas ou descartes.
+- **RN06 — Produção diária e perdas.** A produção diária inicia às 06h, e a quantidade produzida deve ser registrada no sistema antes de ser disponibilizada para venda.
 
 - **RN07 — Fechamento e divergência de caixa.** O fechamento de caixa é obrigatório duas vezes ao dia (às 14h e às 22h), comparando o valor esperado pelo sistema com o contado em dinheiro; qualquer diferença exige o registro do motivo e auditoria/ajuste pelo sócio.
 
@@ -336,7 +336,7 @@ Para garantir a rastreabilidade entre as necessidades da Padaria Delícia e a mo
 
 - **RN14 — Formas de pagamento e pagamento misto.** A padaria aceita “todas as formas de pagamento”; para o sistema, as modalidades adotadas são DINHEIRO, PIX, DEBITO, CREDITO e VALE_ALIMENTACAO (domínio D07). O cliente pode dividir o pagamento entre pessoas, e uma mesma venda pode combinar modalidades. Cada modalidade usada é registrada como uma parcela em PAGAMENTO_VENDA, com seu valor, e a soma das parcelas deve cobrir o total da venda após o desconto. O troco só existe quando há parcela em dinheiro. Em delivery só valem modalidades eletrônicas (RN16).
 
-- **RN15 — Conferência de mercadoria.** Toda mercadoria deve ser conferida no ato da entrega, antes de ser armazenada. Se houver divergência, avaria ou outra inconformidade, a padaria informou que não recebe a mercadoria. Proposta, não confirmada na entrevista: registrar a recusa e o motivo; o modelo atual (COMPRA) não possui atributo para isso e só registra compras recebidas e aceitas. O controle atual de compras e vencimentos é realizado semanalmente; há uma pessoa especificamente responsável pelas compras.
+- **RN15 — Conferência de mercadoria.** Toda mercadoria deve ser conferida no ato da entrega, antes de ser armazenada. Se houver divergência, avaria ou outra inconformidade, a padaria não recebe a mercadoria. O controle atual de compras e vencimentos é realizado semanalmente; há uma pessoa especificamente responsável pelas compras.
 
 - **RN16 — Pagamento e confirmação de entrega.**: As entregas são realizadas por terceiros/motoboys. A entrevista informou que a entrega utiliza um código de verificação e que o pagamento do delivery deve ser eletrônico. A conclusão da entrega deve ser registrada somente após a confirmação exigida pelo processo.
   
@@ -358,6 +358,24 @@ Para garantir a rastreabilidade entre as necessidades da Padaria Delícia e a mo
 
 - **RN25 — Proibição de venda de bebidas alcoólicas a menores.**: É proibida a comercialização de bebidas alcoólicas a menores de 18 anos. A maioridade deve ser verificada por documento de identificação sempre que o cliente apresentar aparência jovem, conforme a legislação vigente.
   
+---
+
+***4.1 Requisitos e regras prováveis não incluídos (justificativas)***
+
+- **Relatório de consumo e sugestão de compra**: A reposição é semanal com base na média de uso. O sistema apoia essa decisão com relatórios e consultas, sem necessidade de sugestão automática nesta fase.
+
+- **Consulta de comandas abertas**: A necessidade já é atendida por requisitos e regras existentes, utilizando filtros por status da comanda.
+
+- **Integração com o Saurus**: A entrevista confirmou que o Saurus cuida da emissão fiscal e do backup, mas a forma de conexão exata ainda é uma pendência técnica dependente do fornecedor.
+
+- **Consentimento de marketing e retenção**: Os direitos e a finalidade de privacidade já estão cobertos por regras gerais.
+
+- **Comanda aberta no fechamento do caixa**: A situação de comandas que ficam abertas na troca de turnos não foi detalhada pela padaria e pode ser definida futuramente com a gestão.
+
+- **Ajuste manual de estoque**: Como a padaria não registra perdas ou sobras atualmente, o estoque se movimenta apenas por vendas, compras, produção e devoluções. Ajustes manuais ficam para uma fase futura.
+
+- **Cadastro de entregador**: As entregas são feitas por terceiros e confirmadas por código, dispensando uma nova entidade; caso necessário, o nome pode ser incluído nas observações da entrega.
+
 ---
 
 **## 5. Dicionário de Dados Conceitual (Preliminar)**  
