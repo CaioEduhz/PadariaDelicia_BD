@@ -27,8 +27,8 @@ Além disso, há um registro anexado abaixo da reunião de levantamento de dados
 [Print da primeira reunião com um dos sócios da padaria](img/Reuniao.jpg)
 
 Na segunda reunião não houve captura de tela (print) durante a videoconferência, então a validação é demonstrada através dos seguintes comprovantes:
-[Agendamento via WhatsApp](img/Agendamento_Whatsapp.jpg).
-[Histórico da Chamada no Teams](img/Historico_Teams.jpg).
+[Agendamento via WhatsApp](img/Agendamento_Whatsapp.jpeg).
+[Histórico da Chamada no Teams](img/Historico_Teams.jpeg).
 
 [Também, consulte o resumo do levantamento de dados](Levantamento/Levantamento.md)
 
