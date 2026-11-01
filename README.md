@@ -328,7 +328,7 @@ Para garantir a rastreabilidade entre as necessidades da Padaria Delícia e a mo
 
 - **RN10 — Documentação regulatória.** Todo produto e o próprio estabelecimento devem ter vinculados ficha técnica, laudo de bombeiro, laudo sanitário, alvará de funcionamento e código de defesa do consumidor (exigência legal; a ausência pode gerar multa ou interdição).
 
-- **RN11 — Proteção de dados pessoais (LGPD).** Dados pessoais de clientes e funcionários exigem finalidade definida, controle de acesso e retenção compatível. A prática relatada (guarda por tempo indeterminado) precisa ser revista (P07).
+- **RN11 — Proteção de dados pessoais (LGPD).** Dados pessoais de clientes e funcionários exigem finalidade definida, controle de acesso e retenção compatível.
 
 - **RN12 — Área de entrega.** Pedidos recebidos diretamente pela padaria (por exemplo, WhatsApp) são atendidos em raio de até 5 km. Pedidos feitos por plataformas de entrega são atendidos em raio de até 10 km. O sistema deve validar o canal de origem e a distância antes de confirmar a entrega. Um mesmo cliente pode informar mais de um endereço de entrega, desde que dentro do raio. Interpretação do grupo: o raio de 5 km vale para os pedidos que não vêm de plataforma; confirmar com a gestão. O método de cálculo da distância e o ponto de referência devem ser definidos na implementação.
 
