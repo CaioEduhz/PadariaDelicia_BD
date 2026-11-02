@@ -428,8 +428,14 @@ Confira o [Dicionário de Dados](Dicionario/index.html) feito no software BRMW B
 
 **ENCOMENDA:** representa pedidos antecipados ou personalizados. Essa entidade foi mantida no modelo por completude, porém possui baixa prioridade e não foi confirmada pela gestão durante a pesquisa de campo.  
 
+**PAGAMENTO_VENDA:** Cada ocorrência é uma parcela do pagamento de uma venda, em uma única modalidade. Uma venda paga de uma só forma tem uma ocorrência; uma venda com pagamento dividido ou misto (por exemplo, parte em dinheiro e parte em PIX, ou a conta dividida entre pessoas) tem várias. 
 
--  **Atributos e classificações:** quais atributos pertencem a cada entidade.  
+**DELIVERY:** Representa a entrega de uma venda realizada por delivery, armazenando endereço, taxa, saída, conclusão e situação. A entrevista confirmou pedidos por WhatsApp da padaria e por aplicativos como iFood.
+
+**CONTA_PAGAR:** Registra o que a padaria deve a cada fornecedor e quando vence.
+
+
+-  **Atributos e classificações:**
 
 As principais identificações de cada entidade são:
 
@@ -552,7 +558,15 @@ MATERIA\_PRIMA.
 
 **CLIENTE — ENCOMENDA:** um cliente pode realizar várias encomendas (1:N).  
 
-**PRODUTO — ENCOMENDA:** um produto pode estar associado a várias encomendas (1:N).  
+**PRODUTO — ENCOMENDA:** um produto pode estar associado a várias encomendas (1:N). 
+
+**VENDA — PAGAMENTO_VENDA:**  uma venda é paga por uma ou mais modalidades (1:N) / (1:1).
+
+**PRODUTO — CANCELAMENTO_DEVOLUCAO:** a devolução parcial referencia o produto; o cancelamento de venda inteira não (0:N) / (0:1).
+
+**VENDA — DELIVERY:** venda de balcão não tem entrega; venda por delivery gera no máximo uma entrega (0,1) / (1,1).
+
+**FORNECEDOR — CONTA_PAGAR:**  um fornecedor pode ter várias contas a pagar (boletos); toda conta pertence a um fornecedor (0,N) / (1,1).
  
 
 - **Restrições e políticas organizacionais aplicadas ao modelo.**
