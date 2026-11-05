@@ -457,7 +457,7 @@
       <!-- === MENU LATERAL — busca, links das seções e lista de entidades === -->
       <aside class="sidebar">
         <div class="brand"><span class="brand-mark">Delícia II</span></div>
-        <p class="brand-sub">DICIONÁRIO DE DADOS · v2.8</p>
+        <p class="brand-sub">DICIONÁRIO DE DADOS · v2.9</p>
         <input aria-label="Buscar entidade" class="sidebar-search" id="sidebar-search" placeholder="Buscar entidade…" type="text"/>
         <!-- Links do menu -->
         <nav>
@@ -535,11 +535,11 @@
               <tbody>
                 <tr>
                   <td>Versão</td>
-                  <td>2.8</td>
+                  <td>2.9</td>
                 </tr>
                 <tr>
                   <td>Data de atualização</td>
-                  <td>04/11/2026</td>
+                  <td>05/11/2026</td>
                 </tr>
                 <tr>
                   <td>SGBD</td>
@@ -610,6 +610,11 @@
                   <td>2.8</td>
                   <td>04/11/2026</td>
                   <td>Inclusão do atributo QT_PERDA na entidade PRODUCAO; Ajuste de atributos de ENCOMENDA e ITEM_ENCOMENDA</td>
+                </tr>
+                <tr>
+                  <td>2.9</td>
+                  <td>05/11/2026</td>
+                  <td>Reutilização da comanda física: novo atributo COMANDA.NR_COMANDA e coluna gerada NR_ABERTA (índice único) no dicionário físico; índice único em VENDA.ID_COMANDA; justificativa acrescentada à RN08.</td>
                 </tr>
               </tbody>
             </table>
@@ -1306,7 +1311,7 @@ QT_ESTOQUE_MINIMO + (DT_VALIDADE) + IN_PRODUTO_ESSENCIAL + IN_ATIVO</pre>
                     <td><span class="card-badge">(0,1)</span></td>
                   </tr>
                   <tr>
-                    <td>PRODUTO é encomendado em ENCOMENDA</td>
+                    <td>PRODUTO é encomendado em ITEM_ENCOMENDA</td>
                     <td><span class="card-badge">(0,N)</span></td>
                     <td><span class="card-badge">(1,1)</span></td>
                   </tr>
@@ -2170,12 +2175,12 @@ DS_SENHA_HASH + IN_ATIVO</pre>
               <h3>COMANDA</h3>
             </div>
             <!-- Notação formal da entidade -->
-            <pre class="notation">COMANDA = @ID_COMANDA + DT_ABERTURA + (DT_FECHAMENTO) +
+            <pre class="notation">COMANDA = @ID_COMANDA + NR_COMANDA + DT_ABERTURA + (DT_FECHAMENTO) +
 [TP_ABERTA | TP_FECHADA]</pre>
             <!-- Leitura: explicação em linguagem de negócio -->
             <div class="reading">
               <span class="reading-label">Leitura</span>
-              <p>Entidade de prioridade máxima do projeto (<a class="ref" href="#rf26">RF26</a>): ataca diretamente a causa do prejuízo relatado (clientes que saem sem pagar). O cliente é opcional porque o atendimento no salão pode ocorrer sem cadastro prévio; um mesmo cliente pode abrir várias comandas, em visitas diferentes. Hoje a comanda é de papel (perg. 1); esta entidade é a sua versão digital.</p>
+              <p>Entidade de prioridade máxima do projeto (<a class="ref" href="#rf26">RF26</a>): ataca diretamente a causa do prejuízo relatado (clientes que saem sem pagar). O cliente é opcional porque o atendimento no salão pode ocorrer sem cadastro prévio; um mesmo cliente pode abrir várias comandas, em visitas diferentes. Hoje a comanda é de papel (perg. 1); esta entidade é a sua versão digital. A comanda física (identificada por NR_COMANDA) é reutilizada depois que a conta é paga, mas cada uso gera um novo registro de COMANDA, com ID_COMANDA, abertura e itens próprios; por isso cada registro origina no máximo uma venda (<a class="ref" href="#rn08">RN08</a>).</p>
             </div>
             <!-- Tabela de atributos: tipo lógico, obrigatoriedade, descrição e regras -->
             <h4>Atributos</h4>
@@ -2195,8 +2200,15 @@ DS_SENHA_HASH + IN_ATIVO</pre>
                     <td class="col-attr"><code class="attr-name">ID_COMANDA</code></td>
                     <td>Identificador</td>
                     <td class="col-req"><span class="req-yes">Sim</span></td>
-                    <td>Identificador da comanda.</td>
+                    <td>Identificador interno do registro da comanda; não se repete e não é o número impresso na comanda física.</td>
                     <td>—</td>
+                  </tr>
+                  <tr>
+                    <td class="col-attr"><code class="attr-name">NR_COMANDA</code></td>
+                    <td>Número</td>
+                    <td class="col-req"><span class="req-yes">Sim</span></td>
+                    <td>Número da comanda física (cartão ou papel) usado no atendimento. Pode se repetir em registros diferentes, pois a comanda física é reutilizada depois que a conta é paga.</td>
+                    <td><a class="ref" href="#rn08">RN08</a></td>
                   </tr>
                   <tr>
                     <td class="col-attr"><code class="attr-name">DT_ABERTURA</code></td>
@@ -2981,7 +2993,7 @@ VL_VALOR + DT_HORA + DS_MOTIVO</pre>
             <!-- Leitura: explicação em linguagem de negócio -->
             <div class="reading">
               <span class="reading-label">Leitura</span>
-              <p>NM_TABELA é texto livre, e não referência a outra entidade, porque um único log centralizado precisa referenciar qualquer entidade do sistema (produto, venda, caixa, cliente etc.) sem exigir uma tabela de log para cada uma: desenho mais simples e alinhado ao <a class="ref" href="#rf24">RF24</a> e à auditoria (<a class="ref" href="#rnf13">RNF13</a>).</p>
+              <p>NM_TABELA é texto livre, e não referência a outra entidade, porque um único log centralizado precisa referenciar qualquer entidade do sistema (produto, venda, caixa, cliente etc.) sem exigir uma tabela de log para cada uma: desenho mais simples e alinhado ao <a class="ref" href="#rf24">RF24</a> e à auditoria (<a class="ref" href="#rnf13">RNF13</a>). A entidade registra as ações de usuários da aplicação (FUNCIONARIO). Os acessos da equipe de desenvolvimento ocorrem diretamente no SGBD e ficam no registro de acesso ao banco de dados (seção 7); por isso o autor do log é sempre um funcionário.</p>
             </div>
             <!-- Tabela de atributos: tipo lógico, obrigatoriedade, descrição e regras -->
             <h4>Atributos</h4>
@@ -3440,8 +3452,8 @@ DS_ENDERECO_ENTREGA + VL_TAXA_ENTREGA +
                 <tbody>
                   <tr>
                     <td>PRODUTO é encomendado em ITEM_ENCOMENDA</td>
-                    <td><span class="card-badge">(0,N)</span></td>
                     <td><span class="card-badge">(1,1)</span></td>
+                    <td><span class="card-badge">(0,N)</span></td>
                   </tr>
                   <tr>
                     <td>ENCOMENDA contém ITEM_ENCOMENDA</td>
@@ -3636,7 +3648,7 @@ DS_ENDERECO_ENTREGA + VL_TAXA_ENTREGA +
                 </tr>
                 <tr id="rn08">
                   <td class="col-attr"><code class="attr-name">RN08</code></td>
-                  <td><strong>Comanda em aberto.</strong> Não é permitido encerrar o atendimento de um cliente com comanda em aberto sem pagamento registrado.</td>
+                  <td><strong>Comanda em aberto.</strong> Não é permitido encerrar o atendimento de um cliente com comanda em aberto sem pagamento registrado. <em>Justificativa:</em> a comanda física só volta a ser usada depois que a conta é paga e o registro é fechado. Cada uso é um novo registro de COMANDA, o que garante que um mesmo número (NR_COMANDA) não tenha dois atendimentos abertos ao mesmo tempo e que cada registro origine no máximo uma venda.</td>
                   <td>COMANDA, VENDA</td>
                 </tr>
                 <tr id="rn09">
@@ -3946,7 +3958,7 @@ DS_ENDERECO_ENTREGA + VL_TAXA_ENTREGA +
           <span class="section-num">7</span>
           <h2 class="section-title">Segurança e privacidade</h2>
           <h4 class="h4s" id="matriz-acesso">Matriz de acesso por operação</h4>
-          <p class="section-intro">Na entrevista de 09/10/2026, Almir informou que somente os sócios tomam as decisões relacionadas às atividades privilegiadas (pergunta 18). As demais permissões foram definidas pelo grupo. “✓” indica operação permitida; “—”, não permitida ou não prevista. A equipe de desenvolvimento é o grupo que constrói o projeto: não é um cargo do modelo (<a class="ref" href="#d03">D03</a>) e não é cadastrada em FUNCIONARIO.</p>
+          <p class="section-intro">Na entrevista de 09/10/2026, Almir informou que somente os sócios tomam as decisões relacionadas às atividades privilegiadas (pergunta 18). As demais permissões foram definidas pelo grupo. “✓” indica operação permitida; “—”, não permitida ou não prevista. A equipe de desenvolvimento é o grupo que constrói o projeto: não é um cargo do modelo. Portanto, ela não usa a aplicação, mas atua diretamente no SGBD, com contas de banco, e não tem login em FUNCIONARIO. (<a class="ref" href="#d03">D03</a>) e não é cadastrada em FUNCIONARIO.</p>
           <div class="table-wrap">
             <table>
               <thead>
@@ -4034,14 +4046,14 @@ DS_ENDERECO_ENTREGA + VL_TAXA_ENTREGA +
                   <td>—</td>
                   <td>—</td>
                   <td>✓</td>
-                  <td>Equipe de desenvolvimento.</td>
+                  <td>Feita diretamente no SGBD, fora da aplicação; registrada no registro de acesso ao banco de dados (seção 7)</td>
                 </tr>
                 <tr>
                   <td>Consultar auditoria</td>
                   <td>—</td>
                   <td>✓</td>
                   <td>✓</td>
-                  <td>Sócios e equipe de desenvolvimento.</td>
+                  <td>Procedimento feito pelos sócios. Para a equipe técnica, a consulta é feita direto na tabela LOG_AUDITORIA, pelo SGBD, sem passar pela aplicação.</td>
                 </tr>
               </tbody>
             </table>
@@ -4782,6 +4794,12 @@ DS_ENDERECO_ENTREGA + VL_TAXA_ENTREGA +
                     <td>PK</td>
                   </tr>
                   <tr>
+                    <td class="col-attr"><code class="attr-name">NR_COMANDA</code></td>
+                    <td>integer</td>
+                    <td>NÃO</td>
+                    <td>—</td>
+                  </tr>
+                  <tr>
                     <td class="col-attr"><code class="attr-name">ID_CLIENTE</code></td>
                     <td>integer</td>
                     <td>SIM</td>
@@ -4811,11 +4829,17 @@ DS_ENDERECO_ENTREGA + VL_TAXA_ENTREGA +
                     <td>NÃO</td>
                     <td>—</td>
                   </tr>
+                  <tr>
+                    <td class="col-attr"><code class="attr-name">NR_ABERTA</code></td>
+                    <td>integer (coluna gerada, STORED)</td>
+                    <td>SIM</td>
+                    <td>UNIQUE</td>
+                  </tr>
                 </tbody>
               </table>
             </div>
             <!-- Índices e restrições da tabela -->
-            <p class="indices"><strong>Índices e restrições:</strong> PK ID_COMANDA; índice em ID_CLIENTE; índice em TP_STATUS (localizar comandas abertas rapidamente).</p>
+            <p class="indices"><strong>Índices e restrições:</strong> PK ID_COMANDA; índice em ID_CLIENTE; índice em TP_STATUS (localizar comandas abertas rapidamente); índice em NR_COMANDA (buscar a comanda pelo número no atendimento). NR_ABERTA é uma coluna gerada, calculada como NR_COMANDA quando TP_STATUS = 'ABERTA' e nula nos demais casos, com índice único: impede dois atendimentos abertos com o mesmo número de comanda e permite repetir o número em comandas fechadas (<a class="ref" href="#rn08">RN08</a>).</p>
           </section>
 
           <!-- --- 8.13 ITEM_COMANDA — físico --- -->
@@ -4973,7 +4997,7 @@ DS_ENDERECO_ENTREGA + VL_TAXA_ENTREGA +
               </table>
             </div>
             <!-- Índices e restrições da tabela -->
-            <p class="indices"><strong>Índices e restrições:</strong> PK ID_VENDA; índice em DT_VENDA (relatórios por período, <a class="ref" href="#rf21">RF21</a>); índice em ID_CAIXA; índice em ID_CLIENTE; índice único em CD_CUPOM_FISCAL (o MySQL aceita vários nulos num índice único).</p>
+            <p class="indices"><strong>Índices e restrições:</strong> PK ID_VENDA; índice em DT_VENDA (relatórios por período, <a class="ref" href="#rf21">RF21</a>); índice em ID_CAIXA; índice em ID_CLIENTE; índice único em ID_COMANDA (garante no máximo uma venda por registro de comanda, conforme a cardinalidade (0,1)/(0,1); o MySQL aceita vários nulos, o que cobre as vendas sem comanda); índice único em CD_CUPOM_FISCAL (o MySQL aceita vários nulos num índice único).</p>
           </section>
 
           <!-- --- 8.15 ITEM_VENDA — físico --- -->
@@ -5452,6 +5476,12 @@ DS_ENDERECO_ENTREGA + VL_TAXA_ENTREGA +
                     <td>PK</td>
                   </tr>
                   <tr>
+                    <td class="col-attr"><code class="attr-name">ID_VENDA</code></td>
+                    <td>integer</td>
+                    <td>NÃO</td>
+                    <td>FK → VENDA</td>
+                  </tr>
+                  <tr>
                     <td class="col-attr"><code class="attr-name">TP_CANAL_ORIGEM</code></td>
                     <td>varchar(20)</td>
                     <td>NÃO</td>
@@ -5710,7 +5740,7 @@ DS_ENDERECO_ENTREGA + VL_TAXA_ENTREGA +
 
         <!-- === RODAPÉ — versão e integrantes === -->
         <footer class="doc-footer">
-          <div>Entrega 1 — Modelo Conceitual (DER) · Dicionário de Dados · Versão 2.8 (04/11/2026)</div>
+          <div>Entrega 1 — Modelo Conceitual (DER) · Dicionário de Dados · Versão 2.9 (05/11/2026)</div>
           <div class="team">Integrantes: Caio Eduardo Hernandez, Davi Henrique Santos, Gustavo Reis, Isabela Calisto, Maria Eduarda Peres.</div>
         </footer>
       </main>
