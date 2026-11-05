@@ -1662,5 +1662,5 @@ Acesse a massa de dados [aqui](/Docs/script_padaria_delicia_ii.sql).
 
 Formato: slides com estética limpa e minimalista — **proibida a leitura de blocos longos de texto**.
 
-Segue Apresentação em Slides
+Acesse a apresentação em slides [aqui](Slides_Padaria_Delícia_II.pptx).
 ---
