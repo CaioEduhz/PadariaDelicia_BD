@@ -1,10 +1,10 @@
-# README — Projeto de Banco de Dados | Padaria Delícia II
+## README — Projeto de Banco de Dados | Padaria Delícia II
 
 Este documento reúne o conteúdo das duas etapas do projeto de modelagem do banco de dados.
 
 ---
 
-# ENTREGA 1 — Modelo Conceitual (DER)
+## ENTREGA 1 — Modelo Conceitual (DER)
 
 Entrega 1 — Modelo Conceitual (DER)  
 *Modelagem de um sistema de gestão de informações para uma organização de pequeno porte*
@@ -799,7 +799,7 @@ Se o grupo usou alguma ferramenta de IA (ChatGPT, Claude, Gemini, Perplexity etc
 
 ---
 
-# Entrega 2 — Modelo Lógico, Implementação SQL e Apresentação Final
+## Entrega 2 — Modelo Lógico, Implementação SQL e Apresentação Final
 
 ## 1\. Relatório Técnico Final
 
@@ -824,17 +824,12 @@ Se o grupo usou alguma ferramenta de IA (ChatGPT, Claude, Gemini, Perplexity etc
 | SGBD e mecanismo indefinidos ("MySQL 8 ou PostgreSQL 15"), sem collation e sem versão com data. ✅ | Definidos: MySQL 8.0, InnoDB, utf8mb4 e utf8mb4\_0900\_ai\_ci. Versão 2.2 de 19/10/2026, com histórico de versões. | O script SQL (seção 3\) precisa rodar no MySQL. |
 | Log de acesso do SGBD, papéis por operação, LGPD sem base legal e retenção. ✅ | Incluídos: seção de registro de acesso ao SGBD, matriz de acesso por operação e tabela LGPD (finalidade, base legal, retenção, acesso). LOG\_AUDITORIA continua como entidade da aplicação. | A entrevista informou que só sócios decidem operações privilegiadas e que nome e telefone são guardados indefinidamente. |
 
-### 
-
-*Reapresente também as evidências da organização atualizadas se houve uma nova visita nesta etapa:*  
 
 Na segunda reunião não houve captura de tela (print) durante a videoconferência, então a validação é demonstrada através dos seguintes comprovantes:
 [Agendamento via WhatsApp](img/Agendamento_Whatsapp.jpeg).
 [Histórico da Chamada no Teams](img/Historico_Teams.jpeg).
 
 ### 1.2 Conversão do Modelo Conceitual para o Modelo Lógico
-
-*(vale 7,5%)*
 
 - **Entidades → Tabelas:** *como cada entidade virou tabela.*
 
@@ -1535,21 +1530,16 @@ A IA só entrega valor com histórico acumulado (ideal: 6 a 12 meses). Até lá,
 ---
 
 ## 2\. Modelo Lógico Relacional
-
-A seguir, link de acesso ao modelo lógico Relacional: https://app.brmodeloweb.com/publicview/6aecf0ba676def35996efc0e
+  A seguir, link de acesso ao modelo lógico Relacional: https://app.brmodeloweb.com/publicview/6aecf0ba676def35996efc0e
 ---
 
 ## 3\. Script SQL Completo
-
-*(arquivo `.sql` — vale 12% na Dimensão Procedimental)*
-
-Acesse [aqui](/Docs/script_padaria_delicia_ii.sql) o script .sql completo.
+  Acesse [aqui](/Docs/script_padaria_delicia_ii.sql) o script .sql completo.
 ---
 
 
 ## 4\. Massa de Dados
-*(incluída no script ou em arquivo separado — parte da nota de Implementação SQL, 12%)*
-Acesse a massa de dados [aqui](/Docs/script_padaria_delicia_ii.sql).
+  Acesse a massa de dados [aqui](/Docs/script_padaria_delicia_ii.sql).
 ---
 
 
@@ -1657,10 +1647,5 @@ Acesse a massa de dados [aqui](/Docs/script_padaria_delicia_ii.sql).
 ---
 
 ## 6\. Apresentação Corporativa Final
-
-*(pitch cronometrado — vale 15%, maior peso individual da Dimensão Procedimental)*
-
-Formato: slides com estética limpa e minimalista — **proibida a leitura de blocos longos de texto**.
-
-Acesse a apresentação em slides [aqui](Slides_Padaria_Delícia_II.pptx).
+  Acesse a apresentação em slides [aqui](Slides_Padaria_Delícia_II.pptx).
 ---
