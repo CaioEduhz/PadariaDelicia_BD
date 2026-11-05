@@ -34,10 +34,6 @@ Além disso, há um registro anexado abaixo da reunião de levantamento de dados
 
 [Print da primeira reunião com um dos sócios da padaria](img/Reuniao.jpg)
 
-Na segunda reunião não houve captura de tela (print) durante a videoconferência, então a validação é demonstrada através dos seguintes comprovantes:
-[Agendamento via WhatsApp](img/Agendamento_Whatsapp.jpeg).
-[Histórico da Chamada no Teams](img/Historico_Teams.jpeg).
-
 [Também, consulte o resumo do levantamento de dados](Levantamento/Levantamento.md)
 
 ---
@@ -831,7 +827,10 @@ Se o grupo usou alguma ferramenta de IA (ChatGPT, Claude, Gemini, Perplexity etc
 ### 
 
 *Reapresente também as evidências da organização atualizadas se houve uma nova visita nesta etapa:*  
-*![][image1]![][image2]*
+
+Na segunda reunião não houve captura de tela (print) durante a videoconferência, então a validação é demonstrada através dos seguintes comprovantes:
+[Agendamento via WhatsApp](img/Agendamento_Whatsapp.jpeg).
+[Histórico da Chamada no Teams](img/Historico_Teams.jpeg).
 
 ### 1.2 Conversão do Modelo Conceitual para o Modelo Lógico
 
