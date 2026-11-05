@@ -2,7 +2,7 @@
 
 A Padaria Delícia II atua na venda e produção de pães, doces, salgados e bebidas, estando localizada na Vila Ré, em São Paulo. A empresa pertence a Francisco Almir Pereira e José Aldir das Chagas, funciona diariamente e conta com aproximadamente 12 funcionários, atendendo cerca de 200 clientes e realizando 50 entregas por dia.
 
-Para compreender o funcionamento do estabelecimento e identificar suas necessidades, foram realizadas duas entrevistas com os proprietários, nos dias 11 de setembro e 9 de outubro de 2026\. Gustavo Reis participou presencialmente das duas visitas. A primeira entrevista permitiu conhecer as necessidades gerais da empresa, enquanto a segunda aprofundou os procedimentos realizados no cotidiano.
+Para compreender o funcionamento do estabelecimento e identificar suas necessidades, foram realizadas duas entrevistas com os proprietários, nos dias 11 de setembro e 9 de outubro de 2026\. Gustavo Reis participou virtualmente das duas entrevistas, utilizando a plataforma Microsoft Teams. A primeira entrevista permitiu conhecer as necessidades gerais da empresa, enquanto a segunda aprofundou os procedimentos realizados no cotidiano.
 
 Durante o levantamento, identificou-se que o atendimento no salão utiliza comandas de papel, o que dificulta o controle das contas e pode ocasionar situações em que clientes saem sem efetuar o pagamento. Nas vendas de balcão, os produtos são pesados quando necessário e os preços ainda são anotados manualmente. A padaria aceita diferentes formas de pagamento, enquanto descontos, cancelamentos e devoluções seguem regras estabelecidas pelos proprietários. Para a emissão de documentos fiscais, a empresa utiliza o sistema Saurus, e o fechamento do caixa ocorre às 14h e às 22h, durante as trocas de turno.
 
