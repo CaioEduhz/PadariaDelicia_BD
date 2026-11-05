@@ -516,7 +516,7 @@
 
         <!-- === TOPO — título e descrição do documento === -->
         <div class="hero">
-          <p class="eyebrow">ENTREGA 1 — MODELO CONCEITUAL (DER)</p>
+          <p class="eyebrow">MODELAGEM CONCEITUAL</p>
           <h1>Dicionário de Dados</h1>
           <p class="lead">Sistema de gestão de informações da Padaria Delícia II Ltda.: cadastro, vendas, comandas, estoque, produção, compras, entregas e controle de caixa. Os exemplos de dados são fictícios e não usam informações reais de clientes ou funcionários.</p>
         </div>
@@ -881,7 +881,7 @@
                   <td>é encomendado em</td>
                   <td><code class="attr-name">ITEM_ENCOMENDA</code></td>
                   <td><span class="card-badge">(0,N)</span></td>
-                  <td><span class="card-badge">(0,N)</span></td>
+                  <td><span class="card-badge">(1,1)</span></td>
                   <td>cada item da encomenda refere-se a um produto</td>
                 </tr>
                 <tr>
@@ -890,15 +890,7 @@
                   <td><code class="attr-name">DELIVERY</code></td>
                   <td><span class="card-badge">(0,1)</span></td>
                   <td><span class="card-badge">(1,1)</span></td>
-                  <td>Venda de balcão não tem entrega; venda por delivery (dentro do raio de entrega de 4km) gera no máximo uma entrega</td>
-                </tr>
-                <tr>
-                  <td><code class="attr-name">FORNECEDOR</code></td>
-                  <td>gera</td>
-                  <td><code class="attr-name">CONTA_PAGAR</code></td>
-                  <td><span class="card-badge">(0,N)</span></td>
-                  <td><span class="card-badge">(1,1)</span></td>
-                  <td>um fornecedor pode ter várias contas a pagar (boletos); toda conta pertence a um fornecedor</td>
+                  <td>Venda de balcão não tem entrega; venda por delivery (dentro do raio de entrega de 5km no Whatsapp e 10km em plataformas) gera no máximo uma entrega</td>
                 </tr>
                 <tr>
                   <td><code class="attr-name">FORNECEDOR</code></td>
@@ -912,9 +904,9 @@
                   <td><code class="attr-name">ENCOMENDA</code></td>
                   <td>contém</td>
                   <td><code class="attr-name">ITEM_ENCOMENDA</code></td>
-                  <td><span class="card-badge">(0,N)</span></td>
-                  <td><span class="card-badge">(0,N)</span></td>
-                  <td>um fornecedor pode ter várias contas a pagar (boletos); toda conta pertence a um fornecedor</td>
+                  <td><span class="card-badge">(1,N)</span></td>
+                  <td><span class="card-badge">(1,1)</span></td>
+                  <td>uma encomenda pode ter vários itens; todo item pertence a uma encomenda</td>
                 </tr>
               </tbody>
             </table>
@@ -1904,7 +1896,7 @@ QT_QUANTIDADE + VL_UNITARIO</pre>
                     <td class="col-attr"><code class="attr-name">QT_PERDA</code></td>
                     <td>Quantidade</td>
                     <td class="col-req"><span class="req-yes">Não</span></td>
-                    <td>Quantidade de perda de matéria-prima.</td>
+                    <td>Quantidade de perda do produto produzido.</td>
                     <td><a class="ref" href="#rf08">RF08</a>, <a class="ref" href="#rf10">RF10</a></td>
                   </tr>
                 </tbody>
@@ -3077,7 +3069,7 @@ VL_VALOR + DT_HORA + DS_MOTIVO</pre>
             <!-- Notação formal da entidade -->
             <pre class="notation">ENCOMENDA = @ID_ENCOMENDA + DT_RETIRADA_ENTREGA +
 [TP_PENDENTE | TP_CONFIRMADA | TP_ENTREGUE | TP_CANCELADA] +
-(VL_SINAL) + (DS_PERSONALIZACAO)</pre>
+(VL_SINAL) + (DS_PERSONALIZACAO) + VL_TOTAL</pre>
             <!-- Leitura: explicação em linguagem de negócio -->
             <div class="reading">
               <span class="reading-label">Leitura</span>
@@ -3418,16 +3410,9 @@ DS_ENDERECO_ENTREGA + VL_TAXA_ENTREGA +
                     <td>—</td>
                   </tr>
                   <tr>
-                    <td class="col-attr"><code class="attr-name">ID_PRODUTO</code></td>
-                    <td>Identificador</td>
-                    <td class="col-req"><span class="req-yes">Sim</span></td>
-                    <td>Identificador de produto da encomenda.</td>
-                    <td>—</td>
-                  </tr>
-                  <tr>
                     <td class="col-attr"><code class="attr-name">QT_QUANTIDADE</code></td>
-                    <td>Data</td>
-                    <td class="col-req"><span class="req-yes">Não</span></td>
+                    <td>Quantidade</td>
+                    <td class="col-req"><span class="req-yes">Sim</span></td>
                     <td>Quantidade de cada item da tabela.</td>
                     <td><a class="ref" href="#rf05">RF05</a></td>
                   </tr>
@@ -5610,11 +5595,17 @@ DS_ENDERECO_ENTREGA + VL_TAXA_ENTREGA +
                     <td class="col-attr"><code class="attr-name">ID_PRODUTO</code></td>
                     <td>integer</td>
                     <td>NÃO</td>
-                    <td>PK, FK → PRODUTO</td>
+                    <td>FK → PRODUTO</td>
+                  </tr>
+                  <tr>
+                    <td class="col-attr"><code class="attr-name">ID_ENCOMENDA</code></td>
+                    <td>integer</td>
+                    <td>NÃO</td>
+                    <td>FK → ENCOMENDA</td>
                   </tr>
                   <tr>
                     <td class="col-attr"><code class="attr-name">QT_QUANTIDADE</code></td>
-                    <td>integer</td>
+                    <td>decimal(10,3)</td>
                     <td>NÃO</td>
                     <td>-</td>
                   </tr>
