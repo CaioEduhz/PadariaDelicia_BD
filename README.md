@@ -1539,24 +1539,24 @@ A IA só entrega valor com histórico acumulado (ideal: 6 a 12 meses). Até lá,
 
 ## 2\. Modelo Lógico Relacional
 
-Acesse aqui o modelo lógico Relacional.
+A seguir, link de acesso ao modelo lógico Relacional: https://app.brmodeloweb.com/publicview/6aecf0ba676def35996efc0e
 ---
 
 ## 3\. Script SQL Completo
 
 *(arquivo `.sql` — vale 12% na Dimensão Procedimental)*
 
-Acesse aqui o script .sql completo.
+Acesse [aqui](/Docs/script_padaria_delicia_ii.sql) o script .sql completo.
 ---
 
 
 ## 4\. Massa de Dados
 *(incluída no script ou em arquivo separado — parte da nota de Implementação SQL, 12%)*
-Acesse a massa de dados aqui.
+Acesse a massa de dados [aqui](/Docs/script_padaria_delicia_ii.sql).
 ---
 
 
-## 6\. Uso de Inteligência Artificial
+## 5\. Uso de Inteligência Artificial
 
 | Item | O que registrar |
 | :---- | :---- |
@@ -1659,7 +1659,7 @@ Acesse a massa de dados aqui.
 
 ---
 
-## 7\. Apresentação Corporativa Final
+## 6\. Apresentação Corporativa Final
 
 *(pitch cronometrado — vale 15%, maior peso individual da Dimensão Procedimental)*
 
