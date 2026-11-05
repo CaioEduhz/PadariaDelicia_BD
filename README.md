@@ -803,8 +803,6 @@ Se o grupo usou alguma ferramenta de IA (ChatGPT, Claude, Gemini, Perplexity etc
 
 ---
 
-# ENTREGA 2 — Modelo Lógico, Implementação SQL e Apresentação Final
-
 # Entrega 2 — Modelo Lógico, Implementação SQL e Apresentação Final
 
 ## 1\. Relatório Técnico Final
