@@ -378,9 +378,9 @@ Para garantir a rastreabilidade entre as necessidades da Padaria Delícia e a mo
 
 ---
 
-**## 5. Dicionário de Dados Conceitual (Preliminar)**  
+**## 5. Dicionário de Dados**  
 
-Confira o [Dicionário de Dados](Dicionario/index.html) feito no software BRMW BrModelo.
+Confira o [Dicionário de Dados](Dicionario/index.html).
 
 ---
 
