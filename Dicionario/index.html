@@ -743,7 +743,7 @@
                   <td><code class="attr-name">ITEM_COMANDA</code></td>
                   <td><span class="card-badge">(0,N)</span></td>
                   <td><span class="card-badge">(1,1)</span></td>
-                  <td>a comanda é aberta antes do primeiro item consumido (<a class="ref" href="#rf26">RF26</a>), por isso o mínimo é 0 (a conferir com o DER)</td>
+                  <td>a comanda é aberta antes do primeiro item consumido (<a class="ref" href="#rf26">RF26</a>), por isso o mínimo é 0.</td>
                 </tr>
                 <tr>
                   <td><code class="attr-name">PRODUTO</code></td>
@@ -807,7 +807,7 @@
                   <td><code class="attr-name">PAGAMENTO_VENDA</code></td>
                   <td><span class="card-badge">(1,N)</span></td>
                   <td><span class="card-badge">(1,1)</span></td>
-                  <td>uma venda é paga por uma ou mais modalidades (pagamento misto); PROPOSTA, ainda fora do DER</td>
+                  <td>uma venda é paga por uma ou mais modalidades (pagamento misto). </td>
                 </tr>
                 <tr>
                   <td><code class="attr-name">VENDA</code></td>
@@ -956,8 +956,8 @@
             <p>PRODUTO ou o próprio estabelecimento (quando ID_PRODUTO fica nulo) recebe um ou mais DOCUMENTO_REGULATORIO anexados — ficha técnica, laudo de bombeiro, laudo sanitário, alvará de funcionamento ou código de defesa do consumidor.</p>
           </div>
           <div class="flow-item">
-            <div class="flow-title">Encomendas — prática confirmada na entrevista; detalhes a validar <span class="ref-tag"><a class="ref" href="#rf14">RF14</a>/<a class="ref" href="#rf15">RF15</a></span></div>
-            <p>CLIENTE solicita uma ENCOMENDA de um PRODUTO com data de retirada/entrega → status evolui de PENDENTE a ENTREGUE ou CANCELADA. Fluxo isolado, sem ligação com VENDA ou COMANDA nesta versão preliminar — mantido isolado nesta versão preliminar, o sinal cobrado é registrado em VL_SINAL, sem integração com VENDA nesta versão preliminar.</p>
+            <div class="flow-title">Encomendas — prática confirmada na entrevista. <span class="ref-tag"><a class="ref" href="#rf14">RF14</a>/<a class="ref" href="#rf15">RF15</a></span></div>
+            <p>CLIENTE solicita uma ENCOMENDA de um ITEM_ENCOMENDA com data de retirada/entrega → status evolui de PENDENTE, CONFIRMADA a ENTREGUE ou CANCELADA. Fluxo isolado, sem ligação com VENDA ou COMANDA — mantido isolado nesta versão preliminar, o sinal cobrado é registrado em VL_SINAL, sem integração com VENDA.</p>
           </div>
           <div class="flow-item">
             <div class="flow-title">Auditoria — transversal a todos os fluxos acima <span class="ref-tag"><a class="ref" href="#rf24">RF24</a>, <a class="ref" href="#rnf13">RNF13</a></span></div>
@@ -1014,7 +1014,7 @@
               </tbody>
             </table>
           </div>
-          <p class="section-intro" style="margin-top:14px;">Os relacionamentos não aparecem na notação formal; cada entidade traz sua tabela de relacionamentos. Nas entidades dependentes com identificador composto, o identificador inclui a entidade principal, por exemplo <code>@(VENDA + ID_PAGAMENTO)</code>. ITEM_COMPRA, ITEM_VENDA e ITEM_COMANDA são exceção: têm identificador próprio (<code>@ID_ITEM</code>) e se ligam à entidade principal apenas pelo relacionamento. O símbolo <code>[ | ]</code> entre entidades indica exclusividade (um item de compra refere-se a <code>[PRODUTO | MATERIA_PRIMA]</code>).</p>
+          <p class="section-intro" style="margin-top:14px;">Os relacionamentos não aparecem na notação formal; cada entidade traz sua tabela de relacionamentos. Nas entidades dependentes com identificador composto, o identificador inclui a entidade principal, por exemplo <code>@(VENDA + ID_PAGAMENTO)</code>. ITEM_COMPRA, ITEM_VENDA, ITEM_ENCOMENDA e ITEM_COMANDA são exceção: têm identificador próprio (<code>@ID_ITEM</code>) e se ligam à entidade principal apenas pelo relacionamento. O símbolo <code>[ | ]</code> entre entidades indica exclusividade (um item de compra refere-se a <code>[PRODUTO | MATERIA_PRIMA]</code>).</p>
           <h4 class="h4s">Prefixos de atributos</h4>
           <div class="table-wrap">
             <table class="table-compact">
@@ -1856,7 +1856,7 @@ QT_QUANTIDADE + VL_UNITARIO</pre>
               <h3>PRODUCAO</h3>
             </div>
             <!-- Notação formal da entidade -->
-            <pre class="notation">PRODUCAO = @ID_PRODUCAO + DT_PRODUCAO + QT_PRODUZIDA</pre>
+            <pre class="notation">PRODUCAO = @ID_PRODUCAO + DT_PRODUCAO + QT_PRODUZIDA + QT_PERDA</pre>
             <!-- Leitura: explicação em linguagem de negócio -->
             <div class="reading">
               <span class="reading-label">Leitura</span>
@@ -1900,7 +1900,7 @@ QT_QUANTIDADE + VL_UNITARIO</pre>
                   <tr>
                     <td class="col-attr"><code class="attr-name">QT_PERDA</code></td>
                     <td>Quantidade</td>
-                    <td class="col-req"><span class="req-yes">Não</span></td>
+                    <td class="col-req"><span class="req-no">Não</span></td>
                     <td>Quantidade de perda do produto produzido.</td>
                     <td><a class="ref" href="#rf08">RF08</a>, <a class="ref" href="#rf10">RF10</a></td>
                   </tr>
@@ -3132,7 +3132,7 @@ VL_VALOR + DT_HORA + DS_MOTIVO</pre>
                   <tr>
                     <td class="col-attr"><code class="attr-name">VL_TOTAL</code></td>
                     <td>Monetário</td>
-                    <td class="col-req"><span class="req-no">Não</span></td>
+                    <td class="col-req"><span class="req-yes">Sim</span></td>
                     <td>Valor total da encomenda.</td>
                     <td><a class="ref" href="#rn17">RN17</a></td>
                   </tr>
@@ -3164,9 +3164,9 @@ VL_VALOR + DT_HORA + DS_MOTIVO</pre>
                     <td><span class="card-badge">(0,N)</span></td>
                   </tr>
                   <tr>
-                    <td>ITEM_ENCOMENDA é contido em ENCOMENDA</td>
-                    <td><span class="card-badge">(1,N)</span></td>
+                    <td>ENCOMENDA contém ITEM_ENCOMENDA</td>
                     <td><span class="card-badge">(1,1)</span></td>
+                    <td><span class="card-badge">(1,N)</span></td>
                   </tr>
                 </tbody>
               </table>
@@ -3433,7 +3433,7 @@ DS_ENDERECO_ENTREGA + VL_TAXA_ENTREGA +
                     <td>Monetário</td>
                     <td class="col-req"><span class="req-yes">Sim</span></td>
                     <td>Valor de cada item. Deve ser maior que zero.</td>
-                    <td><a class="ref" href="#rn23">RN23</a></td>
+                    <td><a class="ref" href="#rn17">RN17</a></td>
                   </tr>
                 </tbody>
               </table>
