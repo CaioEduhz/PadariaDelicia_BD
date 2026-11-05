@@ -457,7 +457,7 @@
       <!-- === MENU LATERAL — busca, links das seções e lista de entidades === -->
       <aside class="sidebar">
         <div class="brand"><span class="brand-mark">Delícia II</span></div>
-        <p class="brand-sub">DICIONÁRIO DE DADOS · v2.7</p>
+        <p class="brand-sub">DICIONÁRIO DE DADOS · v2.8</p>
         <input aria-label="Buscar entidade" class="sidebar-search" id="sidebar-search" placeholder="Buscar entidade…" type="text"/>
         <!-- Links do menu -->
         <nav>
@@ -535,11 +535,11 @@
               <tbody>
                 <tr>
                   <td>Versão</td>
-                  <td>2.7</td>
+                  <td>2.8</td>
                 </tr>
                 <tr>
                   <td>Data de atualização</td>
-                  <td>02/11/2026</td>
+                  <td>04/11/2026</td>
                 </tr>
                 <tr>
                   <td>SGBD</td>
@@ -605,6 +605,11 @@
                   <td>2.7</td>
                   <td>02/11/2026</td>
                   <td>Nova entidade ITEM_ENCOMENDA; Ajuste de relacionamentos e cardinalidades; correção de chaves primárias em ITEM_VENDA, ITEM_COMANDA e ITEM_COMPRA; Ajustes na redação das seções 8 (Dicionário Físico) e 3 (Convenções)</td>
+                </tr>
+                <tr>
+                  <td>2.8</td>
+                  <td>04/11/2026</td>
+                  <td>Inclusão do atributo QT_PERDA na entidade PRODUCAO; Ajuste de atributos de ENCOMENDA e ITEM_ENCOMENDA</td>
                 </tr>
               </tbody>
             </table>
@@ -874,10 +879,10 @@
                 <tr>
                   <td><code class="attr-name">PRODUTO</code></td>
                   <td>é encomendado em</td>
-                  <td><code class="attr-name">ENCOMENDA</code></td>
+                  <td><code class="attr-name">ITEM_ENCOMENDA</code></td>
                   <td><span class="card-badge">(0,N)</span></td>
-                  <td><span class="card-badge">(1,1)</span></td>
-                  <td>cada encomenda refere-se a um produto</td>
+                  <td><span class="card-badge">(0,N)</span></td>
+                  <td>cada item da encomenda refere-se a um produto</td>
                 </tr>
                 <tr>
                   <td><code class="attr-name">VENDA</code></td>
@@ -893,6 +898,22 @@
                   <td><code class="attr-name">CONTA_PAGAR</code></td>
                   <td><span class="card-badge">(0,N)</span></td>
                   <td><span class="card-badge">(1,1)</span></td>
+                  <td>um fornecedor pode ter várias contas a pagar (boletos); toda conta pertence a um fornecedor</td>
+                </tr>
+                <tr>
+                  <td><code class="attr-name">FORNECEDOR</code></td>
+                  <td>gera</td>
+                  <td><code class="attr-name">CONTA_PAGAR</code></td>
+                  <td><span class="card-badge">(0,N)</span></td>
+                  <td><span class="card-badge">(1,1)</span></td>
+                  <td>um fornecedor pode ter várias contas a pagar (boletos); toda conta pertence a um fornecedor</td>
+                </tr>
+                <tr>
+                  <td><code class="attr-name">ENCOMENDA</code></td>
+                  <td>contém</td>
+                  <td><code class="attr-name">ITEM_ENCOMENDA</code></td>
+                  <td><span class="card-badge">(0,N)</span></td>
+                  <td><span class="card-badge">(0,N)</span></td>
                   <td>um fornecedor pode ter várias contas a pagar (boletos); toda conta pertence a um fornecedor</td>
                 </tr>
               </tbody>
@@ -1877,6 +1898,13 @@ QT_QUANTIDADE + VL_UNITARIO</pre>
                     <td>Quantidade</td>
                     <td class="col-req"><span class="req-yes">Sim</span></td>
                     <td>Quantidade produzida na ocorrência registrada.</td>
+                    <td><a class="ref" href="#rf08">RF08</a>, <a class="ref" href="#rf10">RF10</a></td>
+                  </tr>
+                  <tr>
+                    <td class="col-attr"><code class="attr-name">QT_PERDA</code></td>
+                    <td>Quantidade</td>
+                    <td class="col-req"><span class="req-yes">Não</span></td>
+                    <td>Quantidade de perda de matéria-prima.</td>
                     <td><a class="ref" href="#rf08">RF08</a>, <a class="ref" href="#rf10">RF10</a></td>
                   </tr>
                 </tbody>
@@ -3390,6 +3418,13 @@ DS_ENDERECO_ENTREGA + VL_TAXA_ENTREGA +
                     <td>—</td>
                   </tr>
                   <tr>
+                    <td class="col-attr"><code class="attr-name">ID_PRODUTO</code></td>
+                    <td>Identificador</td>
+                    <td class="col-req"><span class="req-yes">Sim</span></td>
+                    <td>Identificador de produto da encomenda.</td>
+                    <td>—</td>
+                  </tr>
+                  <tr>
                     <td class="col-attr"><code class="attr-name">QT_QUANTIDADE</code></td>
                     <td>Data</td>
                     <td class="col-req"><span class="req-yes">Não</span></td>
@@ -4608,6 +4643,12 @@ DS_ENDERECO_ENTREGA + VL_TAXA_ENTREGA +
                     <td>NÃO</td>
                     <td>—</td>
                   </tr>
+                  <tr>
+                  <td class="col-attr"><code class="attr-name">QT_PERDA</code></td>
+                  <td>float</td>
+                  <td>SIM</td>
+                  <td>—</td>
+                  </tr>
                 </tbody>
               </table>
             </div>
@@ -5365,12 +5406,6 @@ DS_ENDERECO_ENTREGA + VL_TAXA_ENTREGA +
                     <td>FK → CLIENTE</td>
                   </tr>
                   <tr>
-                    <td class="col-attr"><code class="attr-name">ID_PRODUTO</code></td>
-                    <td>integer</td>
-                    <td>NÃO</td>
-                    <td>FK → PRODUTO</td>
-                  </tr>
-                  <tr>
                     <td class="col-attr"><code class="attr-name">DT_RETIRADA_ENTREGA</code></td>
                     <td>datetime</td>
                     <td>NÃO</td>
@@ -5547,10 +5582,10 @@ DS_ENDERECO_ENTREGA + VL_TAXA_ENTREGA +
             <p class="indices"><strong>Índices e restrições:</strong> PK ID_CONTA_PAGAR; índice em ID_FORNECEDOR; índice composto em (TP_STATUS, DT_VENCIMENTO), para o controle semanal de vencimentos; CHECK VL_VALOR &gt; 0 (aplicada a partir do MySQL 8.0.16).</p>
           </section>
 
-                    <!-- --- 8.23 ITEM_ENCOMENDA — físico --- -->
+          <!-- --- 8.24 ITEM_ENCOMENDA — físico --- -->
           <section class="entity" id="f-item-encomenda">
             <div class="entity-head">
-              <span class="entity-num">8.23</span>
+              <span class="entity-num">8.24</span>
               <h3>ITEM_ENCOMENDA</h3>
             </div>
             <!-- Colunas físicas: tipo, nulo e chave -->
@@ -5570,6 +5605,12 @@ DS_ENDERECO_ENTREGA + VL_TAXA_ENTREGA +
                     <td>integer</td>
                     <td>NÃO</td>
                     <td>PK</td>
+                  </tr>
+                  <tr>
+                    <td class="col-attr"><code class="attr-name">ID_PRODUTO</code></td>
+                    <td>integer</td>
+                    <td>NÃO</td>
+                    <td>PK, FK → PRODUTO</td>
                   </tr>
                   <tr>
                     <td class="col-attr"><code class="attr-name">QT_QUANTIDADE</code></td>
@@ -5678,7 +5719,7 @@ DS_ENDERECO_ENTREGA + VL_TAXA_ENTREGA +
 
         <!-- === RODAPÉ — versão e integrantes === -->
         <footer class="doc-footer">
-          <div>Entrega 1 — Modelo Conceitual (DER) · Dicionário de Dados · Versão 2.7 (02/11/2026)</div>
+          <div>Entrega 1 — Modelo Conceitual (DER) · Dicionário de Dados · Versão 2.8 (04/11/2026)</div>
           <div class="team">Integrantes: Caio Eduardo Hernandez, Davi Henrique Santos, Gustavo Reis, Isabela Calisto, Maria Eduarda Peres.</div>
         </footer>
       </main>
