@@ -1,6 +1,6 @@
 # README — Projeto de Banco de Dados | Padaria Delícia II
 
-Este documento reúne o conteúdo das duas etapas do projeto, mantendo as informações originais e separando-as por entrega.
+Este documento reúne o conteúdo das duas etapas do projeto de modelagem do banco de dados.
 
 ---
 
