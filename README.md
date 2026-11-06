@@ -62,7 +62,7 @@ Para garantir a rastreabilidade entre as necessidades da Padaria Delícia e a mo
   - *Comanda (Papel/Sistema):* Número da comanda, data, hora de abertura, local de consumo (balcão ou salão), itens (produto, forma de venda [UN ou KG], quantidade/peso em kg, valor unitário/preço por kg e valor total do item).
   - *Fechamento/Pagamento:* Operador de caixa, valor total da venda, forma de pagamento (dinheiro, PIX, cartão de crédito/débito), valor pago, troco, data/hora de encerramento, número do cupom fiscal emitido pelo Saurus e CPF do cliente na nota (opcional/a validar).
 - **Exceções e Regras de Negócio:**
-  - *RN16 — Venda de bebida alcoólica:* Exige obrigatoriamente a conferência de documento de identidade caso o cliente aparenta ser menor de 18 anos.
+  - *RN25 — Venda de bebida alcoólica:* Exige obrigatoriamente a conferência de documento de identidade caso o cliente aparenta ser menor de 18 anos.
   - *Evasão:* Clientes que saem sem pagar (problema crítico decorrente do controle atual em papel).
 
 #### Processo 2: Gestão de Pedidos via Delivery
@@ -1134,14 +1134,12 @@ A regra geral aplicada estabelece que, nos relacionamentos 1:N, a chave estrange
 
 
 ## **5\. Decisões Arquiteturais Gerais**
-
-1. **Normalização (3FN):** O modelo atende à Terceira Forma Normal, eliminando redundâncias transitivas e garantindo atomicidade nos atributos.  
      
-2. **Redundância Controlada:** O armazenamento histórico de VL\_UNITARIO em tabelas de itens protege o sistema contra alterações futuras de preços de tabela.  
+1. **Redundância Controlada:** O armazenamento histórico de VL\_UNITARIO em tabelas de itens protege o sistema contra alterações futuras de preços de tabela.  
      
-3. **Inativação Lógica:** O uso de IN\_ATIVO em PRODUTO e FUNCIONARIO preserva a integridade de registros históricos em vendas e auditorias sem recorrer à exclusão física.  
+2. **Inativação Lógica:** O uso de IN\_ATIVO em PRODUTO e FUNCIONARIO preserva a integridade de registros históricos em vendas e auditorias sem recorrer à exclusão física.  
      
-4. **Trilha de Auditoria:** A entidade LOG\_AUDITORIA centraliza o registro de alterações críticas de forma genérica e segura.
+3. **Trilha de Auditoria:** A entidade LOG\_AUDITORIA centraliza o registro de alterações críticas de forma genérica e segura.
 
    
 
@@ -1640,9 +1638,20 @@ A IA só entrega valor com histórico acumulado (ideal: 6 a 12 meses). Até lá,
 | **Prompt(s) utilizados** | “Olá Chat, poderia me ajudar a criar e executar sql de acordo com o material?\! |
 | **Resposta recebida** | Código SQL do repositório. |
 | **Fontes consultadas e verificadas** | Repositório. |
-| **Trechos rejeitados ou corrigidos** | Tudo executado, nada removido. |
+| **Trechos rejeitados ou corrigidos** | Tudo executado, nada removido. Adicionado comentários e registros para melhor localização. |
 | **Justificativa da escolha final** | Estava sendo executado perfeitamente. |
-| **Reflexão crítica** | C |
+| **Reflexão crítica** | Com a teoria feita, o físico se tornou prático e fácil com auxílio de IA. |
+
+| Item | O que registrar |
+| :---- | :---- |
+| **Ferramenta e etapa** | NotebookLM usado para apresentação em slides, sendo executado de acordo com as instruções |
+| **Motivação** | O grupo recorreu à IA para garantir uma estrutura organizada e coerente de informações dos slides. |
+| **Prompt(s) utilizados** | “Me ajude a montar os slides de acordo com as instruções a seguir: Contextualização do problema institucional/organizacional solucionado; Apresentação da solução proposta; Apresentação do modelo lógico; Demonstração da implementação (SQL rodando); Demonstração de consultas (gerenciais/auditoria); Potencial para BI e IA; Benefícios diretos para a tomada de decisão da organização.\ |
+| **Resposta recebida** | Apresentação em arquivo .pptx completa, conforme anexo em repositório. |
+| **Fontes consultadas e verificadas** | Repositório. |
+| **Trechos rejeitados ou corrigidos** | Nenhum trecho foi corrigido ou removido. |
+| **Justificativa da escolha final** | Apresentação estava coerente com o projeto e estruturada de maneira organizada. |
+| **Reflexão crítica** | O que antes poderia se tornar um contratempo estético e de coerência de informações, se tornou prático e fácil com auxílio de IA. |
 
 ---
 
