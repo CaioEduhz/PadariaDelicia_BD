@@ -2,6 +2,9 @@
 
 Este documento reúne o conteúdo das duas etapas do projeto de modelagem do banco de dados.
 
+Acesse o [aqui](https://youtu.be/7mBkDBgT-Lc) o vídeo da apresentação geral do projeto: https://youtu.be/7mBkDBgT-Lc
+
+
 ---
 
 ## ENTREGA 1 — Modelo Conceitual (DER)
